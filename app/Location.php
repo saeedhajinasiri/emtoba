@@ -44,11 +44,11 @@ class Location extends Node
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function advertises()
-    {
-        return $this->hasMany(Advertise::class);
-    }
-
+    /**
+     * dashed title accessor for using admin dropdown
+     *
+     * @return mixed|string
+     */
     public function getDashedTitleAttribute()
     {
         if ($this->attributes['depth'] == 0) {
@@ -57,6 +57,11 @@ class Location extends Node
         return str_repeat("┃&nbsp;&nbsp;&nbsp;&nbsp;", $this->attributes['depth'] - 1) . "┫ " . $this->title_fa;
     }
 
+    /**
+     * qualified name accessor
+     *
+     * @return string
+     */
     public function getQualifiedNameAttribute()
     {
         return $this->title_fa . ' (' . $this->title_en . ')';

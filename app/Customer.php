@@ -15,6 +15,10 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $fillable = ['state', 'created_by', 'updated_by'];
+    protected $fillable = [
+        'state',
+        'created_by',
+        'updated_by'
+    ];
 
 }

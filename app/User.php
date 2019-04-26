@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Traits\DateMutators;
+use App\Traits\Image;
+use App\Traits\ImageTrait;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Config;
 
 class User extends Authenticatable
 {
-    use Notifiable, EntrustUserTrait, DateMutators;
+    use Notifiable, EntrustUserTrait, DateMutators, ImageTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +22,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'state', 'name', 'username', 'email', 'password', 'avatar', 'mobile', 'address', 'location_id', 'last_login_at', 'last_login_ip',
+        'state',
+        'name',
+        'username',
+        'email',
+        'password',
+        'avatar',
+        'mobile',
+        'address',
+        'location_id',
+        'last_login_at',
+        'last_login_ip',
     ];
 
     /**
@@ -32,17 +44,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Get all of the owning loginable models.
+     */
     public function loginable()
     {
         return $this->morphTo();
-    }
-
-    /**
-     * Get the advertises for the user.
-     */
-    public function advertises()
-    {
-        return $this->hasMany(Advertise::class);
     }
 
     /**
@@ -50,7 +57,7 @@ class User extends Authenticatable
      */
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany(Comment::class);
     }
 
     /**
@@ -58,7 +65,7 @@ class User extends Authenticatable
      */
     public function categories()
     {
-        return $this->hasMany('App\Category');
+        return $this->hasMany(Category::class);
     }
 
     /**
@@ -66,7 +73,7 @@ class User extends Authenticatable
      */
     public function departments()
     {
-        return $this->hasMany('App\Department');
+        return $this->hasMany(Department::class);
     }
 
     /**
@@ -74,33 +81,7 @@ class User extends Authenticatable
      */
     public function roles()
     {
-        return $this->belongsToMany('App\Role');
-    }
-
-    /**
-     * Get all of the user's reports.
-     */
-    public function reports()
-    {
-        return $this->morphMany(Report::class, 'reportable');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRoleListAttribute()
-    {
-        return $this->roles()->pluck('id')->toArray();
-    }
-
-    /**
-     * @return string
-     */
-    public function getShowRolesAttribute()
-    {
-        $roles = $this->roles()->pluck('name', 'id')->toArray();
-
-        return implode(' , ', $roles);
+        return $this->belongsToMany(Role::class);
     }
 
     /**
@@ -143,6 +124,28 @@ class User extends Authenticatable
     }
 
     /**
+     * role list accessor
+     *
+     * @return mixed
+     */
+    public function getRoleListAttribute()
+    {
+        return $this->roles()->pluck('id')->toArray();
+    }
+
+    /**
+     * show roles accessor
+     *
+     * @return string
+     */
+    public function getShowRolesAttribute()
+    {
+        $roles = $this->roles()->pluck('name', 'id')->toArray();
+
+        return implode(' , ', $roles);
+    }
+
+    /**
      * Big block of caching of roles functionality.
      *
      * @return mixed
@@ -158,6 +161,8 @@ class User extends Authenticatable
     }
 
     /**
+     * admin link accessor
+     *
      * @return string
      */
     public function getAdminLinkAttribute()
@@ -170,6 +175,8 @@ class User extends Authenticatable
     }
 
     /**
+     * panel link accessor
+     *
      * @return string
      */
     public function getPanelLinkAttribute()
@@ -182,14 +189,8 @@ class User extends Authenticatable
     }
 
     /**
-     * @return string
-     */
-    public static function imagePath()
-    {
-        return DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . strtolower(class_basename(self::class)) . DIRECTORY_SEPARATOR;
-    }
-
-    /**
+     * avatar link accessor
+     *
      * @return string
      */
     public function getAvatarLinkAttribute()
@@ -202,7 +203,7 @@ class User extends Authenticatable
     }
 
     /**
-     * the accessor of public profile link
+     * the accessor of public profile link accessor
      *
      * @return string
      */
@@ -212,7 +213,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get last login at difference for humans
+     * Get last login at difference for humans accessor
      *
      * @return string
      */
@@ -222,7 +223,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get user status icon
+     * Get user status icon accessor
      *
      * @return string
      */

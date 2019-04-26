@@ -31,6 +31,11 @@ class Link extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * type name accessor
+     *
+     * @return string
+     */
     public function getTypeNameAttribute()
     {
         return trans('admin.links.' . ELinkType::search($this->type));

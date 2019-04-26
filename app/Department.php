@@ -14,17 +14,28 @@ class Department extends Model
      *
      * @var array
      */
-    protected $fillable = ['state', 'title', 'content', 'created_by', 'updated_by'];
+    protected $fillable = [
+        'state',
+        'title',
+        'content',
+        'created_by',
+        'updated_by'
+    ];
 
     /**
      * Get the user that owns the department.
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'created_by');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function getBriefAttribute()
+    /**
+     * excerpt of content accessor
+     *
+     * @return string
+     */
+    public function getExcerptAttribute()
     {
         return str_limit($this->content, 100);
     }

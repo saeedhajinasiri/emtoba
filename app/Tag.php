@@ -14,13 +14,16 @@ class Tag extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = [
+        'title',
+        'slug'
+    ];
 
     /**
      * The blogs that belong to the tag.
      */
     public function blogs()
     {
-        return $this->belongsToMany('App\Restaurant');
+        return $this->belongsToMany(Post::class);
     }
 }

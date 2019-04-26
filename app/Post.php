@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\DateMutators;
+use App\Traits\ImageTrait;
 use App\Traits\Likable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Morilog\Jalali\jDate;
 
 class Post extends BaseModel
 {
-    use Likable;
+    use Likable, ImageTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -34,13 +35,8 @@ class Post extends BaseModel
         'published_at',
     ];
 
-    public function scopeIsActive($query)
-    {
-        return $query->where('state', 1)->where('published_at', '<', Carbon::now());
-    }
-
     /**
-     * Get the category that owns the comment.
+     * Get the category that owns the post.
      */
     public function categories()
     {
@@ -63,11 +59,32 @@ class Post extends BaseModel
         return $this->belongsTo('App\User', 'author_id');
     }
 
+    /**
+     * is active scope
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeIsActive($query)
+    {
+        return $query->where('state', 1)->where('published_at', '<', Carbon::now());
+    }
+
+    /**
+     * thumbs up likes that related to the post
+     *
+     * @return mixed
+     */
     public function thumbsUp()
     {
         return $this->likes()->thumbsUp();
     }
 
+    /**
+     * thumbs down likes that related to the post
+     *
+     * @return mixed
+     */
     public function thumbsDown()
     {
         return $this->likes()->thumbsDown();
@@ -102,31 +119,54 @@ class Post extends BaseModel
         $this->attributes['published_at'] = $this->prepareSetDateAttribute($value, 'Y-m-d H:i:s', new Carbon());
     }
 
+    /**
+     * excerpt of content accessor
+     *
+     * @return string
+     */
     public function getExcerptAttribute()
     {
         return Str::words(strip_tags($this->attributes['content']), 30);
     }
 
+    /**
+     * image link accessor with default
+     *
+     * @return string
+     */
     public function getImageLinkAttribute()
     {
         if ($this->image) {
-            return '/images/post/' . $this->image;
+            return self::imagePath() . $this->image;
         }
 
-        return '/assets/images/product/1.jpg';
+        return '/panel/assets/dist/img/avatar.png';
     }
 
+    /**
+     * link accessor
+     *
+     * @return string
+     */
     public function getLinkAttribute()
     {
         return route('site.blog.show', ['id' => $this->id, 'slug' => $this->slug]);
     }
-    
+
+    /**
+     * @return $this
+     */
     public function withoutTimestamps()
     {
         $this->timestamps = false;
         return $this;
     }
 
+    /**
+     * author name accessor
+     *
+     * @return string
+     */
     public function getAuthorNameAttribute()
     {
         if (isset($this->user)) {
@@ -136,20 +176,26 @@ class Post extends BaseModel
         return '';
     }
 
+    /**
+     * jalali published at accessor
+     *
+     * @return jDate
+     */
     public function getJalaliPublishedAtAttribute()
     {
         return jDate::forge($this->getOriginal('published_at'));
     }
 
+    /**
+     * validity of post scope
+     *
+     * @param $query
+     * @return mixed
+     */
     public function scopeValid($query)
     {
         return $query
             ->where('published_at', '<=', Carbon::now())
             ->enabled();
-    }
-
-    public static function imagePath()
-    {
-        return DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . strtolower(class_basename(self::class)) . DIRECTORY_SEPARATOR;
     }
 }

@@ -30,14 +30,6 @@ class Category extends Node
     ];
 
     /**
-     * The products that belong to the category.
-     */
-    public function projects()
-    {
-        return $this->hasMany(Project::class);
-    }
-
-    /**
      * Get the user that owns the category.
      */
     public function user()
@@ -45,6 +37,11 @@ class Category extends Node
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    /**
+     * dashed title accessor for using admin dropdown
+     *
+     * @return mixed|string
+     */
     public function getDashedTitleAttribute()
     {
         if ($this->attributes['depth'] == 0) {
@@ -54,13 +51,23 @@ class Category extends Node
         return str_repeat("┃&nbsp;&nbsp;&nbsp;&nbsp;", $this->attributes['depth'] - 1) . "┫ " . $this->title;
     }
 
+    /**
+     * qualified name accessor
+     *
+     * @return string
+     */
     public function getQualifiedNameAttribute()
     {
         return $this->title_fa . ' (' . $this->title_en . ')';
     }
 
+    /**
+     * link accessor
+     *
+     * @return string
+     */
     public function getLinkAttribute()
     {
-        return route('site.projects.categories', $this->slug);
+        return '';
     }
 }

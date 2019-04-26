@@ -3,12 +3,13 @@
 namespace App;
 
 use App\Traits\DateMutators;
+use App\Traits\ImageTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    use DateMutators;
+    use DateMutators, ImageTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +34,7 @@ class Slider extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -57,8 +58,17 @@ class Slider extends Model
         $this->attributes['published_at'] = $this->prepareSetDateAttribute($value, 'Y-m-d H:i:s', new Carbon());
     }
 
+    /**
+     * image link accessor
+     *
+     * @return string
+     */
     public function getImageLinkAttribute()
     {
-        return '/images/slider/' . $this->image;
+        if ($this->image) {
+            return self::imagePath() . $this->image;
+        }
+
+        return '/panel/assets/dist/img/avatar.png';
     }
 }

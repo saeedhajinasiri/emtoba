@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\ECommentType;
 use App\Traits\DateMutators;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,19 +46,34 @@ class Comment extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
+    /**
+     * commentable section accessor
+     *
+     * @return mixed
+     */
     public function getCommentableSectionAttribute()
     {
         return explode('\\', $this->commentable_type)[1];
     }
 
+    /**
+     * commentable title accessor
+     *
+     * @return mixed
+     */
     public function getCommentableTitleAttribute()
     {
         return $this->commentable->title;
     }
 
+    /**
+     * parent title accessor
+     *
+     * @return null
+     */
     public function getParentTitleAttribute()
     {
         if ($this->parent_id) {
@@ -67,8 +83,13 @@ class Comment extends Model
         }
     }
 
+    /**
+     * status name accessor
+     *
+     * @return string
+     */
     public function getStatusNameAttribute()
     {
-        return ($this->status == Self::pending ? 'pending' : ($this->status == Self::approved ? 'approved' : 'rejected'));
+        return ($this->status == ECommentType::pending ? 'pending' : ($this->status == ECommentType::approved ? 'approved' : 'rejected'));
     }
 }

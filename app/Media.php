@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class Media extends Model
 {
     use DateMutators, Loginable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,19 +34,6 @@ class Media extends Model
         'state',
         'approved_at',
     ];
-
-    public function scopeIsApproved($query)
-    {
-        return $this->whereNotNull('approved_at');
-    }
-
-    /**
-     * Get the comments for the restaurant post.
-     */
-    public function restaurants()
-    {
-        return $this->morphMany(Restaurant::class, 'mediable');
-    }
 
     /**
      * Media related user
@@ -85,6 +73,17 @@ class Media extends Model
     public function getIsApprovedAttribute()
     {
         return !is_null($this->approved_at);
+    }
+
+    /**
+     * is approved scope
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeIsApproved($query)
+    {
+        return $this->whereNotNull('approved_at');
     }
 
 }

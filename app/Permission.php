@@ -9,13 +9,30 @@ class Permission extends EntrustPermission
 {
     use DateMutators;
 
-    protected $fillable = ['name', 'display_name', 'description'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'display_name',
+        'description'
+    ];
 
+    /**
+     * Get the roles that owns the permission.
+     */
     public function roles()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany(Role::class);
     }
 
+    /**
+     * prefix accessor
+     *
+     * @return string
+     */
     public function getPrefixAttribute()
     {
         $nameArr = explode('.', $this->name);

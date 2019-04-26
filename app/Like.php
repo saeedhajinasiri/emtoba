@@ -2,34 +2,26 @@
 
 namespace App;
 
-
 use App\Enums\ELikeType;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Like extends Model
 {
-    //Relations
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'user_id', 'user_ip', 'score_type', 'state'
+        'user_id',
+        'user_ip',
+        'score_type',
+        'state'
     ];
 
     /**
-     * Country constructor.
-     *
-     * @param array $attributes
+     * Get all of the owning likable models.
      */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
-
-    public static function table()
-    {
-        return (new self)->getTable();
-    }
-
     public function likable()
     {
         return $this->morphTo('likable');

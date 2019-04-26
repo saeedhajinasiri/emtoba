@@ -10,6 +10,12 @@ class BaseModel extends Model
 {
     use DateMutators;
 
+    /**
+     * enabled scope
+     *
+     * @param $query
+     * @return mixed
+     */
     public function scopeEnabled($query)
     {
         return $query->where('state', EState::enabled);

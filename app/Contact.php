@@ -30,7 +30,7 @@ class Contact extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -38,11 +38,19 @@ class Contact extends Model
      */
     public function department()
     {
-        return $this->belongsTo('App\Department');
+        return $this->belongsTo(Department::class);
     }
 
+    /**
+     * department title accessor
+     * @return string
+     */
     public function getDepartmentTitleAttribute()
     {
-        return Department::find($this->department_id)->first()->toArray()['title'];
+        if ($this->department) {
+            return $this->department->title;
+        }
+
+        return '';
     }
 }
