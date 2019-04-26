@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Forms\Admin\LocationForm;
-use App\Http\Requests\StoreLocationRequest;
+use App\Http\Requests\Admin\StoreLocationRequest;
 use App\Location;
 use Exception;
 use Illuminate\Http\Request;

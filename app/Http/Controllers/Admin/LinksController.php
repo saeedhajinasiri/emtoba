@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Link;
 use App\Forms\Admin\LinkForm;
-use App\Http\Requests\StoreLinksRequest;
+use App\Http\Requests\Admin\StoreLinksRequest;
 use Exception;
 use Laracasts\Flash\Flash;
 

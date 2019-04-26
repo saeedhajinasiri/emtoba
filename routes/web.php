@@ -14,30 +14,18 @@ function getSetting($key) {
 /*
  * Route of sites
  */
-Route::get('/about', ['as' => 'site.about.show', 'uses' => 'PagesController@about']);
-Route::get('/clients', ['as' => 'site.clients.show', 'uses' => 'PagesController@clients']);
-
+Route::get('/', ['as' => 'site.index', 'uses' => 'SiteController@index']);
 Route::get('/contacts', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);
 Route::post('/contacts', ['as' => 'site.contacts.store', 'uses' => 'ContactsController@store']);
-
-Route::get('/videos', ['as' => 'site.videos.index', 'uses' => 'VideosController@index']);
 
 Route::get('/blog', ['as' => 'site.blog.index', 'uses' => 'BlogController@index']);
 Route::get('blog/{id}', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
 Route::get('blog/{id}-', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
 Route::get('blog/{id}-{slug}', ['as' => 'site.blog.show', 'uses' => 'BlogController@show'])->where('id', '[0-9]+');
-
-Route::get('/projects', ['as' => 'site.projects.index', 'uses' => 'ProjectsController@index']);
-Route::get('projects/{id}', ['uses' => 'ProjectsController@show'])->where('id', '[0-9]+');
-Route::get('projects/{id}-', ['uses' => 'ProjectsController@show'])->where('id', '[0-9]+');
-Route::get('projects/{id}-{slug}', ['as' => 'site.projects.show', 'uses' => 'ProjectsController@show'])->where('id', '[0-9]+');
-Route::get('/projects/{slug}', ['as' => 'site.projects.categories', 'uses' => 'ProjectsController@categories']);
-Route::post('projects/like/{id}', [
-    'as' => 'site.projects.like',
-    'uses' => 'ProjectsController@like'
+Route::post('blog/like/{id}', [
+    'as' => 'site.blog.like',
+    'uses' => 'BlogController@like'
 ]);
-
-Route::get('/', ['as' => 'site.index', 'uses' => 'SiteController@index']);
 
 Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
 
@@ -51,25 +39,7 @@ Route::any('logout', ['as' => 'logout', 'namespace' => 'Auth', 'uses' => 'Auth\L
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'RouteAuthorize'], 'namespace' => 'Admin'], function () {
 
     Route::get('/', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
-    Route::get('/databases', ['as' => 'databases.index', 'uses' => 'DatabasesController@index']);
-    Route::get('/export', ['as' => 'databases.export', 'uses' => 'DatabasesController@export']);
-    Route::post('/import', ['as' => 'databases.import', 'uses' => 'DatabasesController@import']);
 
-    Route::resource('posts', 'PostsController');
-    Route::post('posts/{post}/uploadPhoto', [
-        'as' => 'posts.uploadPhoto',
-        'uses' => 'PostsController@uploadPhoto'
-    ]);
-    Route::post('posts/{post}/removePhoto/{media}', [
-        'as' => 'posts.removePhoto',
-        'uses' => 'PostsController@removePhoto'
-    ]);
-
-    Route::resource('videos', 'VideosController');
-    Route::resource('teams', 'TeamsController');
-    Route::resource('testimonials', 'TestimonialsController');
-    Route::resource('clients', 'ClientsController');
-    Route::resource('comments', 'CommentsController');
     Route::resource('admins', 'AdminsController');
     Route::resource('roles', 'RolesController');
     Route::resource('permissions', 'PermissionsController');
@@ -79,25 +49,27 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('pages', 'PagesController');
     Route::resource('links', 'LinksController');
     Route::resource('sliders', 'SlidersController');
-
-//    Route::resource('categories', 'CategoriesController');
     Route::resource('comments', 'CommentsController');
-    Route::resource('projects', 'ProjectsController');
-    Route::post('projects/{project}/uploadPhoto', [
-        'as' => 'projects.uploadPhoto',
-        'uses' => 'ProjectsController@uploadPhoto'
-    ]);
-    Route::post('projects/{project}/removePhoto/{media}', [
-        'as' => 'projects.removePhoto',
-        'uses' => 'ProjectsController@removePhoto'
-    ]);
-//    Route::resource('orders', 'OrdersController');
 
+    // Customers route
     Route::resource('customers', 'CustomersController');
     Route::get('customers/{id}/loginAs', [
         'as' => 'customers.loginAs',
         'uses' => 'CustomersController@loginAs'
     ]);
+    // END of Customers route
+
+    // Posts route
+    Route::resource('posts', 'PostsController');
+    Route::post('posts/{post}/uploadPhoto', [
+        'as' => 'posts.uploadPhoto',
+        'uses' => 'PostsController@uploadPhoto'
+    ]);
+    Route::post('posts/{post}/removePhoto/{media}', [
+        'as' => 'posts.removePhoto',
+        'uses' => 'PostsController@removePhoto'
+    ]);
+    // END of Posts route
 
     // Categories route
     Route::get('categories/', [
@@ -159,11 +131,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
         'as' => 'locations.quickDestroy',
         'uses' => 'LocationsController@quickDestroy'
     ]);
-    // Route::resource('menus', 'MenusController');
     // End of locations route
 
     // Menus route
-    /*Route::get('menus/', [
+    Route::get('menus/', [
         'as' => 'menus.index',
         'uses' => 'MenusController@tree'
     ]);
@@ -190,7 +161,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::get('menus/{id}/quickDestroy', [
         'as' => 'menus.quickDestroy',
         'uses' => 'MenusController@quickDestroy'
-    ]);*/
+    ]);
     // Route::resource('menus', 'MenusController');
     // End of menus route
 

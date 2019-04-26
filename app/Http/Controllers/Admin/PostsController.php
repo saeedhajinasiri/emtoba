@@ -6,7 +6,7 @@ use App\Enums\EState;
 use App\Forms\Admin\BlogForm;
 use App\Media;
 use App\Post;
-use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\Admin\StorePostRequest;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;

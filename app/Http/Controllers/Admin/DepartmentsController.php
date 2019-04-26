@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Department;
 use App\Forms\Admin\DepartmentForm;
-use App\Http\Requests\StoreDepartmentsRequest;
+use App\Http\Requests\Admin\StoreDepartmentsRequest;
 use Exception;
 use Laracasts\Flash\Flash;
 

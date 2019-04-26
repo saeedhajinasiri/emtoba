@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Admin;
 use App\Customer;
 use App\Forms\Admin\UserForm;
-use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\Admin\StoreUserRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Forms\Admin\RoleForm;
-use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\Admin\StoreRoleRequest;
 use App\Permission;
 use App\Role;
 use Illuminate\Support\Facades\Cache;

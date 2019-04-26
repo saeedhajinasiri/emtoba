@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contact;
 use App\Forms\Admin\ContactForm;
-use App\Http\Requests\StoreContactsRequest;
+use App\Http\Requests\Site\StoreContactsRequest;
 use Laracasts\Flash\Flash;
 use Mockery\CountValidator\Exception;
 

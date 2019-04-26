@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Enums\EContactStatus;
-use App\Faq;
 use App\Enums\EState;
 use App\Forms\Site\ContactForm;
-use App\Http\Requests\StoreContactsRequest;
+use App\Http\Requests\Admin\StoreContactsRequest;
 use App\Page;
 use App\Setting;
 use Illuminate\Support\Facades\Auth;

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,31 +14,40 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('slug');
             $table->text('content')->nullable();
-            $table->string('image')->nullable();
-            $table->tinyInteger('is_home')->default(0);
-            $table->text('keywords')->nullable();
-            $table->text('description')->nullable();
-            $table->string('page_name')->nullable()->unique();
 
-            $table->integer('state');
+            $table->tinyInteger('state')->default(0);
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::table('pages', function (Blueprint $table) {
+        Schema::table('departments', function (Blueprint $table) {
             $table->foreign('created_by')
                 ->references('id')
                 ->on('users');
             $table->foreign('updated_by')
                 ->references('id')
                 ->on('users');
+        });
+
+        Schema::create('department_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('department_id')->unsigned();
+        });
+
+        Schema::table('department_user', function (Blueprint $table) {
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+            $table->foreign('department_id')
+                ->references('id')
+                ->on('departments');
         });
     }
 
@@ -50,7 +59,8 @@ class CreatePagesTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::drop('pages');
+        Schema::drop('department_user');
+        Schema::drop('departments');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

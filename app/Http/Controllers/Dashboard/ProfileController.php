@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Forms\Admin\UserForm;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\Dashboard\StoreUserRequest;
 use App\Location;
 use Illuminate\Support\Facades\Hash;
 use Kris\LaravelFormBuilder\FormBuilder;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Slider;
 use App\Forms\Admin\SliderForm;
-use App\Http\Requests\StoreSlidersRequest;
+use App\Http\Requests\Admin\StoreSlidersRequest;
 use Exception;
 use Laracasts\Flash\Flash;
 

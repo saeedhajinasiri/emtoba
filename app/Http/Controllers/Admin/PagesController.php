@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Page;
 use App\Forms\Admin\PageForm;
-use App\Http\Requests\StorePagesRequest;
+use App\Http\Requests\Admin\StorePagesRequest;
 use Exception;
 use Laracasts\Flash\Flash;
 

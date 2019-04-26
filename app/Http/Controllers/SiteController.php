@@ -2,25 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Advertise;
-use App\Brand;
-use App\Enums\EInventoryStatus;
 use App\Enums\EState;
-use App\Enums\ETradeType;
 use App\Page;
 use App\Post;
-use App\Product;
-use App\Restaurant;
 use App\Comment;
-use App\Education;
-use App\Experience;
-use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\Site\StoreCommentRequest;
 use App\Setting;
-use App\Skill;
 use App\Slider;
 use App\Traits\ModelFunctions;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {

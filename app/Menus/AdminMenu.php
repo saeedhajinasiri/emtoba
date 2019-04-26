@@ -159,7 +159,7 @@ class AdminMenu extends BaseMenu
                     ],
                 ]
             ],
-            [
+            /*[
                 'title' => trans('admin.databases.menuTitle'),
                 'link' => 'javascript:;',
                 'route' => 'admin.databases.route',
@@ -171,7 +171,7 @@ class AdminMenu extends BaseMenu
                         'route' => 'admin.databases.index',
                     ],
                 ]
-            ],
+            ],*/
         ];
         return $list;
     }

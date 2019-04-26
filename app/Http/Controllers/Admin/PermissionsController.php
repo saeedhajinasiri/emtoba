@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Forms\Admin\PermissionForm;
-use App\Http\Requests\StorePermissionRequest;
+use App\Http\Requests\Admin\StorePermissionRequest;
 use App\Permission;
 use Laracasts\Flash\Flash;
 

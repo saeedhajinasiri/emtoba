@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Forms\Admin\CategoryForm;
-use App\Http\Requests\StoreCategoriesRequest;
+use App\Http\Requests\Admin\StoreCategoriesRequest;
 use App\Category;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 
 class CategoriesController extends AdminController
