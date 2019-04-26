@@ -40,17 +40,5 @@ class CategoriesTableSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
         ]);
-        $category = Category::create([
-            'title' => 'دسته بندی پروژه ها',
-            'slug' => 'دسته-بندی-پروژه-ها',
-            'description' => '',
-            'parent_id' => 1,
-            'lft' => 4,
-            'rgt' => 5,
-            'depth' => 2,
-            'state' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-        ]);
     }
 }

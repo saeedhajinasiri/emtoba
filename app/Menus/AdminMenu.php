@@ -64,47 +64,10 @@ class AdminMenu extends BaseMenu
                 'children' => $pageMenu
             ],
             [
-                'title' => trans('admin.projects.menuTitle'),
-                'link' => 'javascript:;',
-                'icon' => 'fa fa-bullhorn',
-                'children' => [
-                    [
-                        'title' => trans('admin.projects.index'),
-                        'link' => route('admin.projects.index'),
-                        'route' => 'admin.projects.index',
-                    ],
-                    [
-                        'title' => trans('admin.categories.index'),
-                        'link' => route('admin.categories.index'),
-                        'route' => 'admin.categories.index',
-                    ],
-                ]
-            ],
-            [
                 'title' => trans('admin.info.menuTitle'),
                 'link' => 'javascript:;',
                 'icon' => 'ti-pencil-alt',
                 'children' => [
-                    [
-                        'title' => trans('admin.videos.index'),
-                        'link' => route('admin.videos.index'),
-                        'route' => 'admin.videos.index',
-                    ],
-                    [
-                        'title' => trans('admin.teams.index'),
-                        'link' => route('admin.teams.index'),
-                        'route' => 'admin.teams.index',
-                    ],
-                    [
-                        'title' => trans('admin.testimonials.index'),
-                        'link' => route('admin.testimonials.index'),
-                        'route' => 'admin.testimonials.index',
-                    ],
-                    [
-                        'title' => trans('admin.clients.index'),
-                        'link' => route('admin.clients.index'),
-                        'route' => 'admin.clients.index',
-                    ],
                     [
                         'title' => trans('admin.locations.index'),
                         'link' => route('admin.locations.index'),

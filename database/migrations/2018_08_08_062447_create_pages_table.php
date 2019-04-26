@@ -19,6 +19,7 @@ class CreatePagesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content')->nullable();
+            $table->string('image')->nullable()->after('content');
             $table->tinyInteger('is_home')->default(0);
             $table->text('keywords')->nullable();
             $table->text('description')->nullable();

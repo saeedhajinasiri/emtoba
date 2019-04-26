@@ -2,6 +2,7 @@
 
 use App\Setting;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SettingsTableSeeder extends Seeder
 {
@@ -12,17 +13,20 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->set('site_title', 'دفتر ابزارآلات');
-        $this->set('name', 'دفتر ابزارآلات');
-        $this->set('address', 'تهران - میدان حسن آباد');
-        $this->set('email', 'info@tools.com');
-        $this->set('site', 'http://tools.com');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::statement('TRUNCATE TABLE `settings`');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+        $this->set('site_title', 'بیس نرم افزار');
+        $this->set('name', 'بیس نرم افزار');
+        $this->set('address', 'تهران');
+        $this->set('email', 'info@baseapp.com');
+        $this->set('site', 'http://baseapp.com');
         $this->set('tel', '021-12345678');
-        $this->set('fax', '021-12345678');
-        $this->set('contact_email', 'me@tools.com');
-        $this->set('facebook_url', 'https://facebook.com/tools');
-        $this->set('telegram_url', 'https://telegram.com/tools');
-        $this->set('instagram_url', 'https://twitter.com/tools');
+        $this->set('contact_email', 'me@baseapp.com');
+        $this->set('facebook_url', 'https://facebook.com/baseapp');
+        $this->set('telegram_url', 'https://telegram.com/baseapp');
+        $this->set('instagram_url', 'https://twitter.com/baseapp');
     }
 
     public function set($key, $value)

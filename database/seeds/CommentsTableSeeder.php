@@ -2,6 +2,7 @@
 
 use App\Comment;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CommentsTableSeeder extends Seeder
 {
@@ -12,6 +13,10 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::statement('TRUNCATE TABLE `comments`');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         for ($i = 1; $i <= 5; $i++) {
             $comment = Comment::create([
                 'commentable_id' => 1,

@@ -21,12 +21,13 @@ class PermissionsTableSeeder extends Seeder
 
         $role = Role::find(1);
 
+
+        // default permissions
         $this->setCRUDPermissions($role, 'Customers');
         $this->setCRUDPermissions($role, 'Admins');
         $this->setCRUDPermissions($role, 'Roles');
         $this->setCRUDPermissions($role, 'Permissions');
         $this->setCRUDPermissions($role, 'Posts');
-        $this->setCRUDPermissions($role, 'Videos');
         $this->setCRUDPermissions($role, 'Pages');
         $this->setCRUDPermissions($role, 'Links');
         $this->setCRUDPermissions($role, 'Translations');
@@ -34,11 +35,13 @@ class PermissionsTableSeeder extends Seeder
         $this->setCRUDPermissions($role, 'Comments');
         $this->setCRUDPermissions($role, 'Locations');
         $this->setCRUDPermissions($role, 'Sliders');
-        $this->setCRUDPermissions($role, 'Projects');
-        $this->setCRUDPermissions($role, 'Teams');
-        $this->setCRUDPermissions($role, 'Testimonials');
-        $this->setCRUDPermissions($role, 'Clients');
         $this->setCRUDPermissions($role, 'Categories');
+        $this->setCRUDPermissions($role, 'Contacts');
+        $this->setCRUDPermissions($role, 'Departments');
+
+        // START custom permissions
+        // $this->setCRUDPermissions($role, 'Videos');
+        // END custom permissions
 
         // PROFILE PERMISSIONS
         $permission = Permission::create([
