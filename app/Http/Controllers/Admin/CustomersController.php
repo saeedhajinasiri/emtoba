@@ -18,6 +18,7 @@ class CustomersController extends AdminController
     protected $section = 'customers';
     protected $form = UserForm::class;
     protected $model;
+    protected $path;
 
     /**
      * RolesController constructor.
@@ -25,6 +26,7 @@ class CustomersController extends AdminController
      */
     public function __construct(User $model)
     {
+        $this->path = public_path() . User::imagePath();
         $this->model = $model;
         parent::__construct();
     }
@@ -103,12 +105,12 @@ class CustomersController extends AdminController
         if ($request->hasFile('avatar')) {
             $imageName = time() . $request->file('avatar')->getClientOriginalName();
             $img = $request->file('avatar')->move(
-                base_path() . '/public/images/user/', $imageName
+                $this->path, $imageName
             );
 
             $input['avatar'] = $img->getFilename();
-            if (\File::isFile(base_path() . '/public/images/user/' . $user->avatar)) {
-                \File::delete(base_path() . '/public/images/user/' . $user->avatar);
+            if (\File::isFile($this->path . $user->avatar)) {
+                \File::delete($this->path . $user->avatar);
             }
         }
 

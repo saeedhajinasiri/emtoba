@@ -18,7 +18,7 @@ class PagesController extends AdminController
 
     public function __construct(Page $model)
     {
-        $this->path = base_path() . '/public/images/' . $this->single . '/';
+        $this->path = public_path() . Page::imagePath();
         $this->model = $model;
         parent::__construct();
     }

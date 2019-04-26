@@ -86,7 +86,7 @@
                     {!! form_row($form->avatar) !!}
 
                 @if(isset($user))
-                        <img src="/images/user/{{ $user->avatar }}" alt="{{ $user->avatar }}" width="100%">
+                        <img src="{{ $user->avatarLink }}" alt="{{ $user->avatar }}" width="100%">
                     @endif
                 </div>
 

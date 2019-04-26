@@ -63,7 +63,7 @@
                 <div class="panel-body">
                     {!! form_row($form->image) !!}
                     @if(isset($item))
-                        <img src="/images/slider/{{ $item->image }}" alt="{{ $item->image }}" width="100%">
+                        <img src="{{ $item->imageLink }}" alt="{{ $item->image }}" width="100%">
                     @endif
                 </div>
             </div>

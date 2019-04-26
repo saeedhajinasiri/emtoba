@@ -11,14 +11,13 @@ use Laracasts\Flash\Flash;
 class SlidersController extends AdminController
 {
     protected $section = 'sliders';
-    protected $single = 'slider';
     protected $form = SliderForm::class;
     protected $model;
     protected $path;
 
     public function __construct(Slider $model)
     {
-        $this->path = base_path() . '/public/images/' . $this->single . '/';
+        $this->path = public_path() . Slider::imagePath();
         $this->model = $model;
         parent::__construct();
     }

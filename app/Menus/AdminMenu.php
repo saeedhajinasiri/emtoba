@@ -27,22 +27,13 @@ class AdminMenu extends BaseMenu
             });
         $pageMenu = ($pageList->count() > 0 ? array_merge(
             [
-                'posts' => [
-                    'title' => trans('admin.posts.index'),
-                    'link' => route('admin.posts.index'),
-                    'route' => 'admin.posts.index',
-                ],
                 'pages' => [
                     'title' => trans('admin.pages.index'),
                     'link' => route('admin.pages.index'),
                     'route' => 'admin.pages.index',
                 ]
             ], $pageList->toArray()) : [
-            'posts' => [
-                'title' => trans('admin.posts.index'),
-                'link' => route('admin.posts.index'),
-                'route' => 'admin.posts.index',
-            ], 'pages' => [
+            'pages' => [
                 'title' => trans('admin.pages.index'),
                 'link' => route('admin.pages.index'),
                 'route' => 'admin.pages.index',
@@ -68,6 +59,11 @@ class AdminMenu extends BaseMenu
                 'link' => 'javascript:;',
                 'icon' => 'ti-pencil-alt',
                 'children' => [
+                    [
+                        'title' => trans('admin.posts.index'),
+                        'link' => route('admin.posts.index'),
+                        'route' => 'admin.posts.index',
+                    ],
                     [
                         'title' => trans('admin.locations.index'),
                         'link' => route('admin.locations.index'),
