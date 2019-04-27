@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\Commentable;
 use App\Traits\DateMutators;
 use App\Traits\ImageTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-    use DateMutators, ImageTrait;
+    use Commentable, DateMutators, ImageTrait;
 
     /**
      * The attributes that are mass assignable.

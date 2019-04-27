@@ -2,17 +2,17 @@
 
 namespace App;
 
+use App\Traits\Commentable;
 use App\Traits\DateMutators;
 use App\Traits\ImageTrait;
 use App\Traits\Likable;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Morilog\Jalali\jDate;
 
 class Post extends BaseModel
 {
-    use Likable, ImageTrait;
+    use Commentable, Likable, ImageTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -41,14 +41,6 @@ class Post extends BaseModel
     public function categories()
     {
         return $this->belongsToMany(Category::Class);
-    }
-
-    /**
-     * Get the comments for the blog post.
-     */
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'commentable');
     }
 
     /**
