@@ -50,25 +50,48 @@ class AdminsController extends AdminController
 
     public function store(StoreUserRequest $request)
     {
-        $input = $request->all();
+        try {
+            \DB::beginTransaction();
 
-        if (!isset($input['password'])) {
-            Flash::error(trans('admin.' . $this->section . '.password_must_be_filled'));
-        } else {
-            $input['password'] = Hash::make($input['password']);
+            $input = $request->all();
 
-            $admin = Admin::create([
-                'created_by' => Auth::id(),
-                'updated_by' => Auth::id(),
-            ]);
-            $user = $admin->user()->create($input);
+            if (!isset($input['password'])) {
+                Flash::error(trans('admin.' . $this->section . '.password_must_be_filled'));
+            } else {
+                $input['password'] = Hash::make($input['password']);
+                if (!$request->get('state')) {
+                    $input['state'] = 0;
+                }
+                if ($request->hasFile('avatar')) {
+                    $imageName = time() . $request->file('avatar')->getClientOriginalName();
+                    $img = $request->file('avatar')->move(
+                        $this->path, $imageName
+                    );
 
-            if (isset($input['role_list'])) {
-                $user->roles()->attach($input['role_list']);
+                    $input['avatar'] = $img->getFilename();
+                }
+
+                $admin = Admin::create([
+                    'created_by' => Auth::id(),
+                    'updated_by' => Auth::id(),
+                ]);
+                $user = $admin->user()->create($input);
+
+                if (isset($input['role_list'])) {
+                    $user->roles()->attach($input['role_list']);
+                }
+                \DB::commit();
+
+                Flash::info(trans('admin.insert_is_successfully'));
+                return $this->redirectToAction($request->get('action'), $admin);
             }
+        } catch (\Exception $e) {
+            \DB::rollBack();
 
-            Flash::info(trans('admin.insert_is_successfully'));
-            return $this->redirectToAction($request->get('action'), $admin);
+            return response()->json([
+                'status' => 'error',
+                'message' => trans('admin.admins.create_admin_has_error'),
+            ], 400);
         }
     }
 

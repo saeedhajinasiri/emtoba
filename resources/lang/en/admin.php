@@ -3,7 +3,12 @@
 return array (
   'SaveAndNew' => 'ذخیره و جدید',
   'SaveAndShow' => 'ذخیره و نمایش',
+  'admins.avatar' => 'آواتار',
+  'admins.create' => 'ایجاد کاربر ادمین',
+  'admins.edit' => 'ویرایش کاربر ادمین',
   'admins.index' => 'کاربران ادمین',
+  'admins.info' => 'اطلاعات اصلی',
+  'admins.roles' => 'نقش‌ها',
   'aside.basicInfo' => 'اطلاعات اولیه',
   'aside.dashboard' => 'داشبورد',
   'blog.actions' => 'عملیات',

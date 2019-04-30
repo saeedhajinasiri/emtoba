@@ -22,6 +22,23 @@ class PermissionsTableSeeder extends Seeder
         $role = Role::find(1);
 
 
+        $permission = Permission::create([
+            'name' => 'admin.dashboard.read',
+            'display_name' => 'Admin Dashboard Home Read'
+        ]);
+        $role->permissions()->attach($permission);
+        // PROFILE PERMISSIONS
+        $permission = Permission::create([
+            'name' => 'admin.profile.read',
+            'display_name' => 'Admin Profile Read'
+        ]);
+        $role->permissions()->attach($permission);
+        $permission = Permission::create([
+            'name' => 'admin.profile.update',
+            'display_name' => 'Admin Profile Update'
+        ]);
+        $role->permissions()->attach($permission);
+
         // default permissions
         $this->setCRUDPermissions($role, 'Customers');
         $this->setCRUDPermissions($role, 'Admins');
@@ -42,26 +59,6 @@ class PermissionsTableSeeder extends Seeder
         // START custom permissions
         // $this->setCRUDPermissions($role, 'Videos');
         // END custom permissions
-
-        // PROFILE PERMISSIONS
-        $permission = Permission::create([
-            'name' => 'admin.profile.read',
-            'display_name' => 'Admin Profile Read'
-        ]);
-        $role->permissions()->attach($permission);
-        $permission = Permission::create([
-            'name' => 'admin.profile.update',
-            'display_name' => 'Admin Profile Update'
-        ]);
-        $role->permissions()->attach($permission);
-
-        $permission = Permission::create([
-            'name' => 'admin.dashboard.read',
-            'display_name' => 'Admin Dashboard Home Read'
-        ]);
-
-        $role->permissions()->attach($permission);
-
 
 
         /**
