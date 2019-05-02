@@ -14,7 +14,7 @@ class AdminForm extends Form
                     'data-toggle' => 'toggle',
                     'data-on' => trans('admin.state_on'),
                     'data-off' => trans('admin.state_off'),
-                    'checked' => isset($this->state) ? $this->state : false
+                    'checked' => isset($this->model->state) ? ($this->model->state ? true : false) : true
                 ]
             ])
             ->add('SaveAndReload', 'submit', [
