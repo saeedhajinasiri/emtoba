@@ -268,6 +268,7 @@ return array (
   'sliders.edit' => 'ویرایش اسلایدر',
   'sliders.index' => 'اسلایدرها',
   'sliders.info' => 'اطلاعات اصلی',
+  'sliders.link' => 'لینک',
   'sliders.title' => 'عنوان',
   'sliders.url' => 'URL',
   'state_off' => 'غیرفعال',
