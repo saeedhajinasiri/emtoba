@@ -60,6 +60,11 @@ class AdminMenu extends BaseMenu
                 'icon' => 'ti-pencil-alt',
                 'children' => [
                     [
+                        'title' => trans('admin.sliders.index'),
+                        'link' => route('admin.sliders.index'),
+                        'route' => 'admin.sliders.index',
+                    ],
+                    [
                         'title' => trans('admin.posts.index'),
                         'link' => route('admin.posts.index'),
                         'route' => 'admin.posts.index',
@@ -78,11 +83,6 @@ class AdminMenu extends BaseMenu
                         'title' => trans('admin.comments.index'),
                         'link' => route('admin.comments.index'),
                         'route' => 'admin.comments.index',
-                    ],
-                    [
-                        'title' => trans('admin.sliders.index'),
-                        'link' => route('admin.sliders.index'),
-                        'route' => 'admin.sliders.index',
                     ],
                 ]
             ],

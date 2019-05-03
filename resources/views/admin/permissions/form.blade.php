@@ -24,7 +24,6 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>{!! form_row($form->SaveAndClose) !!}</li>
-                                <li>{!! form_row($form->SaveAndShow) !!}</li>
                                 <li>{!! form_row($form->SaveAndNew) !!}</li>
                             </ul>
                         </div>

@@ -2,8 +2,6 @@
 
 namespace App\Forms\Admin;
 
-use App\Enums\ELinkType;
-
 class SliderForm extends AdminForm
 {
     public function buildForm()
@@ -24,6 +22,7 @@ class SliderForm extends AdminForm
             ])
             ->add('published_at', 'text', [
                 'attr' => [
+                    'autocomplete' => 'off',
                     'class' => 'form-control ltr'
                 ]
             ]);
