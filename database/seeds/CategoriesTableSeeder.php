@@ -45,7 +45,7 @@ class CategoriesTableSeeder extends Seeder
         $category = Category::create([
             'title' => 'دسته بندی مقاله ها',
             'slug' => 'دسته-بندی-مقاله-ها',
-            'category_name' => 'articles',
+            'category_name' => 'blog',
             'description' => '',
             'parent_id' => 1,
             'lft' => 4,

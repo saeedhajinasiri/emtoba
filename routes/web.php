@@ -27,6 +27,15 @@ Route::post('blog/like/{id}', [
     'uses' => 'BlogController@like'
 ]);
 
+Route::get('/news', ['as' => 'site.news.index', 'uses' => 'PostsController@index']);
+Route::get('news/{id}', ['uses' => 'PostsController@show'])->where('id', '[0-9]+');
+Route::get('news/{id}-', ['uses' => 'PostsController@show'])->where('id', '[0-9]+');
+Route::get('news/{id}-{slug}', ['as' => 'site.news.show', 'uses' => 'PostsController@show'])->where('id', '[0-9]+');
+Route::post('news/like/{id}', [
+    'as' => 'site.news.like',
+    'uses' => 'PostsController@like'
+]);
+
 Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
 
 Auth::routes();
@@ -70,6 +79,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
         'uses' => 'PostsController@removePhoto'
     ]);
     // END of Posts route
+
+    // Blog route
+    Route::resource('blog', 'BlogController');
+    Route::post('blog/{blog}/uploadPhoto', [
+        'as' => 'blog.uploadPhoto',
+        'uses' => 'BlogController@uploadPhoto'
+    ]);
+    Route::post('blog/{blog}/removePhoto/{media}', [
+        'as' => 'blog.removePhoto',
+        'uses' => 'BlogController@removePhoto'
+    ]);
+    // END of Blog route
 
     // Categories route
     Route::get('categories/', [

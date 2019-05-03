@@ -152,6 +152,22 @@ class CustomersController extends AdminController
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $customer = Customer::findOrFail($id);
+
+        $customer->user->delete();
+        $customer->delete();
+
+        return redirect()->route('admin.' . $this->section . '.index');
+    }
+
+    /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */

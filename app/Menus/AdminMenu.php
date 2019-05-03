@@ -70,6 +70,11 @@ class AdminMenu extends BaseMenu
                         'route' => 'admin.posts.index',
                     ],
                     [
+                        'title' => trans('admin.blog.index'),
+                        'link' => route('admin.blog.index'),
+                        'route' => 'admin.blog.index',
+                    ],
+                    [
                         'title' => trans('admin.comments.index'),
                         'link' => route('admin.comments.index'),
                         'route' => 'admin.comments.index',

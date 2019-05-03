@@ -32,6 +32,7 @@ class BlogForm extends AdminForm
             ])
             ->add('published_at', 'text', [
                 'attr' => [
+                    'autocomplete' => 'off',
                     'class' => 'form-control ltr'
                 ]
             ])
@@ -51,6 +52,6 @@ class BlogForm extends AdminForm
 
     protected function getCategories()
     {
-        return Category::where('id', 2)->first()->descendants()->get()->pluck('dashedTitle', 'id')->toArray();
+        return Category::where('category_name', 'blog')->first()->descendants()->get()->pluck('dashedTitle', 'id')->toArray();
     }
 }
