@@ -137,6 +137,12 @@ class PostsController extends AdminController
         if (!isset($input['state'])) {
             $input['state'] = 0;
         }
+        if (!isset($input['featured'])) {
+            $input['featured'] = 0;
+        }
+        if (!isset($input['has_comment'])) {
+            $input['has_comment'] = 0;
+        }
 
         $input['slug'] = $this->slugify($input['slug']);
 
