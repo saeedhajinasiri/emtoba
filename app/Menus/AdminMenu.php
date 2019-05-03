@@ -143,11 +143,11 @@ class AdminMenu extends BaseMenu
                         'link' => route('admin.settings.index'),
                         'route' => 'admin.settings.index',
                     ],
-                    /*[
+                    [
                         'title' => trans('admin.menus.index'),
                         'link' => route('admin.menus.index'),
                         'route' => 'admin.menus.index',
-                    ],*/
+                    ],
                     [
                         'title' => trans('admin.translations.index'),
                         'link' => route('admin.translations.index'),

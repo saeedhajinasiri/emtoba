@@ -111,6 +111,7 @@ return array (
   'locations.index' => 'موقعیت شرکت',
   'logout' => 'خروج',
   'menu.menuTitle' => 'منوی سایت',
+  'menus.areYouSure' => 'آیا مطمئن هستید؟',
   'menus.collapseAll' => 'بستن درخت',
   'menus.expandAll' => 'بسط درخت',
   'menus.form' => 'فرم منو',
