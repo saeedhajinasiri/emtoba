@@ -33,14 +33,14 @@ class AdminForm extends Form
                     'name' => 'action'
                 ]
             ])
-            ->add('SaveAndShow', 'submit', [
+            /*->add('SaveAndShow', 'submit', [
                 'label' => '<span class="btn-label"> <i class="glyphicon glyphicon-ok"></i> </span>&nbsp;&nbsp;' . trans('admin.SaveAndShow'),
                 'attr' => [
                     'class' => 'btn btn-labeled btn-primary m-b-5',
                     'value' => 'SaveAndShow',
                     'name' => 'action'
                 ]
-            ])
+            ])*/
             ->add('SaveAndNew', 'submit', [
                 'label' => '<span class="btn-label"> <i class="glyphicon glyphicon-ok"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;' . trans('admin.SaveAndNew'),
                 'attr' => [
