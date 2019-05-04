@@ -53,6 +53,6 @@ class VideoForm extends AdminForm
 
     protected function getCategories()
     {
-        return Category::where('category_name', 'blog')->first()->descendants()->get()->pluck('dashedTitle', 'id')->toArray();
+        return Category::where('category_name', 'videos')->first()->descendants()->get()->pluck('dashedTitle', 'id')->toArray();
     }
 }
