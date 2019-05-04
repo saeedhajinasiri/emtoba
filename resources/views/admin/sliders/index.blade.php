@@ -33,7 +33,7 @@
                         <tr>
                             <th>#</th>
                             <th> {{ trans('admin.sliders.title') }} </th>
-                            <th> {{ trans('admin.sliders.url') }} </th>
+                            <th> {{ trans('admin.sliders.link') }} </th>
                             <th> {{ trans('admin.sliders.createTime') }} </th>
                             <th> {{ trans('admin.sliders.actions') }} </th>
                         </tr>
@@ -43,7 +43,7 @@
                             <tr class="odd gradeX">
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->title }}</td>
-                                <td>{!! $item->url !!}</td>
+                                <td>{!! $item->link !!}</td>
                                 <td class="center">{{ $item->created_at }}</td>
                                 <td class="center">
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.sliders.destroy', $item->id]]) }}

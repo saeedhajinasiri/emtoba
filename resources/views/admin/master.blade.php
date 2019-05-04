@@ -149,7 +149,7 @@
             buttons: {
                 lfm: LFMButton
             },
-            height: 800,
+            height: 500,
             minHeight: null,
             maxHeight: null
         });

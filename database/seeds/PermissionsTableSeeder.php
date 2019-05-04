@@ -22,27 +22,11 @@ class PermissionsTableSeeder extends Seeder
         $role = Role::find(1);
 
 
-        // default permissions
-        $this->setCRUDPermissions($role, 'Customers');
-        $this->setCRUDPermissions($role, 'Admins');
-        $this->setCRUDPermissions($role, 'Roles');
-        $this->setCRUDPermissions($role, 'Permissions');
-        $this->setCRUDPermissions($role, 'Posts');
-        $this->setCRUDPermissions($role, 'Pages');
-        $this->setCRUDPermissions($role, 'Links');
-        $this->setCRUDPermissions($role, 'Translations');
-        $this->setCRUDPermissions($role, 'Settings');
-        $this->setCRUDPermissions($role, 'Comments');
-        $this->setCRUDPermissions($role, 'Locations');
-        $this->setCRUDPermissions($role, 'Sliders');
-        $this->setCRUDPermissions($role, 'Categories');
-        $this->setCRUDPermissions($role, 'Contacts');
-        $this->setCRUDPermissions($role, 'Departments');
-
-        // START custom permissions
-        // $this->setCRUDPermissions($role, 'Videos');
-        // END custom permissions
-
+        $permission = Permission::create([
+            'name' => 'admin.dashboard.read',
+            'display_name' => 'Admin Dashboard Home Read'
+        ]);
+        $role->permissions()->attach($permission);
         // PROFILE PERMISSIONS
         $permission = Permission::create([
             'name' => 'admin.profile.read',
@@ -55,13 +39,28 @@ class PermissionsTableSeeder extends Seeder
         ]);
         $role->permissions()->attach($permission);
 
-        $permission = Permission::create([
-            'name' => 'admin.dashboard.read',
-            'display_name' => 'Admin Dashboard Home Read'
-        ]);
+        // default permissions
+        $this->setCRUDPermissions($role, 'Customers');
+        $this->setCRUDPermissions($role, 'Admins');
+        $this->setCRUDPermissions($role, 'Roles');
+        $this->setCRUDPermissions($role, 'Permissions');
+        $this->setCRUDPermissions($role, 'Menus');
+        $this->setCRUDPermissions($role, 'Posts');
+        $this->setCRUDPermissions($role, 'Pages');
+        $this->setCRUDPermissions($role, 'Links');
+        $this->setCRUDPermissions($role, 'Translations');
+        $this->setCRUDPermissions($role, 'Settings');
+        $this->setCRUDPermissions($role, 'Comments');
+        $this->setCRUDPermissions($role, 'Locations');
+        $this->setCRUDPermissions($role, 'Sliders');
+        $this->setCRUDPermissions($role, 'Categories');
+        $this->setCRUDPermissions($role, 'Contacts');
+        $this->setCRUDPermissions($role, 'Departments');
+        $this->setCRUDPermissions($role, 'Blog');
 
-        $role->permissions()->attach($permission);
-
+        // START custom permissions
+        // $this->setCRUDPermissions($role, 'Videos');
+        // END custom permissions
 
 
         /**

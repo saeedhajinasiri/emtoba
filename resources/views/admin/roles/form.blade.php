@@ -24,7 +24,6 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>{!! form_row($form->SaveAndClose) !!}</li>
-                                <li>{!! form_row($form->SaveAndShow) !!}</li>
                                 <li>{!! form_row($form->SaveAndNew) !!}</li>
                             </ul>
                         </div>
@@ -68,7 +67,7 @@
                                                 {{ trans($i . '.index') }} </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse_{{ $j }}" class="panel-collapse collapse" aria-expanded="false">
+                                    <div id="collapse_{{ $j }}" class="panel-collapse {{ !array_intersect($permissionsIdArray, $permissionGroup->pluck('id')->toArray()) ? 'collapse' : '' }}" aria-expanded="false">
                                         <table class="table table-bordered table-striped table-hover">
                                             <thead>
                                             <tr>
@@ -80,7 +79,7 @@
                                             @foreach($permissionGroup as $permission)
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" name="permissions[]" {{ (in_array($permission->id, $permissionsIdArray)) ? ' checked' : ' ' }} value="{{ $permission->id }}" id="{{ $permission->id }}">
+                                                        <input type="checkbox" name="permissions[]" {{ (in_array($permission->id, $permissionsIdArray) || $permission->name == 'admin.dashboard.read') ? ' checked' : ' ' }} value="{{ $permission->id }}" {{ $permission->name == 'admin.dashboard.read' ? 'onclick=\'return false\'' : '' }} id="{{ $permission->id }}">
                                                     </td>
                                                     <td><label for="{{ $permission->id }}">{{ $permission->name }}</label></td>
                                                 </tr>
@@ -97,7 +96,7 @@
             </div>
         </div>
 
-        {!! form_end($form) !!}
+        {!! form_end($form, false) !!}
     </div>
 @stop
 

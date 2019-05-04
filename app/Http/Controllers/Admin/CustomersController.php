@@ -50,25 +50,50 @@ class CustomersController extends AdminController
 
     public function store(StoreUserRequest $request)
     {
-        $input = $request->all();
+        try {
+            \DB::beginTransaction();
 
-        if (!isset($input['password'])) {
-            Flash::error(trans('admin.users.password_must_be_filled'));
-            return redirect()->back();
-        } else {
-            $input['password'] = Hash::make($input['password']);
-            $customer = Customer::create([
-                'created_by' => Auth::id(),
-                'updated_by' => Auth::id(),
-            ]);
-            $user = $customer->user()->create($input);
+            $input = $request->all();
 
-            if (isset($input['role_list'])) {
-                $user->roles()->attach($input['role_list']);
+            if (!isset($input['password'])) {
+                Flash::error(trans('admin.users.password_must_be_filled'));
+                return redirect()->back();
+            } else {
+                $input['password'] = Hash::make($input['password']);
+                if (!$request->get('state')) {
+                    $input['state'] = 0;
+                }
+                if ($request->hasFile('avatar')) {
+                    $imageName = time() . $request->file('avatar')->getClientOriginalName();
+                    $img = $request->file('avatar')->move(
+                        $this->path, $imageName
+                    );
+
+                    $input['avatar'] = $img->getFilename();
+                }
+
+                $customer = Customer::create([
+                    'created_by' => Auth::id(),
+                    'updated_by' => Auth::id(),
+                ]);
+
+                $user = $customer->user()->create($input);
+
+                if (isset($input['role_list'])) {
+                    $user->roles()->attach($input['role_list']);
+                }
+                \DB::commit();
+
+                Flash::info(trans('admin.insert_is_successfully'));
+                return $this->redirectToAction($request->get('action'), $customer);
             }
+        } catch (\Exception $e) {
+            \DB::rollBack();
 
-            Flash::info(trans('admin.insert_is_successfully'));
-            return $this->redirectToAction($request->get('action'), $customer);
+            return response()->json([
+                'status' => 'error',
+                'message' => trans('admin.admins.create_customer_user_has_error'),
+            ], 400);
         }
     }
 
@@ -124,6 +149,22 @@ class CustomersController extends AdminController
         Flash::info(trans('admin.update_is_successfully'));
 
         return $this->redirectToAction($request->get('action'), $customer);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $customer = Customer::findOrFail($id);
+
+        $customer->user->delete();
+        $customer->delete();
+
+        return redirect()->route('admin.' . $this->section . '.index');
     }
 
     /**

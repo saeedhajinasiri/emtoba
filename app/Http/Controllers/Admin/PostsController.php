@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\EState;
-use App\Forms\Admin\BlogForm;
+use App\Forms\Admin\PostForm;
 use App\Media;
 use App\Post;
 use App\Http\Requests\Admin\StorePostRequest;
@@ -19,7 +19,7 @@ class PostsController extends AdminController
     protected $title;
     protected $path;
     protected $section = 'posts';
-    protected $form = BlogForm::class;
+    protected $form = PostForm::class;
     protected $model;
     protected $single = 'post';
     protected $type = 'posts';
@@ -40,7 +40,7 @@ class PostsController extends AdminController
      */
     public function index()
     {
-        $items = Post::with('User')->whereType('news')->orderBy('id', 'DESC')->paginate(10);
+        $items = Post::with('user')->orderBy('id', 'DESC')->paginate(10);
 
         return view('admin.' . $this->section . '.index', compact('items'))->with('section', $this->type);
     }
@@ -136,6 +136,12 @@ class PostsController extends AdminController
         $input = $request->all();
         if (!isset($input['state'])) {
             $input['state'] = 0;
+        }
+        if (!isset($input['featured'])) {
+            $input['featured'] = 0;
+        }
+        if (!isset($input['has_comment'])) {
+            $input['has_comment'] = 0;
         }
 
         $input['slug'] = $this->slugify($input['slug']);

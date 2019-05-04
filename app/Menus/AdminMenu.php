@@ -55,14 +55,41 @@ class AdminMenu extends BaseMenu
                 'children' => $pageMenu
             ],
             [
+                'title' => trans('admin.baseInfo.menuTitle'),
+                'link' => 'javascript:;',
+                'icon' => 'ti-pencil-alt',
+                'children' => [
+                    [
+                        'title' => trans('admin.categories.index'),
+                        'link' => route('admin.categories.index'),
+                        'route' => 'admin.categories.index',
+                    ],
+                    [
+                        'title' => trans('admin.posts.index'),
+                        'link' => route('admin.posts.index'),
+                        'route' => 'admin.posts.index',
+                    ],
+                    [
+                        'title' => trans('admin.blog.index'),
+                        'link' => route('admin.blog.index'),
+                        'route' => 'admin.blog.index',
+                    ],
+                    [
+                        'title' => trans('admin.comments.index'),
+                        'link' => route('admin.comments.index'),
+                        'route' => 'admin.comments.index',
+                    ],
+                ]
+            ],
+            [
                 'title' => trans('admin.info.menuTitle'),
                 'link' => 'javascript:;',
                 'icon' => 'ti-pencil-alt',
                 'children' => [
                     [
-                        'title' => trans('admin.posts.index'),
-                        'link' => route('admin.posts.index'),
-                        'route' => 'admin.posts.index',
+                        'title' => trans('admin.sliders.index'),
+                        'link' => route('admin.sliders.index'),
+                        'route' => 'admin.sliders.index',
                     ],
                     [
                         'title' => trans('admin.locations.index'),
@@ -73,16 +100,6 @@ class AdminMenu extends BaseMenu
                         'title' => trans('admin.links.index'),
                         'link' => route('admin.links.index'),
                         'route' => 'admin.links.index',
-                    ],
-                    [
-                        'title' => trans('admin.comments.index'),
-                        'link' => route('admin.comments.index'),
-                        'route' => 'admin.comments.index',
-                    ],
-                    [
-                        'title' => trans('admin.sliders.index'),
-                        'link' => route('admin.sliders.index'),
-                        'route' => 'admin.sliders.index',
                     ],
                 ]
             ],
@@ -143,11 +160,11 @@ class AdminMenu extends BaseMenu
                         'link' => route('admin.settings.index'),
                         'route' => 'admin.settings.index',
                     ],
-                    /*[
+                    [
                         'title' => trans('admin.menus.index'),
                         'link' => route('admin.menus.index'),
                         'route' => 'admin.menus.index',
-                    ],*/
+                    ],
                     [
                         'title' => trans('admin.translations.index'),
                         'link' => route('admin.translations.index'),

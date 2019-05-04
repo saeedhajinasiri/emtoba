@@ -192,7 +192,7 @@ class CategoriesController extends AdminController
     public function quickDestroy($id)
     {
         try {
-            $item = $this->model->findOrFail($id);
+            $item = $this->model->whereNull('category_name')->findOrFail($id);
 
             $item->delete();
 

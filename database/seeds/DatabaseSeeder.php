@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(SettingsTableSeeder::class);
         $this->call(LocationsTableSeeder::class);
+        $this->call(MenusTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(PagesTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
