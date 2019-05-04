@@ -55,6 +55,21 @@ class CategoriesTableSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
         ]);
+
+        $category = Category::create([
+            'title' => 'دسته بندی ویدیو ها',
+            'slug' => 'دسته-بندی-ویدیو-ها',
+            'category_name' => 'videos',
+            'description' => '',
+            'parent_id' => 1,
+            'lft' => 4,
+            'rgt' => 5,
+            'depth' => 2,
+            'state' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
+
         $category = Category::create([
             'title' => 'دسته بندی خدمات',
             'slug' => 'دسته-بندی-خدمات',
