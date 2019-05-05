@@ -54,7 +54,7 @@ class VideosController extends AdminController
         try {
             $form = $formBuilder->create($this->form, [
                 'url' => route('admin.' . $this->section . '.store'),
-                'method' => 'video'
+                'method' => 'post'
             ]);
 
             return view('admin.' . $this->section . '.form', compact('form'))->with('section', $this->type);
