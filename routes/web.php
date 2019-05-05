@@ -27,6 +27,15 @@ Route::post('blog/like/{id}', [
     'uses' => 'BlogController@like'
 ]);
 
+Route::get('/videos', ['as' => 'site.videos.index', 'uses' => 'VideosController@index']);
+Route::get('videos/{id}', ['uses' => 'VideosController@show'])->where('id', '[0-9]+');
+Route::get('videos/{id}-', ['uses' => 'VideosController@show'])->where('id', '[0-9]+');
+Route::get('videos/{id}-{slug}', ['as' => 'site.videos.show', 'uses' => 'VideosController@show'])->where('id', '[0-9]+');
+Route::post('videos/like/{id}', [
+    'as' => 'site.videos.like',
+    'uses' => 'VideosController@like'
+]);
+
 Route::get('/news', ['as' => 'site.news.index', 'uses' => 'PostsController@index']);
 Route::get('news/{id}', ['uses' => 'PostsController@show'])->where('id', '[0-9]+');
 Route::get('news/{id}-', ['uses' => 'PostsController@show'])->where('id', '[0-9]+');
@@ -91,6 +100,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
         'uses' => 'BlogController@removePhoto'
     ]);
     // END of Blog route
+
+    // Videos route
+    Route::resource('videos', 'VideosController');
+    Route::post('videos/{videos}/uploadPhoto', [
+        'as' => 'videos.uploadPhoto',
+        'uses' => 'VideosController@uploadPhoto'
+    ]);
+    Route::post('videos/{videos}/removePhoto/{media}', [
+        'as' => 'videos.removePhoto',
+        'uses' => 'VideosController@removePhoto'
+    ]);
+    // END of Videos route
 
     // Categories route
     Route::get('categories/', [
