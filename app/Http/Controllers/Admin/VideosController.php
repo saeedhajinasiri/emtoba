@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\EState;
 use App\Forms\Admin\VideoForm;
 use App\Http\Requests\Admin\StoreVideoRequest;
+use App\Tag;
 use App\Video;
 use App\Http\Requests\Admin\StoreVideoRequestRequest;
 use Carbon\Carbon;
@@ -91,6 +92,10 @@ class VideosController extends AdminController
 
         $item = $this->model->create($input);
 
+        if ($request->tags_list) {
+            $this->tagSynchronization($item, $request->tags_list);
+        }
+
         if ($request->category_list) {
             $this->syncCategories($item, $request->category_list);
         }
@@ -110,6 +115,7 @@ class VideosController extends AdminController
         try {
             $item = $this->model->findOrFail($id);
             $item->category_list = $item->categories()->pluck('category_id')->toArray();
+            $item->tags_list = $item->tags()->pluck('tag_id')->toArray();
 
             $form = $formBuilder->create($this->form, [
                 'url' => route('admin.' . $this->section . '.update', $id),
@@ -154,6 +160,10 @@ class VideosController extends AdminController
 
         $video->update($input);
 
+        if ($request->tags_list) {
+            $this->tagSynchronization($video, $request->tags_list);
+        }
+
         if ($request->category_list) {
             $this->syncCategories($video, $request->category_list);
         }
@@ -161,6 +171,28 @@ class VideosController extends AdminController
         Flash::info(trans('admin.update_is_successfully'));
 
         return redirect()->route('admin.videos.edit', $video->id);
+    }
+
+
+    /**
+     * firstOrCreate the list of tagd in the database
+     *
+     * @param Video $video
+     * @param array $tags
+     */
+    private function tagSynchronization(Video $video, $tags)
+    {
+        foreach ($tags as $tagName) {
+            $tagInfo = Tag::firstOrCreate(['title' => $tagName],['title' => $tagName,'slug' => $this->slugify($tagName)]);
+            if($tagInfo) {
+                $tagIds[] = $tagInfo->id;
+            }
+        }
+        if ($tagIds) {
+            $video->tags()->sync($tagIds);
+        } else {
+            $video->tags()->detach();
+        }
     }
 
 

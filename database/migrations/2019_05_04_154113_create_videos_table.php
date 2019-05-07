@@ -60,6 +60,22 @@ class CreateVideosTable extends Migration
                 ->references('id')
                 ->on('videos');
         });
+
+
+        Schema::create('tag_video', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('tag_id');
+            $table->unsignedInteger('video_id');
+        });
+
+        Schema::table('tag_video', function (Blueprint $table) {
+            $table->foreign('tag_id')
+                ->references('id')
+                ->on('tags');
+            $table->foreign('video_id')
+                ->references('id')
+                ->on('videos');
+        });
     }
 
     /**
@@ -71,6 +87,7 @@ class CreateVideosTable extends Migration
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::drop('category_video');
+        Schema::drop('tag_video');
         Schema::drop('videos');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
