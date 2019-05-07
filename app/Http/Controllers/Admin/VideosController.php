@@ -93,7 +93,7 @@ class VideosController extends AdminController
         $item = $this->model->create($input);
 
         if ($request->tags_list) {
-            $this->tagSynchronization($item, $request->tags_list);
+            $this->syncTags($item, $request->tags_list);
         }
 
         if ($request->category_list) {
@@ -115,8 +115,7 @@ class VideosController extends AdminController
         try {
             $item = $this->model->findOrFail($id);
             $item->category_list = $item->categories()->pluck('category_id')->toArray();
-            //$item->tags_list = $item->tags()->pluck('tag_id')->toArray();
-            $item->tags_list = Tag::whereIn('id', $item->tags()->pluck('tag_id')->toArray())->get()->pluck('title')->toArray();
+            $item->tags_list = $item->tags()->pluck('title')->toArray();
 
 
             $form = $formBuilder->create($this->form, [
@@ -163,7 +162,7 @@ class VideosController extends AdminController
         $video->update($input);
 
         if ($request->tags_list) {
-            $this->tagSynchronization($video, $request->tags_list);
+            $this->syncTags($video, $request->tags_list);
         }
 
         if ($request->category_list) {
@@ -182,11 +181,11 @@ class VideosController extends AdminController
      * @param Video $video
      * @param array $tags
      */
-    private function tagSynchronization(Video $video, $tags)
+    private function syncTags(Video $video, $tags)
     {
         foreach ($tags as $tagName) {
-            $tagInfo = Tag::firstOrCreate(['title' => $tagName],['title' => $tagName,'slug' => $this->slugify($tagName)]);
-            if($tagInfo) {
+            $tagInfo = Tag::firstOrCreate(['title' => $tagName], ['title' => $tagName, 'slug' => $this->slugify($tagName)]);
+            if ($tagInfo) {
                 $tagIds[] = $tagInfo->id;
             }
         }

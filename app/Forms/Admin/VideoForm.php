@@ -68,7 +68,7 @@ class VideoForm extends AdminForm
 
     protected function getTags()
     {
-        return Tag::get()->pluck('title','title')->toArray();
+        return Tag::all()->pluck('title', 'title')->toArray();
     }
 
 }
