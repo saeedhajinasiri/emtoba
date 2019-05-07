@@ -26,4 +26,13 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class);
     }
+
+
+    /**
+     * The videos that belong to the tag.
+     */
+    public function videos()
+    {
+        return $this->belongsToMany(Video::class);
+    }
 }

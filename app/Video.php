@@ -36,8 +36,17 @@ class Video extends BaseModel
         'published_at',
     ];
 
+
     /**
-     * Get the category that owns the post.
+     * Get the tag that owns the video.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::Class);
+    }
+
+    /**
+     * Get the category that owns the video.
      */
     public function categories()
     {
@@ -45,7 +54,7 @@ class Video extends BaseModel
     }
 
     /**
-     * Get the user that owns the post.
+     * Get the user that owns the video.
      */
     public function user()
     {
@@ -183,4 +192,5 @@ class Video extends BaseModel
             ->where('published_at', '<=', Carbon::now())
             ->enabled();
     }
+
 }
