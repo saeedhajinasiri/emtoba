@@ -34,7 +34,7 @@ class VideoForm extends AdminForm
             ])
             ->add('tags_list', 'choice', [
                 'label' => 'Tags',
-                'choices' => [],
+                'choices' => $this->getTags(),
                 'expanded' => false,
                 'multiple' => true,
                 'attr' => [
@@ -64,6 +64,11 @@ class VideoForm extends AdminForm
     protected function getCategories()
     {
         return Category::where('category_name', 'videos')->first()->descendants()->get()->pluck('dashedTitle', 'id')->toArray();
+    }
+
+    protected function getTags()
+    {
+        return Tag::get()->pluck('title','title')->toArray();
     }
 
 }

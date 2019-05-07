@@ -115,7 +115,9 @@ class VideosController extends AdminController
         try {
             $item = $this->model->findOrFail($id);
             $item->category_list = $item->categories()->pluck('category_id')->toArray();
-            $item->tags_list = $item->tags()->pluck('tag_id')->toArray();
+            //$item->tags_list = $item->tags()->pluck('tag_id')->toArray();
+            $item->tags_list = Tag::whereIn('id', $item->tags()->pluck('tag_id')->toArray())->get()->pluck('title')->toArray();
+
 
             $form = $formBuilder->create($this->form, [
                 'url' => route('admin.' . $this->section . '.update', $id),
