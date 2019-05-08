@@ -3,6 +3,7 @@
 namespace App\Forms\Admin;
 
 use App\Category;
+use App\Tag;
 
 class PostForm extends AdminForm
 {
@@ -28,6 +29,15 @@ class PostForm extends AdminForm
                 'multiple' => true,
                 'attr' => [
                     'id' => 'category_list'
+                ]
+            ])
+            ->add('tags_list', 'choice', [
+                'label' => 'Tags',
+                'choices' => $this->getTags(),
+                'expanded' => false,
+                'multiple' => true,
+                'attr' => [
+                    'id' => 'tags_list'
                 ]
             ])
             ->add('published_at', 'text', [
@@ -61,5 +71,10 @@ class PostForm extends AdminForm
     protected function getCategories()
     {
         return Category::where('category_name', 'news')->first()->descendants()->get()->pluck('dashedTitle', 'id')->toArray();
+    }
+
+    protected function getTags()
+    {
+        return Tag::all()->pluck('title', 'title')->toArray();
     }
 }
