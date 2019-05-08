@@ -6,6 +6,7 @@ use App\Enums\EState;
 use App\Forms\Admin\BlogForm;
 use App\Media;
 use App\Blog;
+use App\Tag;
 use App\Http\Requests\Admin\StoreBlogRequest;
 use Carbon\Carbon;
 use Exception;
@@ -91,6 +92,10 @@ class BlogController extends AdminController
 
         $item = $this->model->create($input);
 
+        if ($request->tags_list) {
+            $this->syncTags($item, $request->tags_list);
+        }
+
         if ($request->category_list) {
             $this->syncCategories($item, $request->category_list);
         }
@@ -110,6 +115,7 @@ class BlogController extends AdminController
         try {
             $item = $this->model->findOrFail($id);
             $item->category_list = $item->categories()->pluck('category_id')->toArray();
+            $item->tags_list = $item->tags()->pluck('title')->toArray();
 
             $form = $formBuilder->create($this->form, [
                 'url' => route('admin.' . $this->section . '.update', $id),
@@ -153,6 +159,10 @@ class BlogController extends AdminController
         }
 
         $blog->update($input);
+
+        if ($request->tags_list) {
+            $this->syncTags($blog, $request->tags_list);
+        }
 
         if ($request->category_list) {
             $this->syncCategories($blog, $request->category_list);
@@ -220,6 +230,27 @@ class BlogController extends AdminController
         }
 
         return response()->json('While deleting image an error was occurred', 403);
+    }
+
+    /**
+     * firstOrCreate the list of tag in the database
+     *
+     * @param Blog $blog
+     * @param array $tags
+     */
+    private function syncTags(Blog $blog, $tags)
+    {
+        foreach ($tags as $tagName) {
+            $tagInfo = Tag::firstOrCreate(['title' => $tagName], ['title' => $tagName, 'slug' => $this->slugify($tagName)]);
+            if ($tagInfo) {
+                $tagIds[] = $tagInfo->id;
+            }
+        }
+        if ($tagIds) {
+            $blog->tags()->sync($tagIds);
+        } else {
+            $blog->tags()->detach();
+        }
     }
 
     /**
