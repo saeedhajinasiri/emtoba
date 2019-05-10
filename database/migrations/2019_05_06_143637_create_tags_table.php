@@ -36,36 +36,6 @@ class CreateTagsTable extends Migration
                 ->references('id')
                 ->on('videos');
         });
-
-        Schema::create('blog_tag', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('tag_id');
-            $table->unsignedInteger('blog_id');
-        });
-
-        Schema::table('blog_tag', function (Blueprint $table) {
-            $table->foreign('tag_id')
-                ->references('id')
-                ->on('tags');
-            $table->foreign('blog_id')
-                ->references('id')
-                ->on('blog');
-        });
-
-        Schema::create('post_tag', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('tag_id');
-            $table->unsignedInteger('post_id');
-        });
-
-        Schema::table('post_tag', function (Blueprint $table) {
-            $table->foreign('tag_id')
-                ->references('id')
-                ->on('tags');
-            $table->foreign('post_id')
-                ->references('id')
-                ->on('posts');
-        });
     }
 
     /**
