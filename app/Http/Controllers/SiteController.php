@@ -48,20 +48,11 @@ class SiteController extends Controller
             ->where('published_at', '<=', Carbon::now())
             ->where('featured', 1)
             ->enabled()
-            ->whereType('news')
             ->orderBy('published_at', 'DESC')
-            ->take(2)
+            ->take(3)
             ->get();
 
-        $videoItem = Post::query()
-            ->where('published_at', '<=', Carbon::now())
-            ->where('featured', 1)
-            ->enabled()
-            ->whereType('video')
-            ->orderBy('published_at', 'DESC')
-            ->first();
-
-        return view('site.home', compact('settings', 'sliders', 'about', 'news', 'videoItem'));
+        return view('site.main', compact('settings', 'sliders', 'about', 'news', 'videoItem'));
     }
 
     public function commentCreate(StoreCommentRequest $request, $id, $model)

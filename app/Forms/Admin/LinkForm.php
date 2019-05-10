@@ -15,6 +15,11 @@ class LinkForm extends AdminForm
                     'class' => 'form-control ltr'
                 ]
             ])
+            ->add('image', 'file', [
+                'attr' => [
+                    'class' => ''
+                ]
+            ])
             ->add('type', 'choice', [
                 'choices' => $this->getTypes(),
             ]);

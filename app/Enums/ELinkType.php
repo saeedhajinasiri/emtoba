@@ -4,7 +4,8 @@ namespace App\Enums;
 
 class ELinkType extends BaseEnum
 {
-    const about = 1;
-    const support = 2;
-    const service = 3;
+    const footer = 1;
+    const certificate = 2;
+    const partners = 3;
+    const governmental = 4;
 }
