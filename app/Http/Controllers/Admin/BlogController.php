@@ -153,8 +153,8 @@ class BlogController extends AdminController
             );
 
             $input['image'] = $img->getFilename();
-            if (\File::isFile(base_path() . '/public/images/blog/' . $blog->image)) {
-                \File::delete(base_path() . '/public/images/blog/' . $blog->image);
+            if (\File::isFile($this->path . $blog->image)) {
+                \File::delete($this->path . $blog->image);
             }
         }
 

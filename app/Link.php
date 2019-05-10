@@ -4,11 +4,12 @@ namespace App;
 
 use App\Enums\ELinkType;
 use App\Traits\DateMutators;
+use App\Traits\ImageTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-    use DateMutators;
+    use DateMutators, ImageTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +19,8 @@ class Link extends Model
     protected $fillable = [
         'title',
         'url',
+        'type',
+        'image',
         'state',
         'created_by',
         'updated_by',
@@ -39,5 +42,19 @@ class Link extends Model
     public function getTypeNameAttribute()
     {
         return trans('admin.links.' . ELinkType::search($this->type));
+    }
+
+    /**
+     * image link accessor with default
+     *
+     * @return string
+     */
+    public function getImageLinkAttribute()
+    {
+        if ($this->image) {
+            return self::imagePath() . $this->image;
+        }
+
+        return '/panel/assets/dist/img/avatar.png';
     }
 }

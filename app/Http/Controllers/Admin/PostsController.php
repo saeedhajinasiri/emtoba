@@ -159,8 +159,8 @@ class PostsController extends AdminController
             );
 
             $input['image'] = $img->getFilename();
-            if (\File::isFile(base_path() . '/public/images/post/' . $post->image)) {
-                \File::delete(base_path() . '/public/images/post/' . $post->image);
+            if (\File::isFile($this->path . $post->image)) {
+                \File::delete($this->path . $post->image);
             }
         }
 
