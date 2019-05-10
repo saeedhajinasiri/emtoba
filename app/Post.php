@@ -37,6 +37,14 @@ class Post extends BaseModel
     ];
 
     /**
+     * Get the tag that owns the post.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::Class);
+    }
+
+    /**
      * Get the category that owns the post.
      */
     public function categories()

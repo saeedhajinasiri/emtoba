@@ -3,6 +3,7 @@
 namespace App\Forms\Admin;
 
 use App\Category;
+use App\Tag;
 
 class BlogForm extends AdminForm
 {
@@ -30,6 +31,15 @@ class BlogForm extends AdminForm
                     'id' => 'category_list'
                 ]
             ])
+            ->add('tags_list', 'choice', [
+                'label' => 'Tags',
+                'choices' => $this->getTags(),
+                'expanded' => false,
+                'multiple' => true,
+                'attr' => [
+                    'id' => 'tags_list'
+                ]
+            ])
             ->add('published_at', 'text', [
                 'attr' => [
                     'autocomplete' => 'off',
@@ -53,5 +63,10 @@ class BlogForm extends AdminForm
     protected function getCategories()
     {
         return Category::where('category_name', 'blog')->first()->descendants()->get()->pluck('dashedTitle', 'id')->toArray();
+    }
+
+    protected function getTags()
+    {
+        return Tag::all()->pluck('title', 'title')->toArray();
     }
 }
