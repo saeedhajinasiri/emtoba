@@ -34,7 +34,7 @@ class SiteController extends Controller
         $settings = Setting::all()->pluck('value', 'key')->toArray();
 
         $sliders = Slider::query()
-            ->whereState(EState::enabled)
+            ->where('state', EState::enabled)
             ->where('published_at', '<=', Carbon::now())
             ->orderBy('published_at', 'DESC')
             ->take(6)
