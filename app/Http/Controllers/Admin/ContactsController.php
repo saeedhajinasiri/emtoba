@@ -31,7 +31,7 @@ class ContactsController extends AdminController
     {
         $items = $this->model->with('user')->orderBy('id', 'DESC')->paginate(10);
 
-        return view($this->section . '.admin.index', compact('items'));
+        return view('admin.' . $this->section . '.index', compact('items'));
     }
 
     /**

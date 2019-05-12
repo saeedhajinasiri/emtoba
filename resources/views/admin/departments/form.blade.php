@@ -41,7 +41,7 @@
             <div class="panel panel-bd lobidisable">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        <h4>{{ trans('admin.departments.info') }}</h4>
+                        <h4>{{ trans('admin.pages.info') }}</h4>
                     </div>
                 </div>
                 <div class="panel-body">
