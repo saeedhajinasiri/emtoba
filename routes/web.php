@@ -114,6 +114,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     ]);
     // END of Videos route
 
+    // Partners route
+    Route::resource('partners', 'PartnersController');
+    // END of Partners route
+
     // Categories route
     Route::get('categories/', [
         'as' => 'categories.index',
