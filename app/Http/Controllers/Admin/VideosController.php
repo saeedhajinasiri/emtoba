@@ -176,7 +176,7 @@ class VideosController extends AdminController
 
 
     /**
-     * firstOrCreate the list of tagd in the database
+     * firstOrCreate the list of tag in the database
      *
      * @param Video $video
      * @param array $tags

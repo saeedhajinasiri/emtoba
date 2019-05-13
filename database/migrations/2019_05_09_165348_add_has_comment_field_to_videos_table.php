@@ -25,7 +25,7 @@ class AddHasCommentFieldToVideosTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('videos', function (Blueprint $table) {
             $table->dropColumn('has_comment');
         });
     }
