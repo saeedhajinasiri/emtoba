@@ -59,6 +59,7 @@ class PermissionsTableSeeder extends Seeder
         $this->setCRUDPermissions($role, 'Blog');
         $this->setCRUDPermissions($role, 'Videos');
         $this->setCRUDPermissions($role, 'Branches');
+        $this->setCRUDPermissions($role, 'Partners');
 
         // START custom permissions
         // $this->setCRUDPermissions($role, 'Videos');

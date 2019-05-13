@@ -70,6 +70,16 @@ class Comment extends Model
     }
 
     /**
+     * commentable link accessor
+     *
+     * @return mixed
+     */
+    public function getCommentableLinkAttribute()
+    {
+        return $this->commentable->link;
+    }
+
+    /**
      * parent title accessor
      *
      * @return null
