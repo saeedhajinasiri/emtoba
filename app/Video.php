@@ -27,6 +27,7 @@ class Video extends BaseModel
         'image',
         'author_id',
         'featured',
+        'has_comment',
         'meta_keywords',
         'meta_description',
         'hits',
