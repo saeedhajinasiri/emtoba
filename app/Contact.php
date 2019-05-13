@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\DateMutators;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Contact extends Model
 {
@@ -15,14 +16,20 @@ class Contact extends Model
      * @var array
      */
     protected $fillable = [
-        'full_name',
-        'email',
         'subject',
+        'content',
+        'reply',
+        'user_name',
+        'user_email',
+        'user_phone',
         'user_id',
         'user_ip',
+        'department_id',
+        'assignee_id',
         'state',
         'created_by',
         'updated_by',
+        'read_at',
     ];
 
     /**
@@ -52,5 +59,15 @@ class Contact extends Model
         }
 
         return '';
+    }
+
+    /**
+     * excerpt of content accessor
+     *
+     * @return string
+     */
+    public function getExcerptAttribute()
+    {
+        return Str::words(strip_tags($this->attributes['content']), 30);
     }
 }

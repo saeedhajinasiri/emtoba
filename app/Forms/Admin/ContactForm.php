@@ -7,23 +7,37 @@ class ContactForm extends AdminForm
     public function buildForm()
     {
         $this
-            ->add('state', 'checkbox', [
+            ->add('subject', 'text', [
                 'attr' => [
-                    'data-toggle' => 'toggle',
-                    'data-on' => 'Status On',
-                    'data-off' => 'Status Off',
+                    'readonly' => 'readonly'
                 ]
             ])
-            ->add('title', 'text')
-            ->add('content', 'textarea')
+            ->add('content', 'textarea', [
+                'attr' => [
+                    'readonly' => 'readonly'
+                ]
+            ])
+            ->add('reply', 'textarea')
             ->add('department_title', 'text', [
                 'attr' => [
                     'readonly' => 'readonly'
                 ]
             ])
-            ->add('user_name', 'text')
-            ->add('user_email', 'text')
-            ->add('user_ip', 'text');
+            ->add('user_name', 'text', [
+                'attr' => [
+                    'readonly' => 'readonly'
+                ]
+            ])
+            ->add('user_email', 'text', [
+                'attr' => [
+                    'readonly' => 'readonly'
+                ]
+            ])
+            ->add('user_ip', 'text', [
+                'attr' => [
+                    'readonly' => 'readonly'
+                ]
+            ]);
 
         parent::buildForm();
     }

@@ -26,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th> {{ trans('admin.contacts.title') }} </th>
+                                <th> {{ trans('admin.contacts.subject') }} </th>
                                 <th> {{ trans('admin.contacts.content') }} </th>
                                 <th> {{ trans('admin.contacts.department') }} </th>
                                 <th> {{ trans('admin.contacts.author') }} </th>
@@ -38,10 +38,10 @@
                         @forelse($items as $item)
                             <tr class="odd gradeX">
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td>{!! str_limit($item->content, 100) !!}</td>
+                                <td>{{ $item->subject }}</td>
+                                <td>{!! $item->excerpt !!}</td>
                                 <td>{{ $item->department->title }}</td>
-                                <td><a href="{{ route('admin.users.show', $item->User->id) }}">{{ $item->User->name }}</a></td>
+                                <td>{{ $item->user_name }}</td>
                                 <td class="center">{{ $item->created_at }}</td>
                                 <td class="center">
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.contacts.destroy', $item->id]]) }}
