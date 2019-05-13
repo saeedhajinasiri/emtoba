@@ -80,6 +80,11 @@ class AdminsController extends AdminController
                 if (isset($input['role_list'])) {
                     $user->roles()->attach($input['role_list']);
                 }
+
+                if (isset($input['department_list'])) {
+                    $user->departments()->attach($input['department_list']);
+                }
+
                 \DB::commit();
 
                 Flash::info(trans('admin.insert_is_successfully'));
@@ -98,6 +103,7 @@ class AdminsController extends AdminController
     public function edit($id, FormBuilder $formBuilder)
     {
         $user = Admin::findOrFail($id)->user;
+        $user->department_list = $user->departments()->pluck('departments.id')->toArray();
 
         unset($user->password);
         $form = $formBuilder->create(UserForm::class, [
@@ -141,6 +147,10 @@ class AdminsController extends AdminController
 
         if (isset($input['role_list'])) {
             $user->roles()->sync($input['role_list']);
+        }
+
+        if (isset($input['department_list'])) {
+            $user->departments()->sync($input['department_list']);
         }
         Cache::forget('entrust_roles_for_user_' . $user->id);
 

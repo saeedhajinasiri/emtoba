@@ -78,6 +78,16 @@
             <div class="panel panel-bd lobidisable">
                 <div class="panel-heading">
                     <div class="panel-title">
+                        <h4>{{ trans('admin.' . $section . '.departments') }}</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {!! form_widget($form->department_list) !!}
+                </div>
+            </div>
+            <div class="panel panel-bd lobidisable">
+                <div class="panel-heading">
+                    <div class="panel-title">
                         <h4>{{ trans('admin.' . $section . '.avatar') }}</h4>
                     </div>
                 </div>

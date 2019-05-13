@@ -23,11 +23,11 @@ class Department extends Model
     ];
 
     /**
-     * Get the user that owns the department.
+     * Get the users that owns the department.
      */
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsToMany(User::class);
     }
 
     /**

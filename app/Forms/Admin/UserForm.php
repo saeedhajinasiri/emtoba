@@ -2,6 +2,7 @@
 
 namespace App\Forms\Admin;
 
+use App\Department;
 use App\Location;
 use App\Role;
 
@@ -45,6 +46,11 @@ class UserForm extends AdminForm
                     'id' => 'location_id',
                     'class' => 'form-control ltr'
                 ]
+            ])
+            ->add('department_list', 'choice', [
+                'choices' => $this->getDepartments(),
+                'multiple' => true,
+                'expanded' => true
             ]);
 
         parent::buildForm();
@@ -52,11 +58,16 @@ class UserForm extends AdminForm
 
     public function getRoles()
     {
-        return Role::orderBy('id', 'DESC')->pluck('name', 'id')->toArray();
+        return Role::query()->orderBy('id', 'DESC')->pluck('name', 'id')->toArray();
     }
 
     private function getLocationIds()
     {
         return Location::root()->descendantsAndSelf()->get()->pluck('dashedTitle', 'id')->toArray();
+    }
+
+    private function getDepartments()
+    {
+        return Department::query()->orderBy('id', 'DESC')->pluck('title', 'id')->toArray();
     }
 }

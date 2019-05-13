@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contact;
 use App\Forms\Admin\ContactForm;
-use App\Http\Requests\Site\StoreContactsRequest;
+use App\Http\Requests\Admin\StoreContactsRequest;
+use Kris\LaravelFormBuilder\FormBuilder;
 use Laracasts\Flash\Flash;
 use Mockery\CountValidator\Exception;
 
@@ -29,7 +30,8 @@ class ContactsController extends AdminController
      */
     public function index()
     {
-        $items = $this->model->with('user')->orderBy('id', 'DESC')->paginate(10);
+        $user = \Auth::user();
+        $items = $this->model->whereIn('department_id', $user->departments()->pluck('departments.id')->toArray())->with('user')->orderBy('id', 'DESC')->paginate(10);
 
         return view('admin.' . $this->section . '.index', compact('items'));
     }
@@ -55,6 +57,30 @@ class ContactsController extends AdminController
         } catch (Exception $exception) {
             return Flash::error($exception->getMessage());
         }
+    }
+
+    /**
+     * @param $id
+     * @param FormBuilder $formBuilder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id, FormBuilder $formBuilder)
+    {
+        try {
+            $user = \Auth::user();
+            $item = $this->model->whereIn('department_id', $user->departments()->pluck('departments.id')->toArray())->findOrFail($id);
+
+            $form = $formBuilder->create($this->form, [
+                'url' => route('admin.' . $this->section . '.update', $id),
+                'method' => 'put',
+                'model' => $item
+            ]);
+
+        } catch (Exception $e) {
+            return $this->returnWithError($e->getMessage());
+        }
+
+        return view('admin.' . $this->section . '.form', compact('form', 'item'));
     }
 
     /**
