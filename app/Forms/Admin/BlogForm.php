@@ -54,6 +54,14 @@ class BlogForm extends AdminForm
                     'checked' => isset($this->featured) ? $this->featured : false
                 ]
             ])
+            ->add('has_comment', 'checkbox', [
+                'attr' => [
+                    'data-toggle' => 'toggle',
+                    'data-on' => 'State On',
+                    'data-off' => 'State Off',
+                    'checked' => isset($this->has_comment) ? $this->has_comment : false
+                ]
+            ])
             ->add('meta_keywords', 'textarea')
             ->add('meta_description', 'textarea');
 
