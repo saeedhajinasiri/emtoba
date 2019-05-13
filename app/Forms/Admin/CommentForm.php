@@ -2,6 +2,7 @@
 
 namespace App\Forms\Admin;
 
+use App\Enums\ECommentType;
 use App\Comment;
 
 class CommentForm extends AdminForm
@@ -9,13 +10,6 @@ class CommentForm extends AdminForm
     public function buildForm()
     {
         $this
-            ->add('state', 'checkbox', [
-                'attr' => [
-                    'data-toggle' => 'toggle',
-                    'data-on' => 'Status On',
-                    'data-off' => 'Status Off',
-                ]
-            ])
             ->add('status', 'choice', [
                 'label' => 'status',
                 'choices' => $this->getStatus(),
@@ -51,9 +45,9 @@ class CommentForm extends AdminForm
 
     public function getStatus() {
         return [
-            Comment::pending => trans('admin.pending'),
-            Comment::approved => trans('admin.approved'),
-            Comment::rejected => trans('admin.rejected'),
+            ECommentType::pending => trans('admin.pending'),
+            ECommentType::approved => trans('admin.approved'),
+            ECommentType::rejected => trans('admin.rejected'),
         ];
     }
 

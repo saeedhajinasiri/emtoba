@@ -41,7 +41,9 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{!! str_limit($item->content, 100) !!}</td>
                                 <td>{{ $item->commentable_section }}</td>
-                                <td>{{ $item->commentable_title }}</td>
+                                <td>
+                                    <a href="{{ $item->commentable_link }}">{{ $item->commentable_title }}</a>
+                                </td>
                                 <td>{{ $item->status_name }}</td>
                                 <td>{{ $item->user_name }}</td>
                                 <td class="center">{{ $item->created_at }}</td>
