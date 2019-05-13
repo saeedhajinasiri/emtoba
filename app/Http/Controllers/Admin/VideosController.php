@@ -154,8 +154,8 @@ class VideosController extends AdminController
             );
 
             $input['image'] = $img->getFilename();
-            if (\File::isFile(base_path() . '/public/images/video/' . $video->image)) {
-                \File::delete(base_path() . '/public/images/video/' . $video->image);
+            if (\File::isFile($this->path . $video->image)) {
+                \File::delete($this->path . $video->image);
             }
         }
 

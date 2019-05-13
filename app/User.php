@@ -199,7 +199,7 @@ class User extends Authenticatable
             return self::imagePath() . $this->avatar;
         }
 
-        return '/panel/assets/dist/img/avatar.png';
+        return '';
     }
 
     /**

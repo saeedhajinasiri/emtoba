@@ -54,6 +54,20 @@
             <div class="panel panel-bd lobidisable">
                 <div class="panel-heading">
                     <div class="panel-title">
+                        <h4>{{ trans('admin.page.image') }}</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {!! form_row($form->image) !!}
+
+                    @if(isset($item))
+                        <img src="{{ $item->imageLink }}" alt="{{ $item->image }}" width="100%">
+                    @endif
+                </div>
+            </div>
+            <div class="panel panel-bd lobidisable">
+                <div class="panel-heading">
+                    <div class="panel-title">
                         <h4>{{ trans('admin.page.meta_info') }}</h4>
                     </div>
                 </div>

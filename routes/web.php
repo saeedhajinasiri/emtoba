@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('departments', 'DepartmentsController');
     Route::resource('pages', 'PagesController');
     Route::resource('links', 'LinksController');
+    Route::resource('branches', 'BranchesController');
     Route::resource('sliders', 'SlidersController');
     Route::resource('comments', 'CommentsController');
 

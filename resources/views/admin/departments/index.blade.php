@@ -43,7 +43,7 @@
                             <tr class="odd gradeX">
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->title }}</td>
-                                <td>{!! $item->brief !!}</td>
+                                <td>{!! $item->excerpt !!}</td>
                                 <td class="center">{{ $item->created_at }}</td>
                                 <td class="center">
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.departments.destroy', $item->id]]) }}

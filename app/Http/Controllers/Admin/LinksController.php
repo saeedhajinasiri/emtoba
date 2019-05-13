@@ -15,10 +15,12 @@ class LinksController extends AdminController
     protected $form = LinkForm::class;
     protected $model;
     protected $path;
+    protected $relative_path;
 
     public function __construct(Link $model)
     {
-        $this->path = base_path() . '/public/images/' . $this->single . '/';
+        $this->relative_path = Link::imagePath();
+        $this->path = public_path() . $this->relative_path;
         $this->model = $model;
         parent::__construct();
     }
@@ -34,6 +36,15 @@ class LinksController extends AdminController
 
             if (!$request->get('state')) {
                 $input['state'] = 0;
+            }
+
+            if ($request->hasFile('image')) {
+                $imageName = time() . $request->file('image')->getClientOriginalName();
+                $img = $request->file('image')->move(
+                    $this->path, $imageName
+                );
+
+                $input['image'] = $img->getFilename();
             }
 
             $userId = \Auth::id();
@@ -63,6 +74,18 @@ class LinksController extends AdminController
             $input = $request->all();
             if (!isset($input['state'])) {
                 $input['state'] = 0;
+            }
+
+            if ($request->hasFile('image')) {
+                $imageName = time() . $request->file('image')->getClientOriginalName();
+                $img = $request->file('image')->move(
+                    $this->path, $imageName
+                );
+
+                $input['image'] = $img->getFilename();
+                if (\File::isFile($this->path . $link->image)) {
+                    \File::delete($this->path . $link->image);
+                }
             }
 
             $link->update($input);
