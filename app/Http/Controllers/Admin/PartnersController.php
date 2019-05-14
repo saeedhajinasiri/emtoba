@@ -8,6 +8,7 @@ use App\Partner;
 use App\Forms\Admin\PartnerForm;
 use App\Http\Requests\Admin\StorePartnersRequest;
 use Exception;
+use Kris\LaravelFormBuilder\FormBuilder;
 use Laracasts\Flash\Flash;
 
 class PartnersController extends AdminController
@@ -63,6 +64,33 @@ class PartnersController extends AdminController
         } catch (Exception $exception) {
             return Flash::error($exception->getMessage());
         }
+    }
+
+
+    /**
+     * @param $id
+     * @param FormBuilder $formBuilder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id, FormBuilder $formBuilder)
+    {
+        try {
+            $item = $this->model->findOrFail($id);
+            //print_r($item->job()->pluck('title')->toArray());die();
+            $item->job_list = $item->job()->pluck('title');
+
+
+            $form = $formBuilder->create($this->form, [
+                'url' => route('admin.' . $this->section . '.update', $id),
+                'method' => 'put',
+                'model' => $item
+            ]);
+
+        } catch (Exception $e) {
+            return $this->returnWithError($e->getMessage());
+        }
+
+        return view('admin.' . $this->section . '.form', compact('form', 'item'));
     }
 
     /**

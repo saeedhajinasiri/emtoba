@@ -17,6 +17,7 @@ class CommentForm extends AdminForm
                 'multiple' => false,
             ])
             ->add('content', 'textarea')
+            ->add('title', 'text')
             ->add('commentable_section', 'text', [
                 'attr' => [
                     'readonly' => 'readonly'

@@ -33,6 +33,7 @@
                         <tr>
                             <th>#</th>
                             <th> {{ trans('admin.partners.title') }} </th>
+                            <th> {{ trans('admin.partners.job') }} </th>
                             <th> {{ trans('admin.partners.createTime') }} </th>
                             <th> {{ trans('admin.partners.actions') }} </th>
                         </tr>
@@ -42,6 +43,7 @@
                             <tr class="odd gradeX">
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->title }}</td>
+                                <td>{{ $item->job->title }}</td>
                                 <td class="center">{{ $item->created_at }}</td>
                                 <td class="center">
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.partners.destroy', $item->id]]) }}
