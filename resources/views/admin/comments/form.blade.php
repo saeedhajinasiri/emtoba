@@ -25,7 +25,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>{!! form_row($form->SaveAndClose) !!}</li>
-                                <li>{!! form_row($form->SaveAndShow) !!}</li>
+                                <li>{!! form_row($form->SaveAndNew) !!}</li>
                             </ul>
                         </div>
                         <a href="{!! route('admin.comments.index') !!}" class="btn btn-labeled btn-danger m-b-5">
@@ -46,6 +46,7 @@
                 </div>
                 <div class="panel-body">
                     {!! form_row($form->status) !!}
+                    {!! form_row($form->title) !!}
                     {!! form_row($form->content) !!}
                     {!! form_row($form->commentable_section) !!}
                     {!! form_row($form->commentable_title) !!}
