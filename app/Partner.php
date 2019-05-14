@@ -25,13 +25,12 @@ class Partner extends Model
         'state',
     ];
 
-
     /**
-     * Get the jobs that owns the blogs.
+     * Get the jobs that owns the partner.
      */
-    public function jobs()
+    public function job()
     {
-        return $this->hasOne(Job::Class);
+        return $this->belongsTo(Job::class);
     }
 
 
