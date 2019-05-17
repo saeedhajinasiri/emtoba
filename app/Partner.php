@@ -22,6 +22,7 @@ class Partner extends Model
         'scientific_records',
         'social_records',
         'job_id',
+        'row',
         'state',
     ];
 

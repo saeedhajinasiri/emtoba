@@ -33,7 +33,8 @@ class PartnerForm extends AdminForm
                 'attr' => [
                     'id' => 'job_list'
                 ]
-            ]);
+            ])
+            ->add('row', 'number');
 
         parent::buildForm();
     }

@@ -4,7 +4,7 @@ use App\Setting;
 use Illuminate\Support\Facades\Cache;
 
 function getSetting($key) {
-    return Cache::get('settings.' . $key, function () use ($key) {
+    return Cache::remember('settings.' . $key, 60, function () use ($key) {
         return Setting::query()
             ->where('key', $key)
             ->first()->toArray()['value'];
@@ -44,6 +44,11 @@ Route::post('news/like/{id}', [
     'as' => 'site.news.like',
     'uses' => 'PostsController@like'
 ]);
+
+Route::get('/محتوای-ثبتی-اساسنامه', ['uses' => 'PagesController@statute']);
+Route::get('/درباره-ما', ['uses' => 'PagesController@about']);
+Route::get('/شعب-موسسه', ['as' => 'site.branches.index', 'uses' => 'BranchesController@index']);
+Route::get('/موسسین-و-همکاران-حقوقی-و-قضایی', ['as' => 'site.partners.index', 'uses' => 'PartnersController@index']);
 
 Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
 

@@ -46,7 +46,6 @@
                 </div>
                 <div class="panel-body">
                     {!! form_row($form->title) !!}
-                    {!! form_row($form->job_list) !!}
                     {!! form_row($form->scientific_records) !!}
                     {!! form_row($form->social_records) !!}
                 </div>
@@ -65,6 +64,17 @@
                     @if(isset($item))
                         <img src="{{ $item->imageLink }}" alt="{{ $item->image }}" width="100%">
                     @endif
+                </div>
+            </div>
+            <div class="panel panel-bd lobidisable">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>{{ trans('admin.page.image') }}</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {!! form_row($form->job_list) !!}
+                    {!! form_row($form->row) !!}
                 </div>
             </div>
         </div>

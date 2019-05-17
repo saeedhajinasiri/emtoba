@@ -30,6 +30,33 @@ class PartnersController extends AdminController
     }
 
     /**
+     * @param FormBuilder $formBuilder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create(FormBuilder $formBuilder)
+    {
+        try {
+            $row = Partner::query()
+                ->orderBy('row', 'DESC')
+                ->first();
+
+            $partner = new Partner();
+            if ($row) {
+                $partner->row = $row->row;
+            }
+            $form = $formBuilder->create($this->form, [
+                'url' => route('admin.' . $this->section . '.store'),
+                'method' => 'post',
+                'model' => $partner
+            ]);
+
+            return view('admin.' . $this->section . '.form', compact('form'));
+        } catch (Exception $exception) {
+            return $this->returnWithError($exception->getMessage());
+        }
+    }
+
+    /**
      * @param StorePartnersRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */

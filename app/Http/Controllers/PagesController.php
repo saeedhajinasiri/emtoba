@@ -31,26 +31,11 @@ class PagesController extends Controller
      */
     public function about(Request $request)
     {
-        $pages = Page::query()
-            ->whereIn('page_name', ['about', 'our_team', 'testimonial_page'])
-            ->get()
-            ->keyBy('page_name');
+        $page = Page::query()
+            ->whereIn('page_name', ['about_page'])
+            ->first();
 
-        $teams = Team::query()
-            ->whereState(EState::enabled)
-            ->orderBy('id', 'ASC')
-            ->get();
-
-        $testimonials = Testimonial::query()
-            ->whereState(EState::enabled)
-            ->orderBy('id', 'ASC')
-            ->get();
-
-        $settings = Cache::rememberForever('siteSettings', function () {
-            return Setting::all()->pluck('value', 'key')->toArray();
-        });
-
-        return view('site.about.show', compact('pages', 'testimonials', 'teams', 'settings'));
+        return view('site.pages.show', compact('page'));
     }
 
     /**
@@ -63,13 +48,24 @@ class PagesController extends Controller
     {
         $page = Page::query()
             ->where('page_name', 'clients_page')
+            ->first();;
+
+        return view('site.clients.show', compact('page'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function statute(Request $request)
+    {
+        $page = Page::query()
+            ->where('page_name', 'statute_page')
             ->first();
 
-        $clients = Client::query()
-            ->whereState(EState::enabled)
-            ->orderBy('id', 'ASC')
-            ->get();
-
-        return view('site.clients.show', compact('page', 'clients'));
+        return view('site.pages.show', compact('page'));
     }
+
 }

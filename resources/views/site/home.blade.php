@@ -112,7 +112,7 @@
         </div>
     </section>
 
-    @include('site.partials.header')
+    @include('site.partials.header', ['isHomePage' => true])
 
     <section id="sp-title">
         <div class="row">
