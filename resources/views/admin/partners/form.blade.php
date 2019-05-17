@@ -28,7 +28,7 @@
                                 <li>{!! form_row($form->SaveAndNew) !!}</li>
                             </ul>
                         </div>
-                        <a href="{!! route('admin.branches.index') !!}" class="btn btn-labeled btn-danger m-b-5">
+                        <a href="{!! route('admin.partners.index') !!}" class="btn btn-labeled btn-danger m-b-5">
                             <span class="btn-label"> <i class="fa fa-times"></i> </span>
                             <span class="hidden-xs"> @lang('admin.cancel') </span>
                         </a>

@@ -19,48 +19,25 @@
             <div id="sp-menu" class="col-xs-4 col-sm-10 col-md-10">
                 <div class="sp-column flex">
                     <div class="sp-megamenu-wrapper">
-                        <a id="offcanvas-toggler" class="visible-xs visible-sm" href="#"><i
-                                    class="fa fa-bars"></i></a>
+                        <a id="offcanvas-toggler" class="visible-xs visible-sm" href="#"><i class="fa fa-bars"></i></a>
+
                         <ul class="sp-megamenu-parent menu-fade-down-fade-up hidden-xs hidden-sm">
-                            <li class="sp-menu-item  current-item active "><a href="/">صفحه اصلی</a></li>
-                            <li class="sp-menu-item "><a
-                                        href="/محتوای-ثبتی-موسسین">محتوای ثبتی
-                                    اساسنامه </a></li>
-                            <li class="sp-menu-item "><a href="/موسسین-و-همکاران-حقوقی-و-قضایی">موسسین و همکاران
-                                    حقوقی و
-                                    قضایی</a></li>
-                            <li class="sp-menu-item "><a href="http://91.99.72.220:81/">پرتال دانشگاه مجازی</a>
-                            </li>
-                            <li class="sp-menu-item sp-has-child "><a href="/استخدام-وکیل">استخدام</a>
-                                <div class="sp-dropdown sp-dropdown-main sp-menu-right" style="width: 240px;">
-                                    <div class="sp-dropdown-inner">
-                                        <ul class="sp-dropdown-items">
-                                            <li class="sp-menu-item"><a href="/استخدام-وکیل">استخدام
-                                                    وکیل </a></li>
-                                            <li class="sp-menu-item"><a href="/استخدام-کارمند">استخدام
-                                                    کارمند</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sp-menu-item "><a href="/شعب-موسسه">شعب ما</a></li>
-                            <li class="sp-menu-item sp-has-child "><a href="/تماس-با-ما">تماس با ما</a>
-                                <div class="sp-dropdown sp-dropdown-main sp-menu-right" style="width: 240px;">
-                                    <div class="sp-dropdown-inner">
-                                        <ul class="sp-dropdown-items">
-                                            <li class="sp-menu-item"><a href="/واحد-شکایت">شکایت</a>
-                                            </li>
-                                            <li class="sp-menu-item"><a
-                                                        href="/ارسال-درخواست">ارسال
-                                                    درخواست جدید</a></li>
-                                            <li class="sp-menu-item"><a
-                                                        href="/مشاهده-درخواست">مشاهده
-                                                    درخواست ها</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="sp-menu-item "><a href="/خدمات-ما">درباره ما</a></li>
+                            @foreach($siteMenus as $menu)
+                                <li class="sp-menu-item @if(isset($menu['children']) && count($menu['children']) > 0) sp-has-child @endif">
+                                    <a href="#">{{ $menu['title'] }}</a>
+                                    @if(isset($menu['children']) && count($menu['children']) > 0)
+                                        <div class="sp-dropdown sp-dropdown-main sp-menu-right" style="width: 240px;">
+                                            <div class="sp-dropdown-inner">
+                                                <ul class="sp-dropdown-items">
+                                                    @foreach($menu['children'] as $child)
+                                                        <li class="sp-menu-item"><a href="#">{{ $child['title'] }}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

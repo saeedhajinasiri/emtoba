@@ -19,7 +19,7 @@
     @if(isset($item['children']))
         <ol class="dd-list">
             @foreach($item['children'] as $item)
-                @include('menus.menus.nestableItem', ['item' => $item])
+                @include('admin.menus.nestableItem', ['item' => $item])
             @endforeach
         </ol>
     @endif

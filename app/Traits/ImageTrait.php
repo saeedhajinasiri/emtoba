@@ -15,6 +15,6 @@ trait ImageTrait
      */
     public static function imagePath()
     {
-        return DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . strtolower(class_basename(self::class)) . DIRECTORY_SEPARATOR;
+        return DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . strtolower(class_basename(self::class)) . DIRECTORY_SEPARATOR;
     }
 }

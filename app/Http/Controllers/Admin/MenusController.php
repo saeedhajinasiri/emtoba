@@ -145,7 +145,7 @@ class MenusController extends AdminController
             $data['created_by'] = \Auth::id();
             $data['updated_by'] = \Auth::id();
             if (!$data['slug']) {
-                $data['slug'] = Str::slug($data['title'], '-');
+                $data['slug'] = $this->slugify($data['title'], '-');
             }
             $item = $this->model->create($data);
 
@@ -178,6 +178,9 @@ class MenusController extends AdminController
 
             $data = $request->all();
             $data['updated_by'] = \Auth::id();
+            if (!$data['slug']) {
+                $data['slug'] = $this->slugify($data['title'], '-');
+            }
 
             $item->update($data);
         } catch (Exception $exception) {

@@ -7,6 +7,7 @@ return array (
   'blogs.you_took_your_vote_back' => 'لایکت با موفقیت بازگردانده شد',
   'comment.title' => 'کامنت',
   'comments.title' => 'کامنت ها',
+  'copyright' => '© تمامی حق و حقوق سايت برای مرکز مشاوران حقوقی طوبی محفوظ می باشد.',
   'hits.title' => 'بازدید',
   'home.address' => 'آدرس',
   'home.age' => 'سن',

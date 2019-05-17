@@ -1731,7 +1731,7 @@ body.rtl .sp-contact-info {
 .sp-comingsoon body a.logo:hover img.sp-default-logo {
   margin: 0 auto;
 }
-@media (max-width: ) {
+@media (max-width: 480px) {
   #vmCartModule {
     display: table;
     float: left;
@@ -1798,6 +1798,7 @@ body.rtl .sp-contact-info {
     right: 1px;
   }
 }
+
 #sp-header #sp-menu .sp-column .sp-megamenu-parent >li >a,
 .sp-group-title,
 .sppb-nav-tabs >li a,
@@ -1813,23 +1814,15 @@ body.rtl .sp-contact-info {
 .slick-prev {
   border-radius: 3px 0 0 3px;
 }
-@font-face {
-  font-family: 'yekan';
-  src: url('fonts/yekan.eot');
-  src: url('fonts/yekan.eot') format('embedded-opentype'), url('fonts/yekan.woff') format('woff'), url('fonts/yekan.ttf') format('truetype'), url('fonts/yekan.svg#yekan') format('svg');
-  font-style: normal;
-  font-weight: normal;
-}
-@font-face {
-  font-family: 'kaza';
-  src: url('fonts/kaza.eot');
-  src: url('fonts/kaza.eot') format('embedded-opentype'), url('fonts/kaza.woff') format('woff'), url('fonts/kaza.ttf') format('truetype'), url('fonts/kaza.svg#kaza') format('svg');
-  font-style: normal;
-  font-weight: normal;
-}
 #sp-top2 {
   text-align: left;
 }
 #sp-top2 .sp-column {
   float: left;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+.ml-10 {
+  margin-left: 10px;
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ELinkType;
 use App\Enums\EState;
+use App\Link;
 use App\Page;
 use App\Post;
 use App\Comment;
@@ -40,9 +42,23 @@ class SiteController extends Controller
             ->take(6)
             ->get();
 
-        $about = Page::query()
-            ->where('page_name', 'about')
-            ->first();
+        $partners = Link::query()
+            ->where('state', EState::enabled)
+            ->where('type', ELinkType::partners)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $governments = Link::query()
+            ->where('state', EState::enabled)
+            ->where('type', ELinkType::governmental)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $certificates = Link::query()
+            ->where('state', EState::enabled)
+            ->where('type', ELinkType::certificate)
+            ->orderBy('id', 'DESC')
+            ->get();
 
         $news = Post::query()
             ->where('published_at', '<=', Carbon::now())
@@ -52,7 +68,7 @@ class SiteController extends Controller
             ->take(3)
             ->get();
 
-        return view('site.main', compact('settings', 'sliders', 'about', 'news', 'videoItem'));
+        return view('site.home', compact('settings', 'sliders', 'partners', 'governments', 'certificates', 'news', 'videoItem'));
     }
 
     public function commentCreate(StoreCommentRequest $request, $id, $model)
