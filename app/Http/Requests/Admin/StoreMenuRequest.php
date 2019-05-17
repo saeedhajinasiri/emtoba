@@ -25,8 +25,8 @@ class StoreMenuRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'slug' => 'required',
-            'route' => 'required',
+//            'slug' => 'required',
+//            'route' => 'required',
             'parent_id' => 'required'
         ];
     }

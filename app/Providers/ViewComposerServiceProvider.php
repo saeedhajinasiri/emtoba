@@ -18,7 +18,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             'admin.master', 'App\Http\ViewComposers\AdminComposer'
         );
         View::composer(
-            ['site.main', 'partials.footer'], 'App\Http\ViewComposers\SiteComposer'
+            ['site.main', 'site.home', 'partials.footer'], 'App\Http\ViewComposers\SiteComposer'
         );
         View::composer(
             ['site.search'], 'App\Http\ViewComposers\SearchComposer'

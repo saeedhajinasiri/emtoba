@@ -15,7 +15,7 @@ class SettingForm extends Form
                     'label' => trans('admin.settings.' . $column['key']),
                     'default_value' => Setting::get($column['key']),
                     'help_block' => [
-                        'text' => ($column['type'] == 'image' ? '<img width="200px" src="' : base_path()) . '/images/setting/' . $column['value'] . ($column['type'] == 'image' ? '">' : ''),
+                        'text' => ($column['type'] == 'image' ? '<img width="200px" src="' : base_path()) . '/uploads/images/setting/' . $column['value'] . ($column['type'] == 'image' ? '">' : ''),
                         'tag' => 'p',
                         'attr' => ['class' => 'help-block']
                     ]

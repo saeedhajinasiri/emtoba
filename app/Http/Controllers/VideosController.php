@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 //use App\Requests\StoreCommentRequest;
 use Illuminate\Support\Facades\Cache;
 
-class BlogController extends Controller
+class VideosController extends Controller
 {
     protected $settings;
 

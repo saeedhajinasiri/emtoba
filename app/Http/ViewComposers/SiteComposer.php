@@ -3,8 +3,10 @@
 namespace App\Http\ViewComposers;
 
 use App\Category;
+use App\Enums\ELinkType;
 use App\Enums\EState;
 use App\Link;
+use App\Menu;
 use App\Menus\AdminMenu;
 use App\Post;
 use App\Setting;
@@ -25,7 +27,7 @@ class SiteComposer
     protected $footerLinks;
     protected $footerPosts;
     protected $basketCarts;
-    protected $categories;
+    protected $siteMenus;
     protected $current_uri;
 
     public function __construct()
@@ -48,8 +50,8 @@ class SiteComposer
 
         $this->footerLinks = Link::query()
             ->where('state', EState::enabled)
+            ->where('type', ELinkType::footer)
             ->orderBy('id', 'DESC')
-            ->limit(5)
             ->get();
 
         $this->footerPosts = Post::query()
@@ -60,9 +62,9 @@ class SiteComposer
 
         $this->current_uri = Route::current()->uri;
 
-        $root = Category::root();
-        $categoryItems = $root->getDescendants();
-        $this->categories = $this->recursiveNestable($categoryItems->toArray(), $root->id);
+        $root = Menu::root();
+        $menuItems = $root->getDescendants();
+        $this->siteMenus = $this->recursiveNestable($menuItems->toArray(), $root->id);
     }
 
     public function compose($view)
@@ -78,7 +80,7 @@ class SiteComposer
             'footerLinks' => $this->footerLinks,
             'footerPosts' => $this->footerPosts,
             'basketCarts' => $this->basketCarts,
-            'categories' => $this->categories,
+            'siteMenus' => $this->siteMenus,
             'current_uri' => $this->current_uri,
         ]);
     }

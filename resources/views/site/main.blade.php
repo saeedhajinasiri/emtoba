@@ -167,49 +167,52 @@
 
                         <div class="page-content">
                             @include('site.partials.slider')
-                            <section class="sppb-section "
-                                     style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-image:url(/main/img/stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
+                            <section class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-image:url(/main/img/stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
                                 <div class="sppb-container">
                                     <div class="sppb-row">
                                         <div class="sppb-col-sm-12">
-                                            <div class="sppb-addon-container "
-                                                 style="color:#ffffff;padding:20px 0px 0px 0px;width: 100%;">
-                                                <div class="sppb-text-center"><a style="width: 100%"
-                                                                                 href="/tobaelearningcenter"
-                                                                                 class="sppb-btn-success sppb-btn-lg sppb-selector sppb-btn-block "
-                                                                                 role="button">ورود به مرکز آموزش الکترونیکی حقوق و دروس
-                                                        تخصصی (ویژه کارکنان دولت و نیرو های مسلح )</a></div>
+                                            <div class="sppb-addon-container" style="color:#ffffff;padding:20px 0px 0px 0px;width: 100%;">
+                                                @if(getSetting('elearning_center_url'))
+                                                    <div class="sppb-text-center">
+                                                        <a style="width: 100%" href="{{ getSetting('elearning_center_url') }}"
+                                                           class="sppb-btn-success sppb-btn-lg sppb-selector sppb-btn-block" role="button">@lang('admin.settings.elearning_center_url')</a>
+                                                    </div>
+                                                @endif
                                                 <section class="sppb-section " style="">
                                                     <div class="sppb-container-inner">
                                                         <div class="sppb-row">
-                                                            <div class="sppb-col-sm-3">
-                                                                <div class="sppb-addon-container ">
-                                                                    <div class="sppb-text-center"><a style="width: 100%"
-                                                                                                     href="https://t.me/joinchat/AAAAAENDikB_5va9YMOavw"
-                                                                                                     class="sppb-btn sppb-btn-dark sppb-btn- sppb-selector  "
-                                                                                                     role="button"><i
-                                                                                    class="pe pe-7s-paper-plane"></i>
-                                                                            عضویت در کانال تلگرام موسسه</a></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="sppb-col-sm-6">
-                                                                <div class="sppb-addon-container " style="width: 100%">
-                                                                    <div class="sppb-text-center"><a
-                                                                                href="/main/pdf/1212.pdf"
-                                                                                class="sppb-btn sppb-btn-dark sppb-btn- sppb-selector sppb-btn-block "
-                                                                                role="button">مرکز مشاوران حقوقی
-                                                                            طوبی</a></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="sppb-col-sm-3">
-                                                                <div class="sppb-addon-container ">
-                                                                    <div style="width: 100%;" class="sppb-text-center"><a style="width: 100%"
-                                                                                                                          href="/ارتباط-با-مشاوران"
-                                                                                                                          class="sppb-btn sppb-btn-dark sppb-btn- sppb-selector  "
-                                                                                                                          role="button">ارتباط با مشاوران</a>
+                                                            @if(getSetting('telegram_registering_url'))
+                                                                <div class="sppb-col-sm-3">
+                                                                    <div class="sppb-addon-container">
+                                                                        <div class="sppb-text-center">
+                                                                            <a style="width: 100%" href="{{ getSetting('telegram_registering_url') }}"
+                                                                               class="sppb-btn sppb-btn-dark sppb-btn- sppb-selector" role="button">
+                                                                                <i class="pe pe-7s-paper-plane"></i>@lang('admin.settings.telegram_registering_url')
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            @endif
+                                                            @if(getSetting('toba_center_url'))
+                                                                <div class="sppb-col-sm-6">
+                                                                    <div class="sppb-addon-container " style="width: 100%">
+                                                                        <div class="sppb-text-center">
+                                                                            <a href="{{ getSetting('toba_center_url') }}" class="sppb-btn sppb-btn-dark sppb-btn- sppb-selector sppb-btn-block "
+                                                                               role="button">@lang('admin.settings.toba_center_url')</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                            @if(getSetting('counselors_contact_url'))
+                                                                <div class="sppb-col-sm-3">
+                                                                    <div class="sppb-addon-container ">
+                                                                        <div style="width: 100%;" class="sppb-text-center">
+                                                                            <a style="width: 100%" href="{{ getSetting('counselors_contact_url') }}" class="sppb-btn sppb-btn-dark sppb-btn- sppb-selector  "
+                                                                               role="button">@lang('admin.settings.counselors_contact_url')</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                 </section>
                                             </div>
@@ -217,23 +220,24 @@
                                     </div>
                                 </div>
                             </section>
-                            <section id="take-control" class="sppb-section "
-                                     style="margin:0px;padding:0px;color:#ffffff;background-image:url(/main/img/bckg-4.jpg);background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-position:50% 50%;">
-                                <div class="sppb-row">
-                                    <div class="sppb-col-sm-12">
-                                        <div class="sppb-addon-container  black_bckg-50 text-shadow"
-                                             style="padding:40px 90px 60px;">
-                                            <div class="sppb-addon sppb-addon-single-image sppb-text-center">
-                                                <div class="sppb-addon-content">
-                                                    <p><img alt="" class="sppb-img-responsive" src="/main/img/copy.png"/></p>
+
+                            @if(getSetting('mohta_holding'))
+                                <section id="take-control" class="sppb-section" style="margin:0px;padding:0px;color:#ffffff;background-image:url(/main/img/bckg-4.jpg);background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-position:50% 50%;">
+                                    <div class="sppb-row">
+                                        <div class="sppb-col-sm-12">
+                                            <div class="sppb-addon-container black_bckg-50 text-shadow" style="padding:40px 90px 60px;">
+                                                <div class="sppb-addon sppb-addon-single-image sppb-text-center">
+                                                    <div class="sppb-addon-content">
+                                                        <p><img alt="" class="sppb-img-responsive" src="/images/setting/{{ getSetting('mohta_holding') }}"/></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
-                            <section class="sppb-section "
-                                     style="margin:0px;padding:40px 20px 60px;background-image:url(/images/svg/background-white-85.svg);">
+                                </section>
+                            @endif
+
+                            <section class="sppb-section" style="margin:0px;padding:40px 20px 60px;background-image:url(/images/svg/background-white-85.svg);">
                                 <div class="sppb-container">
                                     <div class="sppb-row">
                                         <div class="sppb-col-sm-12">
@@ -352,136 +356,156 @@
                                 </div>
                             </section>
 
+                            @if(getSetting('red_line_text'))
+                                <div class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#70131b;background-image:url(/images/svg/section-background-stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
+                                    <div class="sppb-container">
+                                        <div class="sppb-row">
+                                            <div class="sppb-col-sm-12">
+                                                <div class="sppb-addon-container " style="color:#ffffff;padding:20px 0px 0px 0px;">
+                                                    <div class="sppb-addon sppb-addon-module ">
+                                                        <div class="sppb-addon-content">
+                                                            <div class="custom" style="text-align: center;">
+                                                                <p>{!! nl2br(getSetting('red_line_text')) !!}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
 
-                            <div class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#70131b;background-image:url(/images/svg/section-background-stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
-                                <div class="sppb-container">
+                            @if(getSetting('red_line_text'))
+                                <div class="sppb-section " style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-image:url(/images/svg/section-background-stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
+                                    <div class="sppb-container">
+                                        <div class="sppb-row">
+                                            <div class="sppb-col-sm-12">
+                                                <div class="sppb-addon-container" style="color:#ffffff;padding:20px 0px 0px 0px;">
+                                                    <div class="sppb-addon sppb-addon-module ">
+                                                        <div class="sppb-addon-content">
+                                                            <div class="custom" style="text-align: center;">
+                                                                <p>{!! nl2br(getSetting('grey_line_text')) !!}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if(getSetting('first_box_title') || getSetting('second_box_title') || getSetting('third_box_title') || getSetting('fourth_box_title'))
+                                <div class="sppb-section " style="margin:5px;">
+                                    <div class="sppb-container">
+                                        <div class="sppb-row">
+                                            @if(getSetting('first_box_title'))
+                                                <div class="sppb-col-sm-3">
+                                                    <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
+                                                        <div class="sppb-addon sppb-addon-feature sppb-text-center ">
+                                                            <div class="sppb-addon-content">
+                                                                <div class="sppb-icon">&nbsp;</div>
+
+                                                                <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('first_box_title') }}</h3>
+
+                                                                <div class="sppb-addon-text sppb-text-center">
+                                                                    <p>{!! getSetting('first_box_content') !!}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            @if(getSetting('second_box_title'))
+                                                <div class="sppb-col-sm-3">
+                                                    <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
+                                                        <div class="sppb-addon sppb-addon-feature sppb-text-center ">
+                                                            <div class="sppb-addon-content">
+                                                                <div class="sppb-icon">&nbsp;</div>
+
+                                                                <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('second_box_title') }}</h3>
+
+                                                                <div class="sppb-addon-text sppb-text-center">
+                                                                    <p>{!! getSetting('second_box_content') !!}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            @if(getSetting('third_box_title'))
+                                                <div class="sppb-col-sm-3">
+                                                    <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
+                                                        <div class="sppb-addon sppb-addon-feature sppb-text-center ">
+                                                            <div class="sppb-addon-content">
+                                                                <div class="sppb-icon">&nbsp;</div>
+
+                                                                <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('third_box_title') }}</h3>
+
+                                                                <div class="sppb-addon-text sppb-text-center">
+                                                                    <p>{!! getSetting('third_box_content') !!}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            @if(getSetting('fourth_box_title'))
+                                                <div class="sppb-col-sm-3">
+                                                    <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
+                                                        <div class="sppb-addon sppb-addon-feature sppb-text-center ">
+                                                            <div class="sppb-addon-content">
+                                                                <div class="sppb-icon">&nbsp;</div>
+
+                                                                <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('fourth_box_title') }}</h3>
+
+                                                                <div class="sppb-addon-text sppb-text-center">
+                                                                    <p>{!! getSetting('fourth_box_content') !!}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if(getSetting('institute_registered_capital') || getSetting('registration_number') || getSetting('judicial_identifier'))
+                                <section id="take-control" class="sppb-section" style="margin:0px;padding:0px;color:#ffffff;background-image:url(/main/img/bckg-4.jpg);background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-position:50% 50%;">
                                     <div class="sppb-row">
                                         <div class="sppb-col-sm-12">
-                                            <div class="sppb-addon-container " style="color:#ffffff;padding:20px 0px 0px 0px;">
-                                                <div class="sppb-addon sppb-addon-module ">
-                                                    <div class="sppb-addon-content">
-                                                        <div class="custom">
-                                                            <p style="text-align: center;">بر اساس سنوات سالانه مرکز مشاوران حقوقي طوبي</p>
+                                            <div class="sppb-addon-container black_bckg-50 text-shadow" style="padding:40px 90px 60px;">
+                                                <div class="sppb-addon sppb-addon-text-block sppb-text-center ">
+                                                    <div class="sppb-addon sppb-addon-text-block sppb-text-center">
+                                                        <div class="sppb-addon-content">
+                                                            <h2 style="text-align:center"><span style="color:#c0392b"><span style="font-size:36px">مرکز مشاوران حقوقی طوبی</span></span></h2>
 
-                                                            <p style="text-align: center;">خدمات ويژه به موکلين: خانواده معظم شهداء وجانبازان ، نيروهاي مسلح و پرسنل و ماموران اطلاعات و امنيتي (کميسيون انتظامي ونظامي)</p>
-
-                                                            <p style="text-align: center;">درخصوص مباحث ديوان عالي کشور و ديوان عدالت اداری ارائه می گردد&nbsp;</p>
+                                                            <p style="text-align:center">
+                                                                @if(getSetting('institute_registered_capital'))
+                                                                    <strong>&nbsp;<span style="font-size:16pt">سرمایه ثبت شده موسسه: &nbsp;<span>{!! getSetting('institute_registered_capital') !!}</span></span></strong><br/>
+                                                                @endif
+                                                                @if(getSetting('registration_number'))
+                                                                    <strong><span style="font-size:16pt">شماره ثبت: &nbsp;<span>{!! getSetting('registration_number') !!}</span></span></strong><br/>
+                                                                @endif
+                                                                @if(getSetting('judicial_identifier'))
+                                                                    <strong><span style="font-size:16pt">شناسه قضایی: &nbsp;<span>{!! getSetting('judicial_identifier') !!}</span></span></strong>
+                                                                @endif
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </section>
+                            @endif
 
-                            <div class="sppb-section " style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-image:url(/images/svg/section-background-stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
-                                <div class="sppb-container">
-                                    <div class="sppb-row">
-                                        <div class="sppb-col-sm-12">
-                                            <div class="sppb-addon-container " style="color:#ffffff;padding:20px 0px 0px 0px;">
-                                                <div class="sppb-addon sppb-addon-module ">
-                                                    <div class="sppb-addon-content">
-                                                        <div class="custom">
-                                                            <p style="text-align: center;">موسسه مشاوران حقوقی طوبی (مرکز)<br/>
-                                                                بزرگترین ، مجربترین مرکز حقوقی در سطح کشور ، با 69 وکیل مجرب و کارآمد و 59 کارمند (کارشناس و کارشناس ارشد حقوق و فقه)<br/>
-                                                                هدفمند پیگیر موارد قضایی و حقوقی شما هستیم.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="sppb-section " style="margin:5px;">
-                                <div class="sppb-container">
-                                    <div class="sppb-row">
-                                        <div class="sppb-col-sm-3">
-                                            <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
-                                                <div class="sppb-addon sppb-addon-feature sppb-text-center ">
-                                                    <div class="sppb-addon-content">
-                                                        <div class="sppb-icon">&nbsp;</div>
-
-                                                        <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">وکالت و مشاوره تخصصی کلیه دعاوی</h3>
-
-                                                        <div class="sppb-addon-text sppb-text-center">
-                                                            <p>&nbsp;وکالت و مشاوره تخصصی کلیه دعاوی ملکی، سرقفلی و حق کسب و پیشه در تهران و تمام استان ها&nbsp;با نمونه پرونده های موفق توسط وکلای موسسه</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="sppb-col-sm-3">
-                                            <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
-                                                <div class="sppb-addon sppb-addon-feature sppb-text-center ">
-                                                    <div class="sppb-addon-content">
-                                                        <div class="sppb-icon">&nbsp;</div>
-
-                                                        <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">رفع تصرف اراضی املاک ومستغلات</h3>
-
-                                                        <div class="sppb-addon-text sppb-text-center">رفع تصرف اراضی املاک ومستغلات از سوی سازمان ها، ارگان ها، بنیاد، نهاد های دولتی و امور مرتبط</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="sppb-col-sm-3">
-                                            <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
-                                                <div class="sppb-addon sppb-addon-feature sppb-text-center ">
-                                                    <div class="sppb-addon-content">
-                                                        <div class="sppb-icon">&nbsp;</div>
-
-                                                        <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">تخصص در امور دیوان عدالت اداری و دیوان عالی</h3>
-
-                                                        <div class="sppb-addon-text sppb-text-center">
-                                                            <p>تخصص در امور دیوان عدالت اداری (آرای کمیسیون ماده 100 شهرداری، اعاده به خدمت، آرای کمیسیون شورای کار، تامین اجتماعی )</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="sppb-col-sm-3">
-                                            <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
-                                                <div class="sppb-addon sppb-addon-feature sppb-text-center ">
-                                                    <div class="sppb-addon-content">
-                                                        <div class="sppb-icon">&nbsp;</div>
-
-                                                        <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">دادگاه خانواده</h3>
-
-                                                        <div class="sppb-addon-text sppb-text-center">امور مهریه، نفقه ( حال، آینده و گذشته )، نفقه زوجه واولاد، اجرت المثل و دیگر امور مرتبط</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <section id="take-control" class="sppb-section "
-                                     style="margin:0px;padding:0px;color:#ffffff;background-image:url(/main/img/bckg-4.jpg);background-repeat:no-repeat;background-size:cover;background-attachment:fixed;background-position:50% 50%;">
-                                <div class="sppb-row">
-                                    <div class="sppb-col-sm-12">
-                                        <div class="sppb-addon-container  black_bckg-50 text-shadow"
-                                             style="padding:40px 90px 60px;">
-                                            <div class="sppb-addon sppb-addon-text-block sppb-text-center ">
-                                                <div class="sppb-addon sppb-addon-text-block sppb-text-center">
-                                                    <div class="sppb-addon-content">
-                                                        <h2 style="text-align:center"><span style="color:#c0392b"><span style="font-size:36px">مرکز مشاوران حقوقی طوبی</span></span></h2>
-
-                                                        <p style="text-align:center"><strong>&nbsp;<span style="font-size:16pt">سرمایه ثبت شده موسسه: &nbsp;۱,۰۰۰,۰۰۰,۰۰۰,۰۰۰ میلیارد ریال</span></strong><br/>
-                                                            <strong><span style="font-size:16pt">شماره ثبت: &nbsp;<span style="font-family:'arial black','avant garde'">۳۵۴۹۷</span></span></strong><br/>
-                                                            <strong><span style="font-size:16pt">شناسه قضایی: &nbsp;<span style="font-family:'arial black','avant garde'">۱۴۰۰۴۷۴۵۵۰۹</span></span></strong></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
                             <section class="sppb-section "
                                      style="margin:0px;padding:40px 20px 60px;background-image:url(/images/svg/background-white-85.svg);">
                                 <div class="sppb-container">
@@ -604,6 +628,7 @@
                                     </div>
                                 </div>
                             </section>
+
                             <section class="sppb-section "
                                      style="margin:10px;color:#ffffff;background-color:#303030;background-image:url(/images/svg/section-background-stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
                                 <div class="sppb-container">
@@ -713,25 +738,34 @@
                                             </div>
                                         </div>
                                         <div class="sppb-col-sm-4">
-                                            <div class="sppb-addon-container border-radius shadow flex dark"
-                                                 style="">
-                                                <div class="sppb-empty-space  clearfix"
-                                                     style="margin-bottom:30px;"></div>
+                                            <div class="sppb-addon-container border-radius shadow flex dark" style="">
+                                                <div class="sppb-empty-space clearfix" style="margin-bottom:30px;"></div>
                                                 <div class="sppb-addon sppb-addon-text-block sppb-text-center ">
-                                                    <h3
-                                                            class="sppb-addon-title"
-                                                            style="margin-top:10px;margin-bottom:20px;color:#f50505;">
-                                                        مرکز مشاوران حقوقی طوبی</h3>
+                                                    <h3 class="sppb-addon-title" style="margin-top:10px;margin-bottom:20px;color:#f50505;"> مرکز مشاوران حقوقی طوبی</h3>
                                                     <div class="sppb-addon-content">
-                                                        <p style="text-align:center">دفترمرکزی: تهران بزرگراه چمران شمال به جنوب (تقاطع اوین) ، خیابان شهید سوری (روبروی درب اصلی شهرک آتی ساز) ، نبش کوچه مریم ، پلاک 2/1 ، طبقات 1 و 2 ،واحدهای 1 الی 4</p>
+                                                        @if(getSetting('address'))
+                                                            <p style="text-align:center">{{ getSetting('address') }}</p>
+                                                        @endif
 
-                                                        <p style="text-align:center">تلفن : 22347229-021 ,&nbsp;28425599-021</p>
+                                                        @if(getSetting('tel'))
+                                                            <p style="text-align:center">تلفن : {{ getSetting('tel') }}</p>
+                                                        @endif
 
-                                                        <p style="text-align:center">کدپستی : 1997658435</p>
+                                                        @if(getSetting('postal_code'))
+                                                            <p style="text-align:center">کدپستی : {{ getSetting('postal_code') }}</p>
+                                                        @endif
 
-                                                        <p style="text-align:center">نمابر : 89789994-021<br/>
-                                                            <br/>
-                                                            <strong><a href="mailto:emtoba@vmail.irایمیل"><span style="color:#c0392b">emtoba@vmail.ir</span></a></strong></p>
+                                                        @if(getSetting('fax'))
+                                                            <p style="text-align:center">نمابر : {{ getSetting('fax') }}<br/></p>
+                                                        @endif
+                                                        <br/>
+                                                        @if(getSetting('email'))
+                                                            <p style="text-align:center">
+                                                                <a href="mailto:{{ getSetting('email') }}">
+                                                                    <span style="color:#c0392b">{{ getSetting('email') }}</span>
+                                                                </a>
+                                                            </p>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -771,9 +805,9 @@
 
                                                         <div id="form-login-username" class="form-group">
                                                             <div class="input-group">
-				<span class="input-group-addon">
-					<i class="icon-user hasTooltip" title="نام کاربری"></i>
-				</span>
+<span class="input-group-addon">
+<i class="icon-user hasTooltip" title="نام کاربری"></i>
+</span>
                                                                 <input id="modlgn-username" type="text"
                                                                        name="username" class="form-control"
                                                                        tabindex="0" size="18"
@@ -783,9 +817,9 @@
                                                         <div id="form-login-password" class="form-group">
                                                             <div class="controls">
                                                                 <div class="input-group">
-					<span class="input-group-addon">
-						<i class="icon-lock hasTooltip" title="رمز ورود"></i>
-					</span>
+<span class="input-group-addon">
+<i class="icon-lock hasTooltip" title="رمز ورود"></i>
+</span>
                                                                     <input id="modlgn-passwd" type="password"
                                                                            name="password" class="form-control"
                                                                            tabindex="0" size="18"
@@ -1038,62 +1072,6 @@
         </div>
     </section>
     @include('site.partials.footer')
-    <div class="offcanvas-menu">
-        <a href="#" class="close-offcanvas"><i class="fa fa-remove"></i></a>
-        <div class="offcanvas-inner">
-            <div class="sp-module ">
-                <div class="sp-module-content">
-                    <div class="search flex-search">
-                        <form action="/" method="post">
-                            <input name="searchword" id="mod-search-searchword" maxlength="200"
-                                   class="inputbox search-query" type="text" size="20" placeholder="جستجو..."/> <input
-                                    type="hidden" name="task" value="search"/>
-                            <input type="hidden" name="option" value="com_search"/>
-                            <input type="hidden" name="Itemid" value="101"/>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="sp-module _menu">
-                <div class="sp-module-content">
-                    <ul class="nav menu">
-                        <li class="item-101 default current active"><a href="/">صفحه اصلی</a></li>
-                        <li class="item-370"><a href="/محتوای-ثبتی-موسسین">محتوای ثبتی اساسنامه </a></li>
-                        <li class="item-371"><a href="/موسسین-و-همکاران-حقوقی-و-قضایی">موسسین و همکاران حقوقی و قضایی</a></li>
-                        <li class="item-430"><a href="http://91.99.72.220:81/">پرتال دانشگاه مجازی</a></li>
-                        <li class="item-357 deeper parent"><a href="/استخدام-وکیل">استخدام</a>
-                            <ul class="nav-child unstyled small">
-                                <li class="item-358"><a href="/استخدام-وکیل">استخدام وکیل </a></li>
-                                <li class="item-359"><a href="/استخدام-کارمند">استخدام کارمند</a></li>
-                            </ul>
-                        </li>
-                        <li class="item-340"><a href="/شعب-موسسه">شعب ما</a></li>
-                        <li class="item-410 deeper parent"><a href="/تماس-با-ما">تماس با ما</a>
-                            <ul class="nav-child unstyled small">
-                                <li class="item-334"><a href="/واحد-شکایت">شکایت</a></li>
-                                <li class="item-335"><a href="/ارسال-درخواست">ارسال درخواست جدید</a>
-                                </li>
-                                <li class="item-336"><a href="/مشاهده-درخواست">مشاهده درخواست ها</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="item-308"><a href="/خدمات-ما">درباره ما</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="background-color: #1a1a1a;font-size: large;padding-top: 10px;text-align: center" class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                    <p style="color: #dddddd">© تمامي حق و حقوق سايت براي مرکز مشاوران حقوقی طوبی محفوظ مي باشد.</p>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
 </div>
 <script type="text/javascript">window.$crisp = [];
     window.CRISP_WEBSITE_ID = "feb9b2b5-a1ca-4005-9070-66ae27256182";
