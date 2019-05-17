@@ -174,6 +174,8 @@ return array (
   'pages.title' => 'عنوان',
   'partners.edit' => 'ویرایش موسسین و همکاران',
   'partners.index' => 'موسسین و همکاران',
+  'partners.scientific_records' => 'سوابق علمی',
+  'partners.social_records' => 'سوابق اجتماعی',
   'pcategories.actions' => 'عملیات',
   'pcategories.create' => 'ایجاد دسته‌بندی پورتفولیو',
   'pcategories.create.list' => 'لیست اطلاعات ایجاد دسته‌بندی پورتفولیو',

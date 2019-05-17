@@ -25,8 +25,6 @@ class SiteComposer
     protected $site_title;
     protected $settings;
     protected $footerLinks;
-    protected $footerPosts;
-    protected $basketCarts;
     protected $siteMenus;
     protected $current_uri;
 
@@ -40,24 +38,15 @@ class SiteComposer
         }
         $this->user = Auth::user();
 
-        $this->menus = app(AdminMenu::class)->getMenus($this->user);
         $this->settings = Cache::rememberForever('siteSettings', function () {
             return Setting::all()->pluck('value', 'key')->toArray();
         });
         $this->site_title = $this->settings['site_title'];
 
-        $this->basketCarts = Session::get('cart');
-
         $this->footerLinks = Link::query()
             ->where('state', EState::enabled)
             ->where('type', ELinkType::footer)
             ->orderBy('id', 'DESC')
-            ->get();
-
-        $this->footerPosts = Post::query()
-            ->where('state', EState::enabled)
-            ->orderBy('id', 'DESC')
-            ->limit(5)
             ->get();
 
         $this->current_uri = Route::current()->uri;
@@ -76,10 +65,7 @@ class SiteComposer
             'parentRouteName' => $this->parentRouteName,
             'user' => $this->user,
             'settings' => $this->settings,
-            'menu' => $this->menus,
             'footerLinks' => $this->footerLinks,
-            'footerPosts' => $this->footerPosts,
-            'basketCarts' => $this->basketCarts,
             'siteMenus' => $this->siteMenus,
             'current_uri' => $this->current_uri,
         ]);

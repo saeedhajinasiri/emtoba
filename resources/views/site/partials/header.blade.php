@@ -1,50 +1,59 @@
-<header id="sp-header" class="flex">
-    <div class="container">
-        <div class="row">
-            <div id="sp-logo" class="col-xs-8 col-sm-2 col-md-2">
-                <div class="sp-column logobckg">
-                    <a class="logo" href="/">
-                        <h1>
-                            <img class="sp-default-logo"
-                                 src="/main/img/logo4.png"
-                                 alt="عدالت محوران طوبی">
-                            <img
-                                    class="sp-retina-logo"
-                                    src="/main/img/logo4.png"
-                                    alt="عدالت محوران طوبی" width="80" height="80">
-                        </h1>
-                    </a>
+@if(isset($isHomePage) && $isHomePage)
+    <header id="sp-header" class="flex">
+        <div class="container">
+            <div class="row">
+                <div id="sp-logo" class="col-xs-8 col-sm-2 col-md-2">
+                    <div class="sp-column logobckg">
+                        <a class="logo" href="{{ URL::to('/') }}">
+                            <h1>
+                                <img class="sp-default-logo" src="{{ URL::to('/') }}/main/img/logo4.png" alt="عدالت محوران طوبی">
+                                <img class="sp-retina-logo" src="{{ URL::to('/') }}/main/img/logo4.png" alt="عدالت محوران طوبی" width="80" height="80">
+                            </h1>
+                        </a>
+                    </div>
                 </div>
+                @include('site.partials.menu')
             </div>
-            <div id="sp-menu" class="col-xs-4 col-sm-10 col-md-10">
-                <div class="sp-column flex">
-                    <div class="sp-megamenu-wrapper">
-                        <a id="offcanvas-toggler" class="visible-xs visible-sm" href="#"><i class="fa fa-bars"></i></a>
-
-                        <ul class="sp-megamenu-parent menu-fade-down-fade-up hidden-xs hidden-sm">
-                            @foreach($siteMenus as $menu)
-                                <li class="sp-menu-item @if(isset($menu['children']) && count($menu['children']) > 0) sp-has-child @endif">
-                                    <a href="#">{{ $menu['title'] }}</a>
-                                    @if(isset($menu['children']) && count($menu['children']) > 0)
-                                        <div class="sp-dropdown sp-dropdown-main sp-menu-right" style="width: 240px;">
-                                            <div class="sp-dropdown-inner">
-                                                <ul class="sp-dropdown-items">
-                                                    @foreach($menu['children'] as $child)
-                                                        <li class="sp-menu-item"><a href="#">{{ $child['title'] }}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ul>
+        </div>
+    </header>
+@else
+    <section id="sp-logo" class="addspace">
+        <div class="container">
+            <div class="row">
+                <div id="sp-logo" class="col-sm-3 col-md-3">
+                    <div class="sp-column ">
+                        <a class="logo" href="/">
+                            <h1>
+                                <img class="sp-default-logo" src="/main/img/logo4.png" alt="عدالت محوران طوبی">
+                                <img class="sp-retina-logo" src="/main/img/logo4.png" alt="عدالت محوران طوبی" width="80" height="80">
+                            </h1>
+                        </a>
+                    </div>
+                </div>
+                <div id="sp-addspace" class="col-sm-9 col-md-9">
+                    <div class="sp-column centered">
+                        <div class="sp-module ">
+                            <div class="sp-module-content">
+                                <div class="custom">
+                                    <p><img class="img-rounded" src="/main/img/flex-banner-1.png" alt=""></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <div id="sp-header-sticky-wrapper" class="sticky-wrapper" style="height: 56px;">
+        <header id="sp-header" class="addspace menu-fixed-out" style="width: 100%;">
+            <div class="container">
+                <div class="row">
+                    @include('site.partials.menu')
+                </div>
+            </div>
+        </header>
     </div>
-</header>
+@endif
 {{--
 <header class="main-header">
     <a href="{{ URL::to('/') }}" class="header-logo ajax">

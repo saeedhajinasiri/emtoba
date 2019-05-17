@@ -28,6 +28,7 @@ class SettingsTableSeeder extends Seeder
         $this->set('address', 'تهران بزرگراه چمران شمال به جنوب (تقاطع اوین) ، خیابان شهید سوری (روبروی درب اصلی شهرک آتی ساز) ، نبش کوچه مریم ، پلاک 2/1 ، طبقات 1 و 2 ،واحدهای 1 الی 4');
         $this->set('email', 'emtoba@vmail.ir');
         $this->set('tel', '22347229-021 , 28425599-021');
+        $this->set('work_hours', 'شنبه تا چهار شنبه : 9:00 - 18:00');
         $this->set('postal_code', '1997658435');
         $this->set('fax', '89789994-021');
 

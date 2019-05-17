@@ -4357,7 +4357,6 @@ div.sppb_prettyphoto .pp_loaderIcon {
   margin: 0 15px 0 0;
 }
 .flex.flip-container .flipper .back .sppb-person-block .sppb-person-information {
-  padding: 15px 5px 0 12px;
   width: 60%;
   display: block;
   float: left;
@@ -4373,7 +4372,7 @@ div.sppb_prettyphoto .pp_loaderIcon {
   color: #ddd;
 }
 .flex.flip-container .flipper .back .sppb-person-block .sppb-person-information.flip {
-  padding: 15px 15px 0;
+  padding: 0px 15px 0;
   width: 100%;
 }
 .flex.flip-container .flipper .back .sppb-person-block .sppb-person-information.flip .sppb-person-name {
@@ -9175,7 +9174,7 @@ svg.flex-logo-default.delayed g#flex_after path#f_top {
     width: 50% !important;
   }
   .flipper .back .sppb-person-block .sppb-person-information {
-    padding: 15px 10px 15px 20px;
+    padding: 0px 10px 15px 20px;
   }
   .flipper .back .sppb-person-block .sppb-person-information .sppb-person-name {
     font-size: 160%;
