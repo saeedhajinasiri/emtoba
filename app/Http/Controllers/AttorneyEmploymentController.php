@@ -53,7 +53,6 @@ class AttorneyEmploymentController extends Controller
      */
     public function store(StoreAttorneyEmploymentRequest $request)
     {
-        echo('hh');die();
         $data = $request->except(['submit', '_token', 'g-recaptcha-response']);
 
         $data['read'] = 0;

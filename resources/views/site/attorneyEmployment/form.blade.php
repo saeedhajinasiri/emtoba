@@ -300,6 +300,8 @@
 
                         {!! form_start($form) !!}
                             {{ csrf_field() }}
+
+                            {{--{!! form_row($form->first_name) !!}--}}
                             <br>
                             <div  class="form-group" style="margin-top: 10px; display: block;">
                                 <label class="control-label col-sm-2">نام : (*)</label>
@@ -329,28 +331,28 @@
                             <div class="form-group" style="margin-top: 10px; display: block;">
                                 <label class="control-label col-sm-2">شماره شناسنامه : (*)</label>
                                 <div class="col-md-4">
-                                    <input  class="form-control" name="shenasname" required>
+                                    <input  class="form-control" name="birth_certificate_number" required>
                                 </div>
                             </div>
                             <br>
                             <div class="form-group" style="margin-top: 10px; display: block;">
                                 <label class="control-label col-sm-2">کد ملی : (*)</label>
                                 <div class="col-md-4">
-                                    <input  class="form-control" name="mellicode" required>
+                                    <input  class="form-control" name="national_code" required>
                                 </div>
                             </div>
                             <br>
                             <div class="form-group" style="margin-top: 10px; display: block;">
                                 <label class="control-label col-sm-2">صادره از : (*)</label>
                                 <div class="col-md-4">
-                                    <input  class="form-control" name="sodor" required>
+                                    <input  class="form-control" name="birth_place" required>
                                 </div>
                             </div>
                             <br>
                             <div class="form-group" style="margin-top: 10px; display: block;">
                                 <label class="control-label col-sm-2">تلفن ثابت : (*)</label>
                                 <div class="col-md-4">
-                                    <input  class="form-control" name="tel" required>
+                                    <input  class="form-control" name="phone" required>
                                 </div>
                             </div>
                             <br>
@@ -387,7 +389,7 @@
                             <div class="form-group" style="margin-top: 10px; display: block;">
                                 <label class="control-label col-sm-2">رزومه : (*)</label>
                                 <div class="col-md-8">
-                                    <textarea name="res" class="form-control" rows="10" placeholder="رزومه خود را وارد نمایید ..." required></textarea>
+                                    <textarea name="description" class="form-control" rows="10" placeholder="رزومه خود را وارد نمایید ..." required></textarea>
                                 </div>
                             </div>
 
