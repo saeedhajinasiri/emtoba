@@ -18,6 +18,9 @@ Route::get('/', ['as' => 'site.index', 'uses' => 'SiteController@index']);
 Route::get('/contacts', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);
 Route::post('/contacts', ['as' => 'site.contacts.store', 'uses' => 'ContactsController@store']);
 
+Route::get('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.create', 'uses' => 'AttorneyEmploymentController@create']);
+Route::post('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.store', 'uses' => 'AttorneyEmploymentController@store']);
+
 Route::get('/blog', ['as' => 'site.blog.index', 'uses' => 'BlogController@index']);
 Route::get('blog/{id}', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
 Route::get('blog/{id}-', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
