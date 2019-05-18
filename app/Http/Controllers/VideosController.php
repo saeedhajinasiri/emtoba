@@ -8,6 +8,7 @@ use App\Enums\EState;
 use App\Setting;
 use App\Like;
 use App\Comment;
+use App\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 //use App\Requests\StoreCommentRequest;
@@ -35,24 +36,15 @@ class VideosController extends Controller
      */
     public function index(Request $request)
     {
-        $page = Page::query()
-            ->whereState(EState::enabled)
-            ->where('page_name', 'blog_page')
-            ->first();
-
-        $items = Post::query()
+        $items = Video::query()
             ->with('categories', 'media')
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
             ->orderBy('published_at', 'DESC')
             ->withCount('comments')
-            ->paginate(10);
+            ->paginate(12);
 
-        $settings = Cache::rememberForever('siteSettings', function () {
-            return Setting::all()->pluck('value', 'key')->toArray();
-        });
-
-        return view('site.blog.index', compact('page', 'items', 'settings'));
+        return view('site.videos.index', compact('items'));
     }
 
     /**
@@ -69,7 +61,7 @@ class VideosController extends Controller
             ->where('page_name', 'blog_page')
             ->first();
 
-        $item = Post::query()
+        $item = Video::query()
             ->with('user', 'categories', 'media')
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
@@ -86,7 +78,7 @@ class VideosController extends Controller
         $correctSlug = $item->slug;
         if (!$slug || $slug != $correctSlug) {
             $slug = $correctSlug;
-            return \Redirect::route('news.show', compact('id', 'slug'));
+            return \Redirect::route('site.videos.show', compact('id', 'slug'));
         }
 
         $item->withoutTimestamps()->increment('hits');
@@ -110,35 +102,7 @@ class VideosController extends Controller
             'twitterUrl' => 'http://twitter.com/share?url=' . $item->link . '&text=' . $item->title
         ];
 
-        return view('site.blog.show', compact('item', 'page', 'prevBlog', 'nextBlog', 'sharerUrl'));
-    }
-
-    public function preview($id)
-    {
-        if (!\Auth::check()) {
-            return response(view('errors.404'), 404);
-        }
-        
-        $blog = Post::with('user', 'tags', 'categories')->withCount(['comments' => function ($q) {
-            $q->where('status', Comment::approved)->where('state', 1);
-        }, 'thumbsUp'])->find($id);
-
-        $comments = collect([]);
-
-        $isLikedBefore = Like::where('user_ip', \Request::ip())->exists();
-
-        $latestNews = Post::isActive()->where('id', '!=', $blog->id)->orderBy('published_at', 'DESC')->limit(5)->get();
-
-        $sharerUrl = [
-            'facebookUrl' => 'https://www.facebook.com/sharer/sharer.php?u=' . $blog->link,
-            'gplusUrl' => 'https://plus.google.com/share?url=' . $blog->link,
-            //'telegramUrl' => 'https://telegram.me/share/url?url=' . $blog->link . '&text=' . $blog->title,
-            'twitterUrl' => 'http://twitter.com/share?url=' . $blog->link . '&text=' . $blog->title
-        ];
-
-        $pageTitle = $blog->title . ' | ' . $this->settings['site_title'];
-       
-        return view('news.blog', compact('blog', 'latestNews', 'sharerUrl', 'isLikedBefore', 'comments', 'pageTitle'));
+        return view('site.videos.show', compact('item', 'page', 'prevBlog', 'nextBlog', 'sharerUrl'));
     }
 
     /**
@@ -173,7 +137,7 @@ class VideosController extends Controller
 
                 return response()->json([
                     'status' => 'success',
-                    'message' => trans('site.blogs.comment_liked'),
+                    'message' => trans('site.videos.comment_liked'),
                     'likes_count' => $item->thumbs_up_count + 1
                 ]);
             }
@@ -187,7 +151,7 @@ class VideosController extends Controller
 
             return response()->json([
                 'status' => 'error',
-                'message' => trans('site.blogs.you_took_your_vote_back'),
+                'message' => trans('site.videos.you_took_your_vote_back'),
                 'likes_count' => $item->thumbs_up_count - 1
             ]);
 
@@ -196,7 +160,7 @@ class VideosController extends Controller
 
             return response()->json([
                 'status' => 'error',
-                'message' => trans('site.blogs.vote_submit_error'),
+                'message' => trans('site.videos.vote_submit_error'),
             ], 400);
         }
     }

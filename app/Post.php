@@ -151,7 +151,7 @@ class Post extends BaseModel
      */
     public function getLinkAttribute()
     {
-        return route('site.blog.show', ['id' => $this->id, 'slug' => $this->slug]);
+        return route('site.news.show', ['id' => $this->id, 'slug' => $this->slug]);
     }
 
     /**
