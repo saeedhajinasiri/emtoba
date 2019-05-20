@@ -27,19 +27,19 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-md-6">
-                        {!! form_row($form->first_name) !!}
-                        {!! form_row($form->last_name) !!}
-                        {!! form_row($form->email) !!}
-                    </div>
-
-                    <div class="col-md-6">
                         {!! form_row($form->username) !!}
                         {!! form_row($form->password) !!}
                         {!! form_row($form->password_confirmation) !!}
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        {!! form_row($form->name) !!}
+                        {!! form_row($form->email) !!}
                         {!! form_row($form->mobile) !!}
+                    </div>
+
+                    <div class="col-md-12">
+                        {!! form_row($form->location_id) !!}
                         {!! form_row($form->address) !!}
                     </div>
                 </div>
