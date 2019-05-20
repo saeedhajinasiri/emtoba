@@ -55,7 +55,7 @@ class SettingsTableSeeder extends Seeder
 
         $this->set('video_title', 'سخنان رهبری');
         $this->set('video_url', '<div id="15544669474106678"> <script type="text/JavaScript" src="https://www.aparat.com/embed/LokgN?data[rnddiv]=15544669474106678&data[responsive]=yes"></script> </div>', 'textarea');
-        $this->set('google_map_address', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6473.168862135677!2d51.38633724105314!3d35.785583237104476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQ3JzAzLjYiTiA1McKwMjMnMTguNSJF!5e0!3m2!1sen!2snl!4v1500465186233', 'textarea');
+        $this->set('google_map_address', '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6473.168862135677!2d51.38633724105314!3d35.785583237104476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQ3JzAzLjYiTiA1McKwMjMnMTguNSJF!5e0!3m2!1sen!2snl!4v1500465186233" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>', 'textarea');
 
         $this->set('first_percentage_title', 'کیفیت مشاوره های موسسه');
         $this->set('first_percentage_value', '100');

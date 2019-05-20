@@ -58,12 +58,12 @@ class ProfileController extends Controller
         if ($request->hasFile('avatar')) {
             $imageName = time() . $request->file('avatar')->getClientOriginalName();
             $img = $request->file('avatar')->move(
-                base_path() . '/public/images/user/', $imageName
+                base_path() . '/public/uploads/images/user/', $imageName
             );
 
             $input['avatar'] = $img->getFilename();
-            if (\File::isFile(base_path() . '/public/images/user/' . $user->avatar)) {
-                \File::delete(base_path() . '/public/images/user/' . $user->avatar);
+            if (\File::isFile(base_path() . '/public/uploads/images/user/' . $user->avatar)) {
+                \File::delete(base_path() . '/public/uploads/images/user/' . $user->avatar);
             }
         }
 
