@@ -12,7 +12,11 @@ class VideoForm extends AdminForm
         $this
             ->add('title', 'text')
             ->add('slug', 'text')
-            ->add('video_url', 'text')
+            ->add('video_url', 'textarea', [
+                'attr' => [
+                    'class' => 'ltr form-control editor'
+                ]
+            ])
             ->add('content', 'textarea', [
                 'attr' => [
                     'class' => 'form-control editor'

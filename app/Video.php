@@ -63,6 +63,14 @@ class Video extends BaseModel
     }
 
     /**
+     * Get all of the owning mediable models.
+     */
+    public function media()
+    {
+        return $this->morphMany(Media::class, 'mediable');
+    }
+
+    /**
      * is active scope
      *
      * @param $query
