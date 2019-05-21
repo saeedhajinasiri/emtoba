@@ -32,10 +32,6 @@ class SiteComposer
     {
         $this->routeName = Route::currentRouteName();
 
-        if (strpos($this->routeName, 'create') || strpos($this->routeName, 'edit')) {
-            $this->parentRoute = route('admin.' . explode('.', $this->routeName)[1] . '.index');
-            $this->parentRouteName = trans('admin.' . explode('.', $this->routeName)[1] . '.index');
-        }
         $this->user = Auth::user();
 
         $this->settings = Cache::rememberForever('siteSettings', function () {
@@ -61,8 +57,6 @@ class SiteComposer
         $view->with([
             'site_title' => $this->site_title,
             'title' => $this->routeName,
-            'parentRoute' => $this->parentRoute,
-            'parentRouteName' => $this->parentRouteName,
             'user' => $this->user,
             'settings' => $this->settings,
             'footerLinks' => $this->footerLinks,

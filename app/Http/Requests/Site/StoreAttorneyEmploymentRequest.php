@@ -25,7 +25,7 @@ class StoreAttorneyEmploymentRequest extends FormRequest
     {
         return [
             'first_name' => 'required',
-            'last_name' => 'required',
+            /*'last_name' => 'required',
             'email' => 'required',
             'birth_certificate_number' => 'required',
             'national_code' => 'required',
@@ -35,7 +35,7 @@ class StoreAttorneyEmploymentRequest extends FormRequest
             'address' => 'required',
             'image' => 'required',
             'gender' => 'required',
-            'description' => 'required',
+            'description' => 'required',*/
         ];
     }
 }

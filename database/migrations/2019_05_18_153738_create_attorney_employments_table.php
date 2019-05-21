@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttorneyEmployment extends Migration
+class CreateAttorneyEmploymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAttorneyEmployment extends Migration
      */
     public function up()
     {
-        Schema::create('attorney_employment', function (Blueprint $table) {
+        Schema::create('attorney_employments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -39,6 +39,6 @@ class CreateAttorneyEmployment extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attorney_employment');
+        Schema::dropIfExists('attorney_employments');
     }
 }

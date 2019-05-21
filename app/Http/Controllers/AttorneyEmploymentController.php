@@ -33,7 +33,7 @@ class AttorneyEmploymentController extends Controller
     public function create(FormBuilder $formBuilder)
     {
         $content = Page::query()
-            ->where('page_name', 'attorney_employment_form')
+            ->where('page_name', 'attorney_form')
             ->first();
         $attorneyEmployment = new AttorneyEmployment();
         $form = $formBuilder->create(AttorneyEmploymentForm::class, [
@@ -57,7 +57,7 @@ class AttorneyEmploymentController extends Controller
 
         $data['read'] = 0;
 
-        $item = Contact::create($data);
+        $item = AttorneyEmployment::create($data);
         Flash::info(trans('site.attorneyEmployment.message.your_envelope_has_been_sent_successfully'));
         return redirect()->to(route('site.attorneyEmployment.create'));
     }

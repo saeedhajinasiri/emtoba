@@ -6,7 +6,7 @@ use App\Traits\DateMutators;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class attorneyEmployment extends Model
+class AttorneyEmployment extends Model
 {
     use DateMutators;
 
