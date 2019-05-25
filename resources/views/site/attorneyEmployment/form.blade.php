@@ -101,7 +101,7 @@
                         <div class="form-group col-sm-12">
                             <label class="control-label col-sm-2">تصویر پروانه وکالت </label>
                             <div class="col-md-4">
-                                <input type="file" name="file">
+                                {!! form_widget($form->image) !!}
                             </div>
                         </div>
 
@@ -112,12 +112,15 @@
                             </div>
                         </div>
 
-                        {{--<div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2"></label>
-                            <div class="col-md-8">
-                                {!! Recaptcha::render() !!}
+                        <div class="form-group col-sm-12">
+                            <label class="control-label col-sm-2">کد امنیتی : (*)</label>
+                            <div class="col-md-4">
+                                <input class="form-control ltr" placeholder="کد امنیتی" name="captcha" type="text" autocomplete="off">
                             </div>
-                        </div>--}}
+                            <div class="col-md-4">
+                                {!! Captcha::img() !!}
+                            </div>
+                        </div>
 
                         <br>
                         <br>

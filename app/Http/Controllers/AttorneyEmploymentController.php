@@ -46,6 +46,7 @@ class AttorneyEmploymentController extends Controller
         return view('site.attorneyEmployment.form', compact('form', 'content'));
 
     }
+
     /**
      * Store AttorneyEmployment form.
      * @param StoreAttorneyEmploymentRequest $request
@@ -53,12 +54,25 @@ class AttorneyEmploymentController extends Controller
      */
     public function store(StoreAttorneyEmploymentRequest $request)
     {
-        $data = $request->except(['submit', '_token', 'g-recaptcha-response']);
+        try {
+            $data = $request->except(['submit', '_token', 'g-recaptcha-response']);
 
-        $data['read'] = 0;
+            $data['read'] = 0;
+            if ($request->hasFile('image')) {
+                $imageName = time() . $request->file('image')->getClientOriginalName();
+                $img = $request->file('image')->move(
+                    public_path() . AttorneyEmployment::imagePath(), $imageName
+                );
 
-        $item = AttorneyEmployment::create($data);
-        Flash::info(trans('site.attorneyEmployment.message.your_envelope_has_been_sent_successfully'));
-        return redirect()->to(route('site.attorneyEmployment.create'));
+                $data['image'] = $img->getFilename();
+            }
+
+            AttorneyEmployment::create($data);
+            Flash::info(trans('site.attorneyEmployment.message.your_employee_request_has_been_sent_successfully'));
+            return redirect()->to(route('site.attorneyEmployment.create'));
+        } catch (\Exception $exception) {
+            Flash::danger(trans('site.attorneyEmployment.message.your_request_has_been_failed'));
+            return redirect()->to(route('site.attorneyEmployment.create'));
+        }
     }
 }

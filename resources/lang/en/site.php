@@ -1,6 +1,7 @@
 <?php
 
 return array (
+  'attorneyEmployment.message.your_employee_request_has_been_sent_successfully' => 'درخواست استخدام شما با موفقیت ثبت شد.',
   'basket.index' => 'سبد خرید',
   'blog.index' => 'بلاگ',
   'blogs.comment_liked' => 'لایکت با موفقیت ثبت شد',

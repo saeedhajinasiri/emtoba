@@ -3,12 +3,13 @@
 namespace App;
 
 use App\Traits\DateMutators;
+use App\Traits\ImageTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class AttorneyEmployment extends Model
+class AttorneyEmployment extends BaseModel
 {
-    use DateMutators;
+    use DateMutators, ImageTrait;
 
     /**
      * The attributes that are mass assignable.

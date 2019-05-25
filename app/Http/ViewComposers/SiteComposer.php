@@ -45,7 +45,7 @@ class SiteComposer
             ->orderBy('id', 'DESC')
             ->get();
 
-        $this->current_uri = Route::current()->uri;
+        $this->current_uri = (Route::current() ? Route::current()->uri : '');
 
         $root = Menu::root();
         $menuItems = $root->getDescendants();

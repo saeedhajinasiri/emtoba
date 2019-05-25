@@ -151,7 +151,7 @@
         </div>
     </section>
 
-    @if (count($errors) > 0)
+    @if (isset($errors) && count($errors) > 0)
         <div class="col-sm-12 col-md-12">
             <div class="alert alert-danger">
                 <ul>
