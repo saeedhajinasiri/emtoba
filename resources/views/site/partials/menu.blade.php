@@ -12,7 +12,7 @@
                                 <div class="sp-dropdown-inner">
                                     <ul class="sp-dropdown-items">
                                         @foreach($menu['children'] as $child)
-                                            <li class="sp-menu-item"><a href="#">{{ $child['title'] }}</a></li>
+                                            <li class="sp-menu-item"><a href="{{ $child['link'] }}">{{ $child['title'] }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>

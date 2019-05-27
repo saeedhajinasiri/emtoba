@@ -84,6 +84,7 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
     'recaptcha'            => 'The :attribute field is not correct.',
+    'captcha'            => 'The :attribute field is not correct.',
 
     /*
     |--------------------------------------------------------------------------

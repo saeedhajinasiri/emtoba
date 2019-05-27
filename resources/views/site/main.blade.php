@@ -151,6 +151,17 @@
         </div>
     </section>
 
+    @if (isset($errors) && count($errors) > 0)
+        <div class="col-sm-12 col-md-12">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     @yield('content')
 
     @include('site.partials.footer')

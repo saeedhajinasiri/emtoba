@@ -173,6 +173,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
         //
 
         /*
@@ -236,6 +237,7 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];

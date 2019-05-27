@@ -51,7 +51,7 @@
                                                      data-show-transition="left"
                                                      data-show-duration="1300"
                                                      data-show-delay="1300">
-                                                    <p style="font-size:36px;line-height:1.7;color:#fff;text-shadow:1px 2px 5px #222;direction: rtl;text-align: justify;">{!! $slider->content !!}</p>
+                                                    <div style="font-size:36px;line-height:1.7;color:#fff;text-shadow:1px 2px 5px #222;direction: rtl;text-align: justify;">{!! $slider->content !!}</div>
                                                 </div>
                                             @endif
                                         </div>

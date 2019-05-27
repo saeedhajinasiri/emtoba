@@ -18,6 +18,9 @@ Route::get('/', ['as' => 'site.index', 'uses' => 'SiteController@index']);
 Route::get('/contacts', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);
 Route::post('/contacts', ['as' => 'site.contacts.store', 'uses' => 'ContactsController@store']);
 
+Route::get('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.create', 'uses' => 'AttorneyEmploymentController@create']);
+Route::post('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.store', 'uses' => 'AttorneyEmploymentController@store']);
+
 Route::get('/blog', ['as' => 'site.blog.index', 'uses' => 'BlogController@index']);
 Route::get('blog/{id}', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
 Route::get('blog/{id}-', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
@@ -74,6 +77,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('branches', 'BranchesController');
     Route::resource('sliders', 'SlidersController');
     Route::resource('comments', 'CommentsController');
+    Route::resource('attorney', 'AttorneyEmploymentsController');
 
     // Customers route
     Route::resource('customers', 'CustomersController');

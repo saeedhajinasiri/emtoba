@@ -1,11 +1,32 @@
-<section class="parallax-section theme-overlay overlay-deep-black pt-200 pb-200" style="background-image:url('/images/parallax/image-3.jpg');">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-8 col-md-offset-2 text-center pt-50 pb-50">
-                <h1 class="fs-72 mb-0 color-theme">404</h1>
-                <h2 class="color-theme mb-10">صفحه مورد نظر یافت نشد!</h2>
-                <a href="/" class="btn-thm btn-xs mt-20">بازگشت به صفحه اصلی <i class="fa fa-arrow-circle-left"></i></a>
+@extends('site.main')
+
+@section('content')
+    <section id="sp-page-title">
+        <div class="row">
+            <div id="sp-title" class="col-sm-12 col-md-12">
+                <div class="sp-column "></div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <section id="sp-main-body">
+        <div class="container">
+            <div class="row">
+                <div id="sp-component" class="col-sm-12 col-md-12">
+                    <div class="sp-column ">
+                        <div id="system-message-container">
+                        </div>
+                        <article class="item item-page" itemscope itemtype="http://schema.org/Article">
+                            <meta itemprop="inLanguage" content="fa-IR"/>
+                            <div class="page-header">
+                                <h1> 404 </h1>
+                            </div>
+                            <div itemprop="articleBody">
+                                <h2>صفحه مورد نظر شما یافت نشد</h2>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@stop
