@@ -136,6 +136,8 @@ return array (
   'educations.info' => 'اطلاعات تحصیلات',
   'educations.time' => 'زمان تحصیل',
   'educations.title' => 'محتوا',
+  'employees.edit' => 'مشاهده درخواست استخدام',
+  'employees.index' => 'استخدام کارمند',
   'experiences.create' => 'ایجاد تجربیات',
   'experiences.create.list' => 'لیست اطلاعات ایجاد تجربیات',
   'experiences.edit' => 'ویرایش تجربیات',

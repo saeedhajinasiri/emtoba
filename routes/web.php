@@ -18,9 +18,6 @@ Route::get('/', ['as' => 'site.index', 'uses' => 'SiteController@index']);
 Route::get('/contacts', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);
 Route::post('/contacts', ['as' => 'site.contacts.store', 'uses' => 'ContactsController@store']);
 
-Route::get('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.create', 'uses' => 'AttorneyEmploymentController@create']);
-Route::post('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.store', 'uses' => 'AttorneyEmploymentController@store']);
-
 Route::get('/blog', ['as' => 'site.blog.index', 'uses' => 'BlogController@index']);
 Route::get('blog/{id}', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
 Route::get('blog/{id}-', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
@@ -53,6 +50,11 @@ Route::get('/درباره-ما', ['uses' => 'PagesController@about']);
 Route::get('/شعب-موسسه', ['as' => 'site.branches.index', 'uses' => 'BranchesController@index']);
 Route::get('/موسسین-و-همکاران-حقوقی-و-قضایی', ['as' => 'site.partners.index', 'uses' => 'PartnersController@index']);
 
+Route::get('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.create', 'uses' => 'AttorneyEmploymentController@create']);
+Route::post('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.store', 'uses' => 'AttorneyEmploymentController@store']);
+Route::get('/استخدام-کارمند', ['as' => 'site.employees.create', 'uses' => 'EmployeesController@create']);
+Route::post('/استخدام-کارمند', ['as' => 'site.employees.store', 'uses' => 'EmployeesController@store']);
+
 Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
 
 Auth::routes();
@@ -78,6 +80,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('sliders', 'SlidersController');
     Route::resource('comments', 'CommentsController');
     Route::resource('attorney', 'AttorneyEmploymentsController');
+    Route::resource('employees', 'EmployeesController');
 
     // Customers route
     Route::resource('customers', 'CustomersController');
