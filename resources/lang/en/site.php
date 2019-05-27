@@ -23,6 +23,7 @@ return array (
   'contacts.national_code' => 'کد ملی',
   'contacts.phone' => 'تلفن ثابت',
   'contacts.resume_description' => 'رزومه',
+  'contacts.message.your_envelope_has_been_sent_successfully' => 'پیام شما با موفقیت ثبت شد.',
   'copyright' => '© تمامی حق و حقوق سايت برای مرکز مشاوران حقوقی طوبی محفوظ می باشد.',
   'employees.message.your_employee_request_has_been_sent_successfully' => 'درخواست استخدام شما با موفقیت ثبت شد.',
   'employees.send' => 'ارسال درخواست',
@@ -54,4 +55,8 @@ return array (
   'reset_password' => 'فراموشی رمز عبور',
   'toman' => 'تومان',
   'videos.index' => 'ویدئوها',
+  'contacts.full_name' => 'نام و نام خانوادگی',
+  'contacts.departments' => 'دپارتمان',
+  'contacts.subject' => 'موضوع',
+  'contacts.content' => 'محتوا',
 );

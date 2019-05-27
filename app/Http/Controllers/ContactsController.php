@@ -6,7 +6,7 @@ use App\Contact;
 use App\Enums\EContactStatus;
 use App\Enums\EState;
 use App\Forms\Site\ContactForm;
-use App\Http\Requests\Admin\StoreContactsRequest;
+use App\Http\Requests\Site\StoreContactsRequest;
 use App\Page;
 use App\Setting;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +29,21 @@ class ContactsController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @return \Illuminate\Http\Response
+     * @internal param Request $request
+     */
+    public function show()
+    {
+        $content = Page::query()
+            ->where('page_name', 'contact_page')
+            ->first();
+
+        return view('site.contacts.show', compact('content'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
      * @param FormBuilder $formBuilder
      * @return \Illuminate\Http\Response
      * @internal param Request $request
@@ -36,7 +51,7 @@ class ContactsController extends Controller
     public function create(FormBuilder $formBuilder)
     {
         $content = Page::query()
-            ->where('page_name', 'contacts')
+            ->where('page_name', 'complaint_page')
             ->first();
 
         $contact = new Contact();
@@ -59,9 +74,12 @@ class ContactsController extends Controller
      */
     public function store(StoreContactsRequest $request)
     {
-        $data = $request->except(['submit', '_token', 'g-recaptcha-response']);
+        $data = $request->except(['submit', '_token', 'captcha']);
 
         $user = Auth::user();
+        $data['user_name'] = $data['full_name'];
+        $data['user_email'] = $data['email'];
+        $data['user_ip'] = $request->getClientIp();
         $data['user_id'] = $user->id;
         $data['created_by'] = $user->id;
         $data['updated_by'] = $user->id;

@@ -15,8 +15,6 @@ function getSetting($key) {
  * Route of sites
  */
 Route::get('/', ['as' => 'site.index', 'uses' => 'SiteController@index']);
-Route::get('/contacts', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);
-Route::post('/contacts', ['as' => 'site.contacts.store', 'uses' => 'ContactsController@store']);
 
 Route::get('/blog', ['as' => 'site.blog.index', 'uses' => 'BlogController@index']);
 Route::get('blog/{id}', ['uses' => 'BlogController@show'])->where('id', '[0-9]+');
@@ -45,6 +43,9 @@ Route::post('news/like/{id}', [
     'uses' => 'PostsController@like'
 ]);
 
+Route::get('/تماس-با-ما', ['as' => 'site.contacts.show', 'uses' => 'ContactsController@show']);
+Route::get('/شکایات-و-پیشنهادات', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);
+Route::post('/شکایات-و-پیشنهادات', ['as' => 'site.contacts.store', 'uses' => 'ContactsController@store']);
 Route::get('/محتوای-ثبتی-اساسنامه', ['uses' => 'PagesController@statute']);
 Route::get('/درباره-ما', ['uses' => 'PagesController@about']);
 Route::get('/شعب-موسسه', ['as' => 'site.branches.index', 'uses' => 'BranchesController@index']);
