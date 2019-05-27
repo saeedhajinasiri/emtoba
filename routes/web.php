@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('branches', 'BranchesController');
     Route::resource('sliders', 'SlidersController');
     Route::resource('comments', 'CommentsController');
+    Route::resource('attorney', 'AttorneyEmploymentsController');
 
     // Customers route
     Route::resource('customers', 'CustomersController');

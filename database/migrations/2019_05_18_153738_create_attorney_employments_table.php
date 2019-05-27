@@ -15,18 +15,18 @@ class CreateAttorneyEmploymentsTable extends Migration
     {
         Schema::create('attorney_employments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('birth_certificate_number')->nullable();
-            $table->string('national_code')->nullable();
+            $table->string('national_code');
             $table->string('birth_place')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('email')->nullable();
+            $table->string('gender');
+            $table->string('email');
             $table->text('phone')->nullable();
-            $table->text('mobile')->nullable();
+            $table->text('mobile');
             $table->text('address')->nullable();
             $table->string('image')->nullable();
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->integer('read')->default(0);
             $table->timestamps();
         });

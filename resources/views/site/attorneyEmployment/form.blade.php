@@ -29,93 +29,93 @@
                         {!! form_start($form) !!}
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">نام‌:‌ (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.first_name'):‌ (*)</label>
                             <div class="col-sm-4">
                                 {!! form_widget($form->first_name) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">نام خانوادگی : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.last_name'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->last_name) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">جنسیت : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.gender'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->gender) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">شماره شناسنامه : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.birth_certificate_number'): (*)</label>
                             <div class="col-sm-4">
                                 {!! form_widget($form->birth_certificate_number) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">کد ملی : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.national_code'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->national_code) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">صادره از : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.birth_place'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->birth_place) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">تلفن ثابت : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.phone'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->phone) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">شماره همراه : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.mobile'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->mobile) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">ایمیل : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.email'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->email) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">آدرس : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.address'): (*)</label>
                             <div class="col-md-4">
                                 {!! form_widget($form->address) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">تصویر پروانه وکالت </label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.attorney_image') </label>
                             <div class="col-md-4">
                                 {!! form_widget($form->image) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">رزومه : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.resume_description'): (*)</label>
                             <div class="col-md-8">
                                 {!! form_widget($form->description) !!}
                             </div>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-2">کد امنیتی : (*)</label>
+                            <label class="control-label col-sm-2">@lang('site.contacts.captcha'): (*)</label>
                             <div class="col-md-4">
-                                <input class="form-control ltr" placeholder="کد امنیتی" name="captcha" type="text" autocomplete="off">
+                                <input class="form-control ltr" placeholder="@lang('site.contacts.captcha')" name="captcha" type="text" autocomplete="off">
                             </div>
                             <div class="col-md-4">
                                 {!! Captcha::img() !!}
