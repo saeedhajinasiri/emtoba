@@ -139,6 +139,11 @@ class AdminMenu extends BaseMenu
                         'link' => route('admin.attorney.index'),
                         'route' => 'admin.attorney.index',
                     ],
+                    [
+                        'title' => trans('admin.employees.index'),
+                        'link' => route('admin.employees.index'),
+                        'route' => 'admin.employees.index',
+                    ],
                 ]
             ],
             [

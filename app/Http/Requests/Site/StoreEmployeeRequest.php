@@ -4,7 +4,7 @@ namespace App\Http\Requests\Site;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAttorneyEmploymentRequest extends FormRequest
+class StoreEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,6 @@ class StoreAttorneyEmploymentRequest extends FormRequest
             'phone' => 'required',
             'mobile' => 'required',
             'address' => 'required',
-            'image' => 'required',
             'gender' => 'required',
             'description' => 'required',
             'captcha' => 'required|captcha'
