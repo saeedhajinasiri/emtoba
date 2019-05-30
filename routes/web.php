@@ -62,6 +62,12 @@ Route::post('/ثبت-نام-اردوی-جهادی', ['as' => 'site.camps.store',
 Route::get('/ثبت-نام-مسابقه', ['as' => 'site.matches.create', 'uses' => 'MatchesController@create']);
 Route::post('/ثبت-نام-مسابقه', ['as' => 'site.matches.store', 'uses' => 'MatchesController@store']);
 
+Route::get('/toba-elearning-center', ['as' => 'site.elearning.show', 'uses' => 'ElearningController@show']);
+Route::get('/lessons', ['as' => 'site.lessons.show', 'uses' => 'ElearningController@lessons']);
+Route::get('/پرتال-دانشگاه-مجازی', function () {
+    return redirect('http://91.99.72.220:81/');
+});
+
 Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
 
 Auth::routes();
@@ -91,6 +97,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('concerts', 'ConcertsController');
     Route::resource('camps', 'CampsController');
     Route::resource('matches', 'MatchesController');
+    Route::resource('lessons', 'LessonsController');
 
     // Customers route
     Route::resource('customers', 'CustomersController');
