@@ -144,6 +144,21 @@ class AdminMenu extends BaseMenu
                         'link' => route('admin.employees.index'),
                         'route' => 'admin.employees.index',
                     ],
+                    [
+                        'title' => trans('admin.matches.index'),
+                        'link' => route('admin.matches.index'),
+                        'route' => 'admin.matches.index',
+                    ],
+                    [
+                        'title' => trans('admin.camps.index'),
+                        'link' => route('admin.camps.index'),
+                        'route' => 'admin.camps.index',
+                    ],
+                    [
+                        'title' => trans('admin.concerts.index'),
+                        'link' => route('admin.concerts.index'),
+                        'route' => 'admin.concerts.index',
+                    ],
                 ]
             ],
             [
