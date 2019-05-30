@@ -2,7 +2,7 @@
     <header id="sp-header" class="flex">
         <div class="container">
             <div class="row">
-                <div id="sp-logo" class="col-xs-8 col-sm-2 col-md-2">
+                <div id="sp-logo" class="col-xs-8 col-sm-1 col-md-1">
                     <div class="sp-column logobckg">
                         <a class="logo" href="{{ URL::to('/') }}">
                             <h1>

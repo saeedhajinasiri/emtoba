@@ -1,4 +1,4 @@
-<div id="sp-menu" class="col-xs-4 col-sm-10 col-md-10">
+<div id="sp-menu" class="col-xs-4 col-sm-11 col-md-11">
     <div class="sp-column centered">
         <div class="sp-megamenu-wrapper">
             <a id="offcanvas-toggler" class="visible-xs visible-sm" href="#"><i class="fa fa-bars"></i></a>

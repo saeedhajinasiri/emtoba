@@ -55,6 +55,12 @@ Route::get('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.create'
 Route::post('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.store', 'uses' => 'AttorneyEmploymentController@store']);
 Route::get('/استخدام-کارمند', ['as' => 'site.employees.create', 'uses' => 'EmployeesController@create']);
 Route::post('/استخدام-کارمند', ['as' => 'site.employees.store', 'uses' => 'EmployeesController@store']);
+Route::get('/رزرو-کنسرت', ['as' => 'site.concerts.create', 'uses' => 'ConcertsController@create']);
+Route::post('/رزرو-کنسرت', ['as' => 'site.concerts.store', 'uses' => 'ConcertsController@store']);
+Route::get('/ثبت-نام-اردوی-جهادی', ['as' => 'site.camps.create', 'uses' => 'CampsController@create']);
+Route::post('/ثبت-نام-اردوی-جهادی', ['as' => 'site.camps.store', 'uses' => 'CampsController@store']);
+Route::get('/ثبت-نام-مسابقه', ['as' => 'site.matches.create', 'uses' => 'MatchesController@create']);
+Route::post('/ثبت-نام-مسابقه', ['as' => 'site.matches.store', 'uses' => 'MatchesController@store']);
 
 Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
 
@@ -82,6 +88,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('comments', 'CommentsController');
     Route::resource('attorney', 'AttorneyEmploymentsController');
     Route::resource('employees', 'EmployeesController');
+    Route::resource('concerts', 'ConcertsController');
+    Route::resource('camps', 'CampsController');
+    Route::resource('matches', 'MatchesController');
 
     // Customers route
     Route::resource('customers', 'CustomersController');

@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="/main/css/vm-rtl-reviews.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/wk-styles.css" type="text/css" id="wk-styles-css"/>
 
-
+    @yield('stylesheets')
 </head>
 <body class="site com-sppagebuilder view-page no-layout no-task itemid-101 fa-ir rtl  sticky-header layout-fluid">
 <div class="body-innerwrapper">
@@ -174,7 +174,8 @@
         s.src = "https://client.crisp.chat/l.js";
         s.async = 1;
         d.getElementsByTagName("head")[0].appendChild(s);
-    })();</script>
+    })();
+</script>
 <script src="/main/js/jquery.min.js" type="text/javascript"></script>
 <script src="/main/js/jquery-noconflict.js" type="text/javascript"></script>
 <script src="/main/js/jquery-migrate.min.js" type="text/javascript"></script>
@@ -192,9 +193,7 @@
 <script src="/main/js/vm-cart.js" type="text/javascript"></script>
 <script src="/main/js/main.js" type="text/javascript"></script>
 <script src="/main/js/frontend-edit.js" type="text/javascript"></script>
-
-<script src="/main/js/https _cdn.ywxi.net_js_1.js" type="text/javascript"></script>
-
+@yield('scripts')
 
 <script id="updateChosen_js" type="text/javascript">//<![CDATA[
     if (typeof Virtuemart === "undefined")
@@ -219,7 +218,6 @@
         jQuery("#shipto_virtuemart_country_id_field").vm2front("list", {dest: "#shipto_virtuemart_state_id_field", ids: "", prefiks: "shipto_"});
     }); //]]>
 </script>
-
 
 </body>
 
