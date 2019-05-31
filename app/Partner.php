@@ -23,6 +23,8 @@ class Partner extends Model
         'social_records',
         'job_id',
         'row',
+        'column',
+        'single',
         'state',
     ];
 

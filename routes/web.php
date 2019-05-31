@@ -67,6 +67,9 @@ Route::get('/lessons', ['as' => 'site.lessons.show', 'uses' => 'ElearningControl
 Route::get('/پرتال-دانشگاه-مجازی', function () {
     return redirect('http://91.99.72.220:81/');
 });
+Route::get('/lang', function () {
+    return view('site.lang');
+});
 
 Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
 

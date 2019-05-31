@@ -69,12 +69,17 @@
             <div class="panel panel-bd lobidisable">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        <h4>{{ trans('admin.page.image') }}</h4>
+                        <h4>{{ trans('admin.blogs.other') }}</h4>
                     </div>
                 </div>
                 <div class="panel-body">
                     {!! form_row($form->job_list) !!}
+                    <div class="form-group">
+                        {!! form_label($form->single) !!}
+                        {!! form_widget($form->single) !!}
+                    </div>
                     {!! form_row($form->row) !!}
+                    {!! form_row($form->column) !!}
                 </div>
             </div>
         </div>

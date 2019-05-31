@@ -39,7 +39,6 @@ class SiteController extends Controller
             ->where('state', EState::enabled)
             ->where('published_at', '<=', Carbon::now())
             ->orderBy('published_at', 'DESC')
-            ->take(6)
             ->get();
 
         $partners = Link::query()
