@@ -31,7 +31,7 @@ class PartnersController extends Controller
             ->with('job')
             ->whereState(EState::enabled)
             ->orderBy('row', 'ASC')
-            ->orderBy('id', 'ASC')
+            ->orderBy('column', 'ASC')
             ->get();
 
         foreach($partnersRaw as $partner) {

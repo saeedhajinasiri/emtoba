@@ -34,7 +34,16 @@ class PartnerForm extends AdminForm
                     'id' => 'job_list'
                 ]
             ])
-            ->add('row', 'number');
+            ->add('row', 'number')
+            ->add('column', 'number')
+            ->add('single', 'checkbox', [
+                'attr' => [
+                    'data-toggle' => 'toggle',
+                    'data-on' => trans('admin.state_on'),
+                    'data-off' => trans('admin.state_off'),
+                    'checked' => isset($this->model->single) ? ($this->model->single ? true : false) : false
+                ]
+            ]);
 
         parent::buildForm();
     }

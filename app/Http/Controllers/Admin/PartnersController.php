@@ -134,6 +134,9 @@ class PartnersController extends AdminController
             if (!isset($input['state'])) {
                 $input['state'] = 0;
             }
+            if (!isset($input['single'])) {
+                $input['single'] = 0;
+            }
 
             if ($input['job_list']) {
                 $jobId = Job::firstOrCreate(['title' => $input['job_list']], ['title' => $input['job_list']]);
