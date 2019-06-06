@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
 use App\Page;
 use App\Post;
 use App\Enums\EState;
@@ -40,7 +41,7 @@ class BlogController extends Controller
             ->where('page_name', 'blog_page')
             ->first();
 
-        $items = Post::query()
+        $items = Blog::query()
             ->with('categories', 'media')
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
@@ -69,7 +70,7 @@ class BlogController extends Controller
             ->where('page_name', 'blog_page')
             ->first();
 
-        $item = Post::query()
+        $item = Blog::query()
             ->with('user', 'categories', 'media')
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
@@ -86,18 +87,18 @@ class BlogController extends Controller
         $correctSlug = $item->slug;
         if (!$slug || $slug != $correctSlug) {
             $slug = $correctSlug;
-            return \Redirect::route('news.show', compact('id', 'slug'));
+            return \Redirect::route('blog.show', compact('id', 'slug'));
         }
 
         $item->withoutTimestamps()->increment('hits');
 
-        $prevBlog = Post::query()
+        $prevBlog = Blog::query()
             ->where('state', EState::enabled)
             ->where('id', '<', $id)
             ->orderBy('id', 'DESC')
             ->first();
 
-        $nextBlog = Post::query()
+        $nextBlog = Blog::query()
             ->where('state', EState::enabled)
             ->where('id', '>', $id)
             ->orderBy('id', 'ASC')
