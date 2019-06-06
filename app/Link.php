@@ -41,7 +41,7 @@ class Link extends Model
      */
     public function getTypeNameAttribute()
     {
-        return trans('admin.links.' . ELinkType::search($this->type));
+        return trans('admin.links.' . ELinkType::flipArray()[$this->type]);
     }
 
     /**

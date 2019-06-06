@@ -67,7 +67,7 @@ class SiteController extends Controller
             ->take(3)
             ->get();
 
-        return view('site.home', compact('settings', 'sliders', 'partners', 'governments', 'certificates', 'news', 'videoItem'));
+        return view('site.home', compact('settings', 'sliders', 'partners', 'governments', 'certificates', 'news'));
     }
 
     public function commentCreate(StoreCommentRequest $request, $id, $model)

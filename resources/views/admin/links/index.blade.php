@@ -34,6 +34,7 @@
                             <th>#</th>
                             <th> {{ trans('admin.links.title') }} </th>
                             <th> {{ trans('admin.links.url') }} </th>
+                            <th> {{ trans('admin.links.type') }} </th>
                             <th> {{ trans('admin.links.createTime') }} </th>
                             <th> {{ trans('admin.links.actions') }} </th>
                         </tr>
@@ -44,6 +45,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td>{!! $item->url !!}</td>
+                                <td>{!! $item->type_name !!}</td>
                                 <td class="center">{{ $item->created_at }}</td>
                                 <td class="center">
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.links.destroy', $item->id]]) }}

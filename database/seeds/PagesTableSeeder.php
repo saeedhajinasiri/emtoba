@@ -15,7 +15,7 @@ class PagesTableSeeder extends Seeder
     public function run()
     {
         $userId = 1;
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        /*DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::statement('TRUNCATE TABLE `pages`');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
@@ -59,7 +59,7 @@ class PagesTableSeeder extends Seeder
             'created_by' => $userId,
             'updated_by' => $userId,
             'state' => EState::enabled,
-        ]);
+        ]);*/
         $page = Page::create([
             'title' => 'استخدام وکیل',
             'slug' => 'استخدام-وکیل',
