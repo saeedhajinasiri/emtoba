@@ -78,4 +78,5 @@ return array (
   'hits' => 'بازدید',
   'categories' => 'لیست دسته بندی ها',
   'tags' => 'برچسب ها',
+  'returnToMain' => 'بازگشت به صفحه اصلی',
 );
