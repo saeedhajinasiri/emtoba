@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>مرکز مشاوران حقوقی طوبی</title>
+    @yield('meta_tags')
     <link href="/images/toba.png" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="/main/css/animate.min.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/sppagebuilder.css" type="text/css"/>

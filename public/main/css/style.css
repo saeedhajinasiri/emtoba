@@ -502,3 +502,9 @@ button.button:before, a.button:before {
 .post-meta a {
     color: #707070;
 }
+.white-bg {
+    background-color: rgba(256, 256, 256, 0.5);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}

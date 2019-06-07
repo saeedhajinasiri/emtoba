@@ -36,11 +36,18 @@ class VideosController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Video::query()
+        $query = Video::query();
+
+        $query->when($request->filled('order') && $request->input('order') == 'hits', function ($query) {
+            $query->orderBy('hits', 'DESC');
+        }, function ($query) {
+            $query->orderBy('published_at', 'DESC');
+        });
+
+        $items = $query
             ->with('categories', 'media')
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
-            ->orderBy('published_at', 'DESC')
 //            ->withCount('comments')
             ->paginate(12);
 

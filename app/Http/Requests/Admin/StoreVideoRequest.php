@@ -26,7 +26,6 @@ class StoreVideoRequest extends FormRequest
         return [
             'title' => 'required',
             'slug' => 'required',
-            'video_url' => 'required',
             'published_at' => 'required',
 //            'image' => 'mimes:png,.jpg,gif'
         ];
