@@ -101,7 +101,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('camps', 'CampsController');
     Route::resource('matches', 'MatchesController');
     Route::resource('lessons', 'LessonsController');
-
     // Customers route
     Route::resource('customers', 'CustomersController');
     Route::get('customers/{id}/loginAs', [
