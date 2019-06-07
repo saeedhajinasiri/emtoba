@@ -401,5 +401,6 @@ return array (
   'users.edit.list' => 'ویرایش',
   'users.index' => 'کاربران مدیریت',
   'users.menuTitle' => 'مدیریت کاربران',
+  'videos.edit' => 'ویرایش ویدئو',
   'videos.index' => 'مدیریت ویدئوها',
 );

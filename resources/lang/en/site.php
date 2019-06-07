@@ -72,4 +72,10 @@ return array (
   'reset_password' => 'فراموشی رمز عبور',
   'toman' => 'تومان',
   'videos.index' => 'ویدئوها',
+  'media.video' => 'ویدئو',
+  'media.gallery' => 'گالری تصویر',
+  'media.featured' => 'ویژه',
+  'hits' => 'بازدید',
+  'categories' => 'لیست دسته بندی ها',
+  'tags' => 'برچسب ها',
 );

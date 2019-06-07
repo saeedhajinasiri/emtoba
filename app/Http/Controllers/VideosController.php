@@ -41,10 +41,18 @@ class VideosController extends Controller
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
             ->orderBy('published_at', 'DESC')
-            ->withCount('comments')
+//            ->withCount('comments')
             ->paginate(12);
 
-        return view('site.videos.index', compact('items'));
+        $latest = Video::query()
+            ->where('state', EState::enabled)
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'DESC')
+//            ->withCount('comments')
+            ->take(5)
+            ->get();
+
+        return view('site.videos.index', compact('items', 'latest'));
     }
 
     /**
@@ -62,11 +70,12 @@ class VideosController extends Controller
             ->first();
 
         $item = Video::query()
-            ->with('user', 'categories', 'media')
+            ->with('user', 'categories', 'media', 'tags')
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
             ->withCount(['comments' => function ($q) {
-                $q/*->where('comments.status', ECommentType::approved)*/->where('comments.state', EState::enabled);
+                $q/*->where('comments.status', ECommentType::approved)*/
+                ->where('comments.state', EState::enabled);
             }])
             ->findOrFail($id);
 
@@ -83,17 +92,13 @@ class VideosController extends Controller
 
         $item->withoutTimestamps()->increment('hits');
 
-        $prevBlog = Post::query()
+        $latest = Video::query()
             ->where('state', EState::enabled)
-            ->where('id', '<', $id)
-            ->orderBy('id', 'DESC')
-            ->first();
-
-        $nextBlog = Post::query()
-            ->where('state', EState::enabled)
-            ->where('id', '>', $id)
-            ->orderBy('id', 'ASC')
-            ->first();
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'DESC')
+//            ->withCount('comments')
+            ->take(5)
+            ->get();
 
         $sharerUrl = [
             'facebookUrl' => 'https://www.facebook.com/sharer/sharer.php?u=' . $item->link,
@@ -102,7 +107,7 @@ class VideosController extends Controller
             'twitterUrl' => 'http://twitter.com/share?url=' . $item->link . '&text=' . $item->title
         ];
 
-        return view('site.videos.show', compact('item', 'page', 'prevBlog', 'nextBlog', 'sharerUrl'));
+        return view('site.videos.show', compact('item', 'page', 'sharerUrl', 'latest'));
     }
 
     /**

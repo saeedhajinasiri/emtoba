@@ -88,6 +88,7 @@
     <link rel="stylesheet" href="/main/css/vm-rtl-common.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/vm-rtl-reviews.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/wk-styles.css" type="text/css" id="wk-styles-css"/>
+    <link rel="stylesheet" href="/main/css/style.css" type="text/css" id="wk-styles-css"/>
 
     @yield('stylesheets')
 </head>
@@ -177,7 +178,6 @@
     })();
 </script>
 <script src="/main/js/jquery.min.js" type="text/javascript"></script>
-<script src="/main/js/jquery-noconflict.js" type="text/javascript"></script>
 <script src="/main/js/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="/main/js/jquery.sliderPro.packed.js" type="text/javascript"></script>
 <script src="/main/js/slick.packed.js" type="text/javascript"></script>
@@ -194,31 +194,6 @@
 <script src="/main/js/main.js" type="text/javascript"></script>
 <script src="/main/js/frontend-edit.js" type="text/javascript"></script>
 @yield('scripts')
-
-<script id="updateChosen_js" type="text/javascript">//<![CDATA[
-    if (typeof Virtuemart === "undefined")
-        var Virtuemart = {};
-    Virtuemart.updateChosenDropdownLayout = function () {
-        var vm2string = {editImage: 'edit image', select_all_text: 'انتخاب همه', select_some_options_text: 'برای همه در دسترس است'};
-        jQuery("select.vm-chzn-select").each(function () {
-            var swidth = jQuery(this).css("width") + 10;
-            jQuery(this).chosen({enable_select_all: true, select_all_text: vm2string.select_all_text, select_some_options_text: vm2string.select_some_options_text, disable_search_threshold: 5, width: swidth});
-        });
-    }
-    Virtuemart.updateChosenDropdownLayout(); //]]>
-</script>
-
-<script id="vm.countryState_js" type="text/javascript">//<![CDATA[
-    jQuery(function ($) {
-        jQuery("#virtuemart_country_id_field").vm2front("list", {dest: "#virtuemart_state_id_field", ids: "", prefiks: ""});
-    }); //]]>
-</script>
-<script id="vm.countryStateshipto__js" type="text/javascript">//<![CDATA[
-    jQuery(function ($) {
-        jQuery("#shipto_virtuemart_country_id_field").vm2front("list", {dest: "#shipto_virtuemart_state_id_field", ids: "", prefiks: "shipto_"});
-    }); //]]>
-</script>
-
 </body>
 
 

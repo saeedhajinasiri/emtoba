@@ -136,11 +136,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
 
     // Videos route
     Route::resource('videos', 'VideosController');
-    Route::post('videos/{videos}/uploadPhoto', [
+    Route::post('videos/{video}/uploadPhoto', [
         'as' => 'videos.uploadPhoto',
         'uses' => 'VideosController@uploadPhoto'
     ]);
-    Route::post('videos/{videos}/removePhoto/{media}', [
+    Route::post('videos/{video}/removePhoto/{media}', [
         'as' => 'videos.removePhoto',
         'uses' => 'VideosController@removePhoto'
     ]);
