@@ -202,4 +202,17 @@ class Video extends BaseModel
             ->enabled();
     }
 
+    public function getItemTypeAttribute()
+    {
+        if ($this->video_url) {
+            return trans('site.media.video');
+        }
+
+        return trans('site.media.gallery');
+    }
+
+    public function getAgoAttribute()
+    {
+        return jDate::forge($this->getOriginal('published_at'))->ago();
+    }
 }

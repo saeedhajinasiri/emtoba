@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\EState;
 use App\Forms\Admin\VideoForm;
 use App\Http\Requests\Admin\StoreVideoRequest;
+use App\Media;
 use App\Tag;
 use App\Video;
 use App\Http\Requests\Admin\StoreVideoRequestRequest;
@@ -174,6 +175,64 @@ class VideosController extends AdminController
         return redirect()->route('admin.videos.edit', $video->id);
     }
 
+    /**
+     * Sync up the list of menus in the database
+     *
+     * @param Video $video
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function uploadPhoto(Video $video, Request $request)
+    {
+        $user = \Auth::user();
+        $gallery = array_first($request->file('galleries'));
+
+        if ($gallery) {
+            $mimeType = $gallery->getMimeType();
+            $imageName = time() . $gallery->getClientOriginalName();
+            $img = $gallery->move(
+                $this->path, $imageName
+            );
+
+            $video->media()->create([
+                'name' => $imageName,
+                'path' => $this->path,
+                'disk' => 'public',
+                'url' => url($this->relative_path . $imageName),
+                'mime_type' => $mimeType,
+                'user_id' => $user->id,
+                'created_by' => $user->id,
+                'updated_by' => $user->id,
+                'state' => EState::enabled,
+                'approved_at' => Carbon::now(),
+            ]);
+
+            return response()->json('آپلود تصویر با موفقیت انجام شد.');
+        }
+
+        return response()->json('While upload image an error was occurred', 403);
+    }
+
+    /**
+     * Remove media from the database
+     *
+     * @param Video $video
+     * @param Media $media
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function removePhoto(Video $video, Media $media)
+    {
+        if ($media) {
+            if (File::isFile(public_path() . $this->relative_path . $media->name)) {
+                File::delete(public_path() . $this->relative_path . $media->name);
+            }
+            $video->media()->where('id', $media->id)->delete();
+
+            return response()->json('حذف تصویر با موفقیت انجام شد.');
+        }
+
+        return response()->json('While deleting image an error was occurred', 403);
+    }
 
     /**
      * firstOrCreate the list of tag in the database
