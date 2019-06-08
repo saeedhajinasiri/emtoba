@@ -52,7 +52,7 @@
                                         <td>
                                             {{ Form::open(['method' => 'DELETE', 'route' => ['admin.translations.destroy', $item->group . '.' . $item->code]]) }}
                                             <a href="{{ route('admin.translations.edit', $item->group . '.' . $item->code) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete "><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm deleteButton" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete "><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                             {{ Form::close() }}
                                         </td>
                                     </tr>
@@ -79,10 +79,12 @@
 
 @section('additional_css')
     <link href="/panel/assets/plugins/datatables/dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/panel/assets/plugins/sweetalert/sweetalert.css" media="screen,projection"/>
 @stop
 
 @section('additional_js')
     <script src="/panel/assets/plugins/datatables/dataTables.min.js" type="text/javascript"></script>
+    <script src="/panel/assets/plugins/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -99,6 +101,23 @@
             });
             <?php } ?>
 
+        });
+
+        $('.deleteButton').click(function (e) {
+            e.preventDefault();
+            var form = $(this).parents('form');
+            swal({
+                    title: 'حذف',
+                    text: 'آیا از حذف آیتم مورد نظر اطمینان دارید؟',
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: 'حذف کن',
+                    cancelButtonText: 'خیر',
+                    closeOnConfirm: true
+                },
+                function (isConfirm) {
+                    if (isConfirm) form.submit();
+                });
         });
     </script>
 @stop
