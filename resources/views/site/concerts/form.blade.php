@@ -140,9 +140,11 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 white-bg">
-                    <div class="col-sm-2 col-sm-offset-5">
-                        <a href="{{ route('site.index') }}">@lang('site.returnToMain')</a>
+                <div class="col-sm-12">
+                    <div class="col-sm-12 white-bg">
+                        <div class="col-sm-2 col-sm-offset-5">
+                            <a href="{{ route('site.index') }}">@lang('site.returnToMain')</a>
+                        </div>
                     </div>
                 </div>
             </div>
