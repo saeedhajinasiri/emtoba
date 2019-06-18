@@ -143,7 +143,7 @@ class Blog extends BaseModel
             return self::imagePath() . $this->image;
         }
 
-        return '';
+        return '/assets/images/thumbnail.jpg';
     }
 
     /**
@@ -200,5 +200,10 @@ class Blog extends BaseModel
         return $query
             ->where('published_at', '<=', Carbon::now())
             ->enabled();
+    }
+
+    public function getAgoAttribute()
+    {
+        return jDate::forge($this->getOriginal('published_at'))->ago();
     }
 }

@@ -5,11 +5,10 @@ namespace App;
 use App\Enums\ECommentType;
 use App\Traits\DateMutators;
 use Illuminate\Database\Eloquent\Model;
+use Morilog\Jalali\jDate;
 
-class Comment extends Model
+class Comment extends BaseModel
 {
-    use DateMutators;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -101,5 +100,15 @@ class Comment extends Model
     public function getStatusNameAttribute()
     {
         return ($this->status == ECommentType::pending ? 'pending' : ($this->status == ECommentType::approved ? 'approved' : 'rejected'));
+    }
+
+    /**
+     * jalali published at accessor
+     *
+     * @return jDate
+     */
+    public function getJalaliCreatedAtAttribute()
+    {
+        return jDate::forge($this->getOriginal('created_at'));
     }
 }

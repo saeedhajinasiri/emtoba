@@ -3,8 +3,10 @@
 namespace App\Http\ViewComposers;
 
 use App\Category;
+use App\Enums\EFooterType;
 use App\Enums\ELinkType;
 use App\Enums\EState;
+use App\Footer;
 use App\Link;
 use App\Menu;
 use App\Menus\AdminMenu;
@@ -27,6 +29,9 @@ class SiteComposer
     protected $footerLinks;
     protected $siteMenus;
     protected $current_uri;
+    protected $rightFooter;
+    protected $centerFooter;
+    protected $leftFooter;
 
     public function __construct()
     {
@@ -50,6 +55,24 @@ class SiteComposer
         $root = Menu::root();
         $menuItems = $root->getDescendants();
         $this->siteMenus = $this->recursiveNestable($menuItems->toArray(), $root->id);
+
+        $this->rightFooter = Footer::query()
+            ->where('type', EFooterType::right)
+            ->orderBy('id', 'DESC')
+            ->take(5)
+            ->get();
+
+        $this->centerFooter = Footer::query()
+            ->where('type', EFooterType::center)
+            ->orderBy('id', 'DESC')
+            ->take(5)
+            ->get();
+
+        $this->leftFooter = Footer::query()
+            ->where('type', EFooterType::left)
+            ->orderBy('id', 'DESC')
+            ->take(5)
+            ->get();
     }
 
     public function compose($view)
@@ -61,7 +84,9 @@ class SiteComposer
             'settings' => $this->settings,
             'footerLinks' => $this->footerLinks,
             'siteMenus' => $this->siteMenus,
-            'current_uri' => $this->current_uri,
+            'leftFooter' => $this->leftFooter,
+            'centerFooter' => $this->centerFooter,
+            'rightFooter' => $this->rightFooter,
         ]);
     }
 

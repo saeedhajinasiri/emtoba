@@ -143,7 +143,7 @@ class Video extends BaseModel
             return self::imagePath() . $this->image;
         }
 
-        return '';
+        return '/assets/images/thumbnail.jpg';
     }
 
     /**

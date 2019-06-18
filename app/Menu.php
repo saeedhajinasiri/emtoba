@@ -40,7 +40,7 @@ class Menu extends Node
                 return $this->slug;
             }
 
-            return $this->slug;
+            return '/' . ltrim($this->slug, '/');
         }
 
         return '#';

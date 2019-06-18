@@ -27,7 +27,7 @@ class StoreCommentRequest extends FormRequest
             'user_name' => 'required',
             'user_email' => 'required',
             'content' => 'required',
-            'g-recaptcha-response' => 'required|recaptcha',
+            'captcha' => 'required|captcha'
         ];
     }
 

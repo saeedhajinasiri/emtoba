@@ -25,9 +25,10 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>{!! form_row($form->SaveAndClose) !!}</li>
+                                <li>{!! form_row($form->SaveAndNew) !!}</li>
                             </ul>
                         </div>
-                        <a href="{!! route('admin.comments.index') !!}" class="btn btn-labeled btn-danger m-b-5">
+                        <a href="{!! route('admin.footers.index') !!}" class="btn btn-labeled btn-danger m-b-5">
                             <span class="btn-label"> <i class="fa fa-times"></i> </span>
                             <span class="hidden-xs"> @lang('admin.cancel') </span>
                         </a>
@@ -40,15 +41,12 @@
             <div class="panel panel-bd lobidisable">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        <h4>{{ trans('admin.comments.info') }}</h4>
+                        <h4>{{ trans('admin.links.info') }}</h4>
                     </div>
                 </div>
                 <div class="panel-body">
-                    {!! form_row($form->status) !!}
-                    {{--{!! form_row($form->title) !!}--}}
-                    {!! form_row($form->content) !!}
-                    {!! form_row($form->commentable_section) !!}
-                    {!! form_row($form->commentable_title) !!}
+                    {!! form_row($form->title) !!}
+                    {!! form_row($form->url) !!}
                 </div>
             </div>
         </div>
@@ -56,26 +54,11 @@
             <div class="panel panel-bd lobidisable">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        <h4>{{ trans('admin.comments.user_info') }}</h4>
+                        <h4>{{ trans('admin.page.meta_info') }}</h4>
                     </div>
                 </div>
                 <div class="panel-body">
-                    {!! form_row($form->user_name) !!}
-                    {!! form_row($form->user_email) !!}
-                    {!! form_row($form->user_website) !!}
-                    {!! form_row($form->user_ip) !!}
-                </div>
-            </div>
-            <div class="panel panel-bd lobidisable">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>{{ trans('admin.comments.related_info') }}</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    {!! form_row($form->parent_title) !!}
-                    {!! form_row($form->likes_count) !!}
-                    {!! form_row($form->dislikes_count) !!}
+                    {!! form_row($form->type) !!}
                 </div>
             </div>
         </div>

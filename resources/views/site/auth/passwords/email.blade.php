@@ -7,20 +7,16 @@
     <meta name="description" content="{{ trans('site.reset_password.description') }}">
 @stop
 
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('reset-password') !!}
+@stop
+
 <!-- Main Content -->
 @section('content')
-    <section class="page-title theme-overlay overlay-black  pt-150 pb-20" style="background-image:url('/images/parallax/image-3.jpg');">
-        <div class="auto-container">
-            <h1>فراموشی رمز عبور</h1>
-
-            {!! Breadcrumbs::render('reset-password') !!}
-        </div>
-    </section>
-
-    <div class="contact-section">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <section class="default-section blog-section">
+    <section id="sp-main-body">
+        <div class="container">
+            <div class="row">
+                <div id="sp-component" class="col-sm-12 col-md-12">
                     <h1 class="title-bottom fs-18 mb-30">ارسال لینک</h1>
                     <div class="form">
                         @if (session('status'))
@@ -29,34 +25,31 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                        <form role="form" method="POST" action="{{ url('/password/email') }}">
                             {{ csrf_field() }}
 
-                            <ul class="row clearfix col-xs-12 col-sm-6">
-                                <li class="form-group col-xs-12{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="email"><span class="icon fa fa-envelope"></span> <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="ایمیل" required>
-                                        </div>
+                            <div class="form-group col-sm-12">
+                                <label class="control-label col-sm-2">@lang('site.contacts.email'):‌ (*)</label>
+                                <div class="col-sm-5">
+                                    <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="@lang('site.contacts.email')" required>
+                                </div>
+                                @if ($errors->has('email'))
+                                    <div class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </div>
-                                    @if ($errors->has('email'))
-                                        <div class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </div>
-                                    @endif
-                                </li>
+                                @endif
+                            </div>
 
-                                <li class="form-group col-xs-12">
-                                    <button class="hvr-bounce-to-right" type="submit" name="submit-form">ارسال رمز عبور &ensp; <span class="icon flaticon-envelope32"></span></button>
-                                </li>
-                            </ul>
+                            <div class="form-group col-sm-12">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <input name="submit" value="@lang('site.contact.send_password')" class="btn btn-success" type="submit">
+                                </div>
+                            </div>
+
                         </form>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

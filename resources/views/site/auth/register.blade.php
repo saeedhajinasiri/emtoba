@@ -7,130 +7,77 @@
     <meta name="description" content="{{ trans('site.register.description') }}">
 @stop
 
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('register') !!}
+@stop
 
 @section('content')
-    <section class="page-title theme-overlay overlay-black" style="background-image:url('/images/parallax/image-3.jpg');">
-        <div class="auto-container">
-            <h1>{{ trans('site.register_in_our_site') }}</h1>
-
-            {!! Breadcrumbs::render('register') !!}
-        </div>
-    </section>
-
-    <div class="contact-section">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <section class="default-section blog-section">
+    <section id="sp-main-body">
+        <div class="container">
+            <div class="row">
+                <div id="sp-component" class="col-sm-12 col-md-12">
                     <h1 class="title-bottom fs-18 mb-30"> عضویت در سایت</h1>
                     <div class="form">
+                        @include('flash::message')
+
                         <form class="validated-contact-form" role="form" method="POST" action="{{ url('/register') }}">
                             {{ csrf_field() }}
-                            <ul class="row clearfix col-xs-12">
-                                <li class="form-group col-xs-12 col-sm-6{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="name"><span class="icon fa fa-user"></span> <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="نام و نام خانوادگی" required autofocus>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('name'))
-                                        <div class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </div>
-                                    @endif
-                                </li>
-                                <li class="form-group col-xs-12 col-sm-6{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="email"><span class="icon fa fa-envelope"></span> <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="ایمیل" required>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('email'))
-                                        <div class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </div>
-                                    @endif
-                                </li>
-                                <li class="form-group col-xs-12 col-sm-6{{ $errors->has('mobile') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="mobile"><span class="icon fa fa-mobile"></span> <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <input id="mobile" type="text" name="mobile" value="{{ old('mobile') }}" placeholder="موبایل" required>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('mobile'))
-                                        <div class="help-block">
-                                            <strong>{{ $errors->first('mobile') }}</strong>
-                                        </div>
-                                    @endif
-                                </li>
-                                <li class="form-group col-xs-12 col-sm-6{{ $errors->has('tel') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="tel"><span class="icon fa fa-phone"></span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <input id="tel" type="text" name="tel" value="{{ old('tel') }}" placeholder="تلفن">
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('tel'))
-                                        <div class="help-block">
-                                            <strong>{{ $errors->first('tel') }}</strong>
-                                        </div>
-                                    @endif
-                                </li>
-                                <li class="form-group col-xs-12 col-sm-6{{ $errors->has('address') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="address"><span class="icon fa fa-map-marker"></span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <textarea id="address" type="text" name="address" placeholder="آدرس">{{ old('address') }}</textarea>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('address'))
-                                        <div class="help-block">
-                                            <strong>{{ $errors->first('address') }}</strong>
-                                        </div>
-                                    @endif
-                                </li>
-                                <li class="form-group col-xs-12 col-sm-6{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="password"><span class="icon fa fa-key"></span> <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <input id="password" type="password" name="password" placeholder="رمز عبور">
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('password'))
-                                        <div class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </div>
-                                    @endif
-                                </li>
-                                <li class="form-group col-xs-12 col-sm-6{{ $errors->has('password-confirm') ? ' has-error' : '' }}">
-                                    <div class="form-group-inner">
-                                        <div class="icon-box">
-                                            <label for="password-confirm"><span class="icon fa fa-key"></span> <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="field-outer">
-                                            <input id="password-confirm" type="password" name="password-confirm" placeholder="تکرار رمز عبور" required>
-                                        </div>
-                                    </div>
-                                </li>
 
-                                <li class="form-group col-xs-12 text-right">
-                                    <button class="hvr-bounce-to-right" type="submit" name="submit-form">ثبت نام</button>
-                                </li>
-                            </ul>
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-4">@lang('site.contacts.full_name'):‌ (*)</label>
+                                <div class="col-sm-8">
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="@lang('site.contacts.full_name')" required autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-4">@lang('site.contacts.email'):‌ (*)</label>
+                                <div class="col-sm-8">
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="@lang('site.contacts.email')" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-4">@lang('site.contacts.mobile'):‌ (*)</label>
+                                <div class="col-sm-8">
+                                    <input id="mobile" type="text" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="@lang('site.contacts.mobile')" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-4">@lang('site.contacts.tel'):‌ (*)</label>
+                                <div class="col-sm-8">
+                                    <input id="tel" type="text" name="tel" class="form-control" value="{{ old('tel') }}" placeholder="@lang('site.contacts.tel')">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-4">@lang('site.contacts.address'):‌ (*)</label>
+                                <div class="col-sm-8">
+                                    <textarea id="address" type="text" rows="10" class="form-control" name="address" placeholder="@lang('site.contacts.address')">{{ old('address') }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-4">@lang('site.contacts.password'):‌ (*)</label>
+                                <div class="col-sm-8">
+                                    <input id="password" type="password" class="form-control" name="password" placeholder="@lang('site.contacts.password')">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-4">@lang('site.contacts.password_confirm'):‌ (*)</label>
+                                <div class="col-sm-8">
+                                    <input id="password-confirm" type="password" class="form-control" name="password-confirm" placeholder="@lang('site.contacts.password_confirm')" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <input name="submit" value="@lang('site.contact.register')" class="btn btn-success" type="submit">
+                                </div>
+                            </div>
+
                             {{--<div class="result col-xs-12 mt-30 mb-30 green fs-16"> با تشکر از شما، عضویت شما با موفقیت انجام شد.</div>--}}
                             <div class="col-md-12 col-xs-12 mt-30 mb-30 fs-16">
                                 <p><a class="green" href="{{ route('login') }}">{{ trans('site.register.log_in') }}</a></p>
@@ -139,9 +86,9 @@
                         </form>
 
                     </div>
-                </section>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
 @endsection

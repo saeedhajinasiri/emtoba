@@ -68,6 +68,7 @@
         #sp-main-body {
             background-image: url("/main/img/1414.jpg");
             background-repeat: repeat;
+            padding: 0;
         }
 
         #sp-footer {
@@ -83,6 +84,7 @@
             color: #ff7070;
         }
     </style>
+    <link rel="stylesheet" href="/main/css/style.css" type="text/css" id="wk-styles-css"/>
 </head>
 <body class="site com-sppagebuilder view-page no-layout no-task itemid-101 fa-ir rtl  sticky-header layout-fluid">
 <div class="body-innerwrapper">

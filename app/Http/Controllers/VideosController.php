@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ECommentType;
 use App\Page;
 use App\Post;
 use App\Enums\EState;
@@ -107,6 +108,12 @@ class VideosController extends Controller
             ->take(5)
             ->get();
 
+        $comments = $item->comments()
+            ->where('status', ECommentType::approved)
+            ->where('state', 1)
+            ->orderBy('id', 'DESC')
+            ->get();
+
         $sharerUrl = [
             'facebookUrl' => 'https://www.facebook.com/sharer/sharer.php?u=' . $item->link,
             'gplusUrl' => 'https://plus.google.com/share?url=' . $item->link,
@@ -114,7 +121,7 @@ class VideosController extends Controller
             'twitterUrl' => 'http://twitter.com/share?url=' . $item->link . '&text=' . $item->title
         ];
 
-        return view('site.videos.show', compact('item', 'page', 'sharerUrl', 'latest'));
+        return view('site.videos.show', compact('item', 'page', 'sharerUrl', 'latest', 'comments'));
     }
 
     /**
