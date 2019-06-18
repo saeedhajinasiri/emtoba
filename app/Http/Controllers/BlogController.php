@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Enums\ECommentType;
 use App\Page;
 use App\Post;
 use App\Enums\EState;
@@ -49,11 +50,19 @@ class BlogController extends Controller
             ->withCount('comments')
             ->paginate(10);
 
+        $latest = Blog::query()
+            ->where('state', EState::enabled)
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'DESC')
+//            ->withCount('comments')
+            ->take(5)
+            ->get();
+
         $settings = Cache::rememberForever('siteSettings', function () {
             return Setting::all()->pluck('value', 'key')->toArray();
         });
 
-        return view('site.blog.index', compact('page', 'items', 'settings'));
+        return view('site.blog.index', compact('page', 'items', 'settings', 'latest'));
     }
 
     /**
@@ -92,7 +101,21 @@ class BlogController extends Controller
 
         $item->withoutTimestamps()->increment('hits');
 
-        $prevBlog = Blog::query()
+        $latest = Blog::query()
+            ->where('state', EState::enabled)
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'DESC')
+//            ->withCount('comments')
+            ->take(5)
+            ->get();
+
+        $comments = $item->comments()
+            ->where('status', ECommentType::approved)
+            ->where('state', 1)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        /*$prevBlog = Blog::query()
             ->where('state', EState::enabled)
             ->where('id', '<', $id)
             ->orderBy('id', 'DESC')
@@ -102,7 +125,7 @@ class BlogController extends Controller
             ->where('state', EState::enabled)
             ->where('id', '>', $id)
             ->orderBy('id', 'ASC')
-            ->first();
+            ->first();*/
 
         $sharerUrl = [
             'facebookUrl' => 'https://www.facebook.com/sharer/sharer.php?u=' . $item->link,
@@ -111,7 +134,7 @@ class BlogController extends Controller
             'twitterUrl' => 'http://twitter.com/share?url=' . $item->link . '&text=' . $item->title
         ];
 
-        return view('site.blog.show', compact('item', 'page', 'prevBlog', 'nextBlog', 'sharerUrl'));
+        return view('site.blog.show', compact('item', 'page', 'sharerUrl', 'latest', 'comments'));
     }
 
     public function preview($id)

@@ -3,7 +3,8 @@
 use App\Setting;
 use Illuminate\Support\Facades\Cache;
 
-function getSetting($key) {
+function getSetting($key)
+{
     return Cache::remember('settings.' . $key, 60, function () use ($key) {
         return Setting::query()
             ->where('key', $key)
@@ -49,7 +50,7 @@ Route::post('/شکایات-و-پیشنهادات', ['as' => 'site.contacts.store
 Route::get('/محتوای-ثبتی-اساسنامه', ['uses' => 'PagesController@statute']);
 Route::get('/درباره-ما', ['uses' => 'PagesController@about']);
 Route::get('/شعب-موسسه', ['as' => 'site.branches.index', 'uses' => 'BranchesController@index']);
-Route::get('/موسسین-و-همکاران-حقوقی-و-قضایی', ['as' => 'site.partners.index', 'uses' => 'PartnersController@index']);
+Route::get('/موسسین-و-همکاران-حقوقی-و-قضایی', ['as' => 'site.partners.index', 'middleware' => ['auth'], 'uses' => 'PartnersController@index']);
 
 Route::get('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.create', 'uses' => 'AttorneyEmploymentController@create']);
 Route::post('/استخدام-وکیل', ['as' => 'site.attorneyEmployment.store', 'uses' => 'AttorneyEmploymentController@store']);
@@ -71,7 +72,7 @@ Route::get('/lang', function () {
     return view('site.lang');
 });
 
-Route::post('/comments/{id}/{model}', ['as' => 'comment.create', 'uses' => 'SiteController@commentCreate']);
+Route::post('/comments/{id}/{model}', ['as' => 'site.comment.create', 'uses' => 'SiteController@commentCreate']);
 
 Auth::routes();
 Route::any('logout', ['as' => 'logout', 'namespace' => 'Auth', 'uses' => 'Auth\LoginController@logout']);
@@ -92,6 +93,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('departments', 'DepartmentsController');
     Route::resource('pages', 'PagesController');
     Route::resource('links', 'LinksController');
+    Route::resource('footers', 'FootersController');
     Route::resource('branches', 'BranchesController');
     Route::resource('sliders', 'SlidersController');
     Route::resource('comments', 'CommentsController');

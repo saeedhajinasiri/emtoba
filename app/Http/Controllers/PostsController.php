@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Enums\ECommentType;
 use App\Enums\EState;
 use App\Page;
 use App\Post;
@@ -43,7 +44,15 @@ class PostsController extends Controller
             ->withCount('comments')
             ->paginate(12);
 
-        return view('site.news.index', compact('items'));
+        $latest = Post::query()
+            ->where('state', EState::enabled)
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'DESC')
+//            ->withCount('comments')
+            ->take(5)
+            ->get();
+
+        return view('site.news.index', compact('items', 'latest'));
     }
 
     /**
@@ -61,7 +70,7 @@ class PostsController extends Controller
             ->first();
 
         $item = Post::query()
-            ->with('user', 'categories', 'media')
+            ->with('user', 'categories', 'media', 'tags')
             ->where('state', EState::enabled)
             ->where('published_at', '<', Carbon::now())
             ->withCount(['comments' => function ($q) {
@@ -82,7 +91,21 @@ class PostsController extends Controller
 
         $item->withoutTimestamps()->increment('hits');
 
-        $prevBlog = Post::query()
+        $latest = Post::query()
+            ->where('state', EState::enabled)
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'DESC')
+//            ->withCount('comments')
+            ->take(5)
+            ->get();
+
+        $comments = $item->comments()
+            ->where('status', ECommentType::approved)
+            ->where('state', 1)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        /*$prevBlog = Post::query()
             ->where('state', EState::enabled)
             ->where('id', '<', $id)
             ->orderBy('id', 'DESC')
@@ -92,7 +115,7 @@ class PostsController extends Controller
             ->where('state', EState::enabled)
             ->where('id', '>', $id)
             ->orderBy('id', 'ASC')
-            ->first();
+            ->first();*/
 
         $sharerUrl = [
             'facebookUrl' => 'https://www.facebook.com/sharer/sharer.php?u=' . $item->link,
@@ -101,7 +124,7 @@ class PostsController extends Controller
             'twitterUrl' => 'http://twitter.com/share?url=' . $item->link . '&text=' . $item->title
         ];
 
-        return view('site.news.show', compact('item', 'page', 'prevBlog', 'nextBlog', 'sharerUrl'));
+        return view('site.news.show', compact('item', 'page', 'sharerUrl', 'latest', 'comments'));
     }
 
     /**

@@ -107,6 +107,11 @@ class AdminMenu extends BaseMenu
                         'route' => 'admin.links.index',
                     ],
                     [
+                        'title' => trans('admin.footers.index'),
+                        'link' => route('admin.footers.index'),
+                        'route' => 'admin.footers.index',
+                    ],
+                    [
                         'title' => trans('admin.branches.index'),
                         'link' => route('admin.branches.index'),
                         'route' => 'admin.branches.index',

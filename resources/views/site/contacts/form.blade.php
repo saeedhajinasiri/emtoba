@@ -1,13 +1,17 @@
 @extends('site.main')
 
 @section('meta_tags')
-    <title>{{ trans('site.employees.index') }} | {{ getSetting('site_title') }}</title>
-    <link rel="canonical" href="{{ route('site.employees.create') }}">
-    <meta name="keywords" content="{{ trans('site.employees.keywords') }}">
-    <meta name="description" content="{{ trans('site.employees.description') }}">
+    <title>{{ trans('site.contacts.index') }} | {{ getSetting('site_title') }}</title>
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta name="keywords" content="{{ trans('site.contacts.keywords') }}">
+    <meta name="description" content="{{ trans('site.contacts.description') }}">
 
-    <meta property="og:title" content="{{ trans('site.employees.index') }}"/>
-    <meta property="og:description" content="{{ trans('site.employees.description') }}"/>
+    <meta property="og:title" content="{{ trans('site.contacts.index') }}"/>
+    <meta property="og:description" content="{{ trans('site.contacts.description') }}"/>
+@stop
+
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('site.contacts.list') !!}
 @stop
 
 @section('content')

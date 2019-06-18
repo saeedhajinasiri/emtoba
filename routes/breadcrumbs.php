@@ -34,23 +34,15 @@ Breadcrumbs::for('site.news.show', function ($breadcrumbs, $item) {
     $breadcrumbs->push($item->title, $item->link);
 });
 
-// Home > News
-Breadcrumbs::for('site.projects.list', function ($breadcrumbs, $category = null) {
+// Home > Blog
+Breadcrumbs::for('site.blog.list', function ($breadcrumbs) {
     $breadcrumbs->parent('site.home');
-    $breadcrumbs->push(trans('site.projects.index'), route('site.projects.index'));
-
-    if ($category) {
-        $breadcrumbs->push($category->title, route('site.projects.categories', $category->slug));
-    }
+    $breadcrumbs->push(trans('site.blog.index'), route('site.blog.index'));
 });
-Breadcrumbs::for('site.projects.show', function ($breadcrumbs, $item) {
-    $category = '';
-    if ($item->category) {
-        $category = $item->category;
-    }
-    $breadcrumbs->parent('site.projects.list', $category);
+Breadcrumbs::for('site.blog.show', function ($breadcrumbs, $item) {
+    $breadcrumbs->parent('site.blog.list');
 
-    $breadcrumbs->push($item->title_fa, $item->link);
+    $breadcrumbs->push($item->title, $item->link);
 });
 
 // Home > Videos
@@ -58,21 +50,58 @@ Breadcrumbs::for('site.videos.list', function ($breadcrumbs) {
     $breadcrumbs->parent('site.home');
     $breadcrumbs->push(trans('site.videos.index'), route('site.videos.index'));
 });
+Breadcrumbs::for('site.videos.show', function ($breadcrumbs, $item) {
+    $breadcrumbs->parent('site.videos.list');
 
-// Home > Products
-Breadcrumbs::for('site.projects.brand', function ($breadcrumbs, $item) {
+    $breadcrumbs->push($item->title, $item->link);
+});
+
+// Home > partners
+Breadcrumbs::for('site.partners.list', function ($breadcrumbs) {
     $breadcrumbs->parent('site.home');
-    $breadcrumbs->push('محصولات ' . $item->title_fa, $item->link);
+    $breadcrumbs->push(trans('site.partners.index'), route('site.partners.index'));
+});
+
+// Home > attorney employment
+Breadcrumbs::for('site.attorneyEmployment.list', function ($breadcrumbs) {
+    $breadcrumbs->parent('site.home');
+    $breadcrumbs->push(trans('site.attorneyEmployment.index'), route('site.attorneyEmployment.create'));
+});
+
+// Home > employees
+Breadcrumbs::for('site.employees.list', function ($breadcrumbs) {
+    $breadcrumbs->parent('site.home');
+    $breadcrumbs->push(trans('site.employees.index'), route('site.employees.create'));
+});
+
+// Home > contacts
+Breadcrumbs::for('site.contacts.list', function ($breadcrumbs) {
+    $breadcrumbs->parent('site.home');
+    $breadcrumbs->push(trans('site.contacts.index'), route('site.contacts.create'));
+});
+Breadcrumbs::for('site.contacts.show', function ($breadcrumbs) {
+    $breadcrumbs->parent('site.home');
+    $breadcrumbs->push(trans('site.contacts.show'), route('site.contacts.show'));
+});
+
+// Home > elearning
+Breadcrumbs::for('site.elearning.show', function ($breadcrumbs) {
+    $breadcrumbs->parent('site.home');
+    $breadcrumbs->push(trans('site.elearning.show'), route('site.elearning.show'));
+});
+Breadcrumbs::for('site.lessons.show', function ($breadcrumbs) {
+    $breadcrumbs->parent('site.home');
+    $breadcrumbs->push(trans('site.lessons.show'), route('site.lessons.show'));
+});
+
+// Home > branches
+Breadcrumbs::for('site.branches.list', function ($breadcrumbs) {
+    $breadcrumbs->parent('site.home');
+    $breadcrumbs->push(trans('site.branches.index'), route('site.branches.index'));
 });
 
 Breadcrumbs::for('site.pages.show', function ($breadcrumbs, $item) {
     $breadcrumbs->parent('site.home');
 
     $breadcrumbs->push($item->title, $item->link);
-});
-
-Breadcrumbs::for('site.basket.show', function ($breadcrumbs) {
-    $breadcrumbs->parent('site.home');
-
-    $breadcrumbs->push(trans('site.basket.index'), route('site.basket.index'));
 });

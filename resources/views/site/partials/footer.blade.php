@@ -11,11 +11,11 @@
                         @if(count($footerLinks) > 0)
                             <div style=" display:block; ">
                                 @foreach($footerLinks as $link)
-                                <div style=" float:left;">
-                                    <a href="{{ $link->url }}">
-                                        <img style="float:left" src="{{ $link->image_link }}" alt="{{ $link->title }}"/>
-                                    </a>
-                                </div>
+                                    <div style=" float:left;">
+                                        <a href="{{ $link->url }}">
+                                            <img style="float:left" src="{{ $link->image_link }}" alt="{{ $link->title }}"/>
+                                        </a>
+                                    </div>
                                 @endforeach
                             </div>
                         @endif
@@ -27,15 +27,89 @@
     </div>
 </footer>
 
-<div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <p>@lang('site.copyright')</p>
+<footer class="site-footer text-uppercase">
+    <div class="footer-top bg-primary">
+        <div class="container wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s ; animation-name: fadeIn;">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6 footer-col-4 ">
+                    <div class="widget">
+                        <h5 class="m-b30 text-white">ثبت نام در خبر نامه</h5>
+                        <p class="text-capitalize m-b20">برای آگاهی از آخرین اخبار ما، عضو شوید.</p>
+                        <div class="subscribe-form m-b20">
+                            <form class="dzSubscribe" action="script/mailchamp.php" method="post">
+                                <div class="dzSubscribeMsg"></div>
+                                <div class="input-group">
+                                    <input name="dzEmail" required="required" class="form-control" placeholder="آدرس ایمیل شما" type="email">
+                                    <span class="input-group-btn">
+                                        <button value="Submit" type="submit" class="site-button btn btn-success">ثبت نام</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-inline m-a0">
+                            @if(getSetting('facebook_url'))
+                                <li><a target="_blank" href="{{ getSetting('facebook_url') }}" class="site-button facebook circle "><i class="fa fa-facebook"></i></a></li>
+                            @endif
+                            @if(getSetting('telegram_url'))
+                                <li><a target="_blank" href="{{ getSetting('telegram_url') }}" class="site-button twitter circle "><i class="fa fa-paper-plane"></i></a></li>
+                            @endif
+                            @if(getSetting('instagram_url'))
+                                <li><a target="_blank" href="{{ getSetting('instagram_url') }}" class="site-button instagram circle"><i class="fa fa-instagram"></i></a></li>
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+                @if(count($rightFooter))
+                    <div class="col-5 col-lg-3 col-md-6 col-sm-6 footer-col-4">
+                        <div class="widget widget_services border-0">
+                            <h5 class="m-b30 text-white">@lang('site.footer.rightLinks')</h5>
+                            <ul>
+                                @foreach($rightFooter as $link)
+                                    <li><a href="{{ $link->link }}">{{ $link->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+                @if(count($centerFooter))
+                    <div class="col-lg-3 col-md-6 col-sm-6 footer-col-4">
+                        <div class="widget widget_services border-0">
+                            <h5 class="m-b30 text-white">@lang('site.footer.centerLinks')</h5>
+                            <ul>
+                                @foreach($centerFooter as $link)
+                                    <li><a href="{{ $link->link }}">{{ $link->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+                @if(count($leftFooter))
+                    <div class="col-3 col-lg-2 col-md-6 col-sm-6 footer-col-4">
+                        <div class="widget widget_services border-0">
+                            <h5 class="m-b30 text-white">@lang('site.footer.leftLinks')</h5>
+                            <ul>
+                                @foreach($leftFooter as $link)
+                                    <li><a href="{{ $link->link }}">{{ $link->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-</div>
+    <!-- footer bottom part -->
+    <div class="footer-bottom bg-primary">
+        <div class="container">
+            <div class="row-buttom">
+                <div>
+                    <span>@lang('site.copyright')</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
 {{--
 <div class="height-emulator fl-wrap"></div>
 <footer class="main-footer fixed-footer">

@@ -10,6 +10,10 @@
     <meta property="og:description" content="{{ trans('site.attorneyEmployment.description') }}"/>
 @stop
 
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('site.attorneyEmployment.list') !!}
+@stop
+
 @section('content')
     <section id="sp-main-body">
         <div class="container">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ECommentType;
 use App\Enums\ELinkType;
 use App\Enums\EState;
 use App\Link;
@@ -13,6 +14,7 @@ use App\Setting;
 use App\Slider;
 use App\Traits\ModelFunctions;
 use Carbon\Carbon;
+use Laracasts\Flash\Flash;
 
 class SiteController extends Controller
 {
@@ -73,13 +75,13 @@ class SiteController extends Controller
     public function commentCreate(StoreCommentRequest $request, $id, $model)
     {
 
-        // try {
+        try {
             $item = app('\App\\' . ucfirst($model))->findOrFail($id);
 
             $comment = new Comment();
             $comment->content = $request->input('content');
             $comment->user_ip = $request->ip();
-            $comment->status = Comment::pending;
+            $comment->status = ECommentType::pending;
             $comment->state = 1;
             $comment->created_by = \Auth::id();
             $comment->updated_by = \Auth::id();
@@ -107,16 +109,12 @@ class SiteController extends Controller
 
             $item->comments()->save($comment);
 
-            return response()->json([
-                'status' => 'success',
-                'message' => trans('site.site.comments.comment_created_successfully_and_needs_to_be_approved'),
-            ]);
-        // } catch (\Exception $e) {
-        //     return response()->json([
-        //         'status' => 'error',
-        //         'message' => trans('site.site.comments.comment_failed'),
-        //     ], 400);
-        // }
+            Flash::info(trans('site.site.comments.comment_created_successfully_and_needs_to_be_approved'));
+            return redirect()->back();
+        } catch (\Exception $e) {
+            Flash::error(trans('site.site.comments.comment_failed'));
+            return redirect()->back();
+        }
     }
 
     protected function getModel($type, $id)
