@@ -68,7 +68,7 @@ class EmployeeForm extends Form
                     'placeholder' => trans('site.contacts.address')
                 ]
             ])
-            ->add('description', 'textarea', [
+            ->add('resume', 'textarea', [
                 'attr' => [
                     'placeholder' => trans('site.contacts.description')
                 ]

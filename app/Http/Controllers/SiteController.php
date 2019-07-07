@@ -74,11 +74,11 @@ class SiteController extends Controller
 
     public function commentCreate(StoreCommentRequest $request, $id, $model)
     {
-
         try {
             $item = app('\App\\' . ucfirst($model))->findOrFail($id);
 
             $comment = new Comment();
+            $comment->title = '';
             $comment->content = $request->input('content');
             $comment->user_ip = $request->ip();
             $comment->status = ECommentType::pending;
@@ -108,6 +108,7 @@ class SiteController extends Controller
             }
 
             $item->comments()->save($comment);
+//            dd($comment);
 
             Flash::info(trans('site.site.comments.comment_created_successfully_and_needs_to_be_approved'));
             return redirect()->back();

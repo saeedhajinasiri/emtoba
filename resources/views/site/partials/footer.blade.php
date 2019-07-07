@@ -46,6 +46,17 @@
                                 </div>
                             </form>
                         </div>
+                        <ul class="sp-contact-info" style="margin-top: 15px">
+                            @if(getSetting('tel'))
+                                <li class="sp-contact-phone"><i class="pe pe-7s-headphones"></i>{{ getSetting('tel') }}</li>
+                            @endif
+                            @if(getSetting('work_hours'))
+                                <li class="sp-office-hours"><i class="pe pe-7s-timer"></i>{{ getSetting('work_hours') }} </li>
+                            @endif
+                            @if(getSetting('email'))
+                                <li class="sp-contact-email"><i class="pe pe-7s-mail"></i> <a href="mailto:{{ getSetting('email') }}">{{ getSetting('email') }}</a></li>
+                            @endif
+                        </ul>
                         <ul class="list-inline m-a0">
                             @if(getSetting('facebook_url'))
                                 <li><a target="_blank" href="{{ getSetting('facebook_url') }}" class="site-button facebook circle "><i class="fa fa-facebook"></i></a></li>

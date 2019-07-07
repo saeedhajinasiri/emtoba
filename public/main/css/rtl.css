@@ -1829,3 +1829,8 @@ body.rtl .sp-contact-info {
 .mt-10 {
   margin-top: 10px;
 }
+
+.sppb-addon-content .sppb-icon img {
+  margin-right: auto;
+  margin-left: auto;
+}

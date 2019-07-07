@@ -55,6 +55,8 @@ class EmployeesController extends Controller
         try {
             $data = $request->except(['submit', '_token', 'g-recaptcha-response']);
 
+            $data['description'] = $data['resume'];
+
             $data['read'] = 0;
             if ($request->hasFile('image')) {
                 $imageName = time() . $request->file('image')->getClientOriginalName();

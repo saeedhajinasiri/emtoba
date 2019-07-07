@@ -83,7 +83,7 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'admin.databases.read',
             'display_name' => 'Admin Databases Home Read'
         ]);
-        $role->permissions()->attach($permission);*/
+        $role->permissions()->attach($permission);
 
         $customerRole = Role::find(2);
 
@@ -139,7 +139,7 @@ class PermissionsTableSeeder extends Seeder
             'display_name' => 'Dashboard Settings Update',
             'name' => 'dashboard.settings.update',
         ]);
-        $customerRole->permissions()->attach($permission);
+        $customerRole->permissions()->attach($permission);*/
     }
 
     /**

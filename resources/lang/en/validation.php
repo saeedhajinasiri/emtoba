@@ -64,7 +64,7 @@ return [
     'numeric'              => 'The :attribute must be a number.',
     'present'              => 'The :attribute field must be present.',
     'regex'                => 'The :attribute format is invalid.',
-    'required'             => 'فیلد :attribute باید پر شود.',
+    'required'             => 'فیلد «:attribute» باید پر شود.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_unless'      => 'The :attribute field is required unless :other is in :values.',
     'required_with'        => 'The :attribute field is required when :values is present.',
@@ -114,6 +114,27 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'first_name' => 'نام',
+        'last_name' => 'نام خانوادگی',
+        'email' => 'ایمیل',
+        'birth_certificate_number' => 'شماره شناسنامه',
+        'national_code' => 'کد ملی',
+        'birth_place' => 'محل صدور',
+        'captcha' => 'کد امنیتی',
+        'phone' => 'تلفن ثابت',
+        'mobile' => 'موبایل',
+        'address' => 'آدرس',
+        'image' => 'تصویر',
+        'resume' => 'رزومه',
+        'description' => 'توضیحات',
+        'father_name' => 'نام پدر',
+        'birth_date' => 'تاریخ تولد',
+        'tel' => 'تلفن ثابت',
+        'postal_code' => 'کد پستی',
+        'full_name' => 'نام و نام خانوادگی',
+        'subject' => 'موضوع',
+        'content' => 'محتوا',
+    ],
 
 ];

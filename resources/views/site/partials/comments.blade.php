@@ -52,7 +52,11 @@
             <input class="form-control ltr" placeholder="@lang('site.contacts.captcha')" name="captcha" type="text" autocomplete="off">
         </div>
         <div class="col-md-4">
-            {!! Captcha::img() !!}
+            <div id='captcha' class="col-sm-12">
+                <a href='javascript:void(0);' id="reload_captcha">
+                    <img src="{{ captcha_src() }}" id="captcha_image">
+                </a>
+            </div>
         </div>
     </div>
 

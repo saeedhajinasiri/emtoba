@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Employee;
 use App\Contact;
-use App\Forms\Site\EmployeeForm;
+use App\Forms\Admin\EmployeeForm;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Laracasts\Flash\Flash;

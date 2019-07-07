@@ -66,7 +66,7 @@
                     {!! form_row($form->user_ip) !!}
                 </div>
             </div>
-            <div class="panel panel-bd lobidisable">
+            {{--<div class="panel panel-bd lobidisable">
                 <div class="panel-heading">
                     <div class="panel-title">
                         <h4>{{ trans('admin.comments.related_info') }}</h4>
@@ -77,7 +77,7 @@
                     {!! form_row($form->likes_count) !!}
                     {!! form_row($form->dislikes_count) !!}
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         {!! form_end($form, false) !!}

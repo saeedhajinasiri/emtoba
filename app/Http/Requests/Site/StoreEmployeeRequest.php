@@ -34,7 +34,7 @@ class StoreEmployeeRequest extends FormRequest
             'mobile' => 'required',
             'address' => 'required',
             'gender' => 'required',
-            'description' => 'required',
+            'resume' => 'required',
             'captcha' => 'required|captcha'
         ];
     }
