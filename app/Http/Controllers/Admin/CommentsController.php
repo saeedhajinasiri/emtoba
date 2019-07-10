@@ -20,20 +20,42 @@ class CommentsController extends AdminController
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        try {
+            $request = \Request::all();
+            $query = $this->model->query();
+            if (isset($request['commentable']) && $request['commentable']) {
+                $query->where('commentable_type', $request['commentable']);
+            }
+
+            $items = $query->orderBy('id', 'DESC')->paginate(10);
+
+            return view('admin.' . $this->section . '.index', compact('items'));
+        } catch (\Exception $exception) {
+            return $this->returnWithError($exception->getMessage());
+        }
+    }
+
+    /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
 
     public function show($id)
-    {
-        //
-    }*/
+     * {
+     * //
+     * }*/
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  Comment $comment
      * @return \Illuminate\Http\RedirectResponse
      */

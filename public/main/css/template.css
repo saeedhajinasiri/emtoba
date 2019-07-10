@@ -3864,18 +3864,18 @@ div.sppb_prettyphoto .pp_loaderIcon {
 .sppb-panel-default >.sppb-panel-heading.active:before,
 .sppb-panel-primary >.sppb-panel-heading:before,
 .sppb-panel-primary >.sppb-panel-heading.active:before {
-  font-family: 'ap-arrows';
+  font-family: 'FontAwesome', serif;
   font-size: 11px;
   margin-right: 5px;
   float: right;
 }
 .sppb-panel-default >.sppb-panel-heading:before,
 .sppb-panel-primary >.sppb-panel-heading:before {
-  content: "\e60c";
+  content: "\f0dd";
 }
 .sppb-panel-default >.sppb-panel-heading.active:before,
 .sppb-panel-primary >.sppb-panel-heading.active:before {
-  content: "\e60b";
+  content: "\f0de";
 }
 .sppb-panel-flex {
   border: none;

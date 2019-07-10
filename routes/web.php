@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('translations', 'TranslationsController');
     Route::resource('contacts', 'ContactsController');
     Route::resource('departments', 'DepartmentsController');
+    Route::resource('about', 'AboutController');
     Route::resource('pages', 'PagesController');
     Route::resource('links', 'LinksController');
     Route::resource('footers', 'FootersController');

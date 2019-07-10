@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\About;
 use App\Client;
 use App\Enums\EState;
 use App\Page;
@@ -31,11 +32,16 @@ class PagesController extends Controller
      */
     public function about(Request $request)
     {
+        $abouts = About::query()
+            ->whereState(EState::enabled)
+            ->orderBy('id', 'ASC')
+            ->get();
+
         $page = Page::query()
             ->whereIn('page_name', ['about_page'])
             ->first();
 
-        return view('site.pages.show', compact('page'));
+        return view('site.pages.about', compact('page', 'abouts'));
     }
 
     /**

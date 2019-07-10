@@ -174,6 +174,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        Hocza\Sendy\SendyServiceProvider::class,
         //
 
         /*
@@ -238,6 +239,7 @@ return [
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Sendy' => Hocza\Sendy\Facades\Sendy::class,
     ],
 
 ];
