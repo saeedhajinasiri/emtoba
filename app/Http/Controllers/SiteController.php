@@ -124,4 +124,13 @@ class SiteController extends Controller
 
         return $class::findOrFail($id);
     }
+
+    public function newsletter()
+    {
+        try {
+            dd('salam');
+        } catch(\Exception $e) {
+
+        }
+    }
 }

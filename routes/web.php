@@ -43,6 +43,10 @@ Route::post('news/like/{id}', [
     'as' => 'site.news.like',
     'uses' => 'PostsController@like'
 ]);
+Route::post('newsletter/store', [
+    'as' => 'site.newsletter.store',
+    'uses' => 'SiteController@newsletter'
+]);
 
 Route::get('/تماس-با-ما', ['as' => 'site.contacts.show', 'uses' => 'ContactsController@show']);
 Route::get('/شکایات-و-پیشنهادات', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);

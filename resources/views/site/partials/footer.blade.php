@@ -36,7 +36,8 @@
                         <h5 class="m-b30 text-white">ثبت نام در خبر نامه</h5>
                         <p class="text-capitalize m-b20">برای آگاهی از آخرین اخبار ما، عضو شوید.</p>
                         <div class="subscribe-form m-b20">
-                            <form class="dzSubscribe" action="script/mailchamp.php" method="post">
+                            <form class="dzSubscribe" action="{{ route('site.newsletter.store') }}" method="post">
+                                {!! csrf_field() !!}
                                 <div class="dzSubscribeMsg"></div>
                                 <div class="input-group">
                                     <input name="dzEmail" required="required" class="form-control" placeholder="آدرس ایمیل شما" type="email">

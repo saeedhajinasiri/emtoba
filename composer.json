@@ -24,7 +24,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "davejamesmiller/laravel-breadcrumbs": "^5.2",
         "mews/captcha": "^2.2",
-        "hocza/sendy": "1.*"
+        "casinelli/laravel-campaignmonitor": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
