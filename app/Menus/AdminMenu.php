@@ -3,7 +3,10 @@
 namespace App\Menus;
 
 
+use App\Blog;
 use App\Page;
+use App\Post;
+use App\Video;
 
 class AdminMenu extends BaseMenu
 {
@@ -27,12 +30,22 @@ class AdminMenu extends BaseMenu
             });
         $pageMenu = ($pageList->count() > 0 ? array_merge(
             [
+                'about' => [
+                    'title' => trans('admin.about.index'),
+                    'link' => route('admin.about.index'),
+                    'route' => 'admin.about.index',
+                ],
                 'pages' => [
                     'title' => trans('admin.pages.index'),
                     'link' => route('admin.pages.index'),
                     'route' => 'admin.pages.index',
                 ]
             ], $pageList->toArray()) : [
+            'about' => [
+                'title' => trans('admin.about.index'),
+                'link' => route('admin.about.index'),
+                'route' => 'admin.about.index',
+            ],
             'pages' => [
                 'title' => trans('admin.pages.index'),
                 'link' => route('admin.pages.index'),
@@ -70,9 +83,19 @@ class AdminMenu extends BaseMenu
                         'route' => 'admin.posts.index',
                     ],
                     [
+                        'title' => trans('admin.comments.post'),
+                        'link' => route('admin.comments.index', ['commentable' => Post::class]),
+                        'route' => 'admin.comments.index',
+                    ],
+                    [
                         'title' => trans('admin.blog.index'),
                         'link' => route('admin.blog.index'),
                         'route' => 'admin.blog.index',
+                    ],
+                    [
+                        'title' => trans('admin.comments.blog'),
+                        'link' => route('admin.comments.index', ['commentable' => Blog::class]),
+                        'route' => 'admin.comments.index',
                     ],
                     [
                         'title' => trans('admin.videos.index'),
@@ -80,8 +103,8 @@ class AdminMenu extends BaseMenu
                         'route' => 'admin.videos.index',
                     ],
                     [
-                        'title' => trans('admin.comments.index'),
-                        'link' => route('admin.comments.index'),
+                        'title' => trans('admin.comments.video'),
+                        'link' => route('admin.comments.index', ['commentable' => Video::class]),
                         'route' => 'admin.comments.index',
                     ],
                 ]
@@ -168,6 +191,11 @@ class AdminMenu extends BaseMenu
                         'title' => trans('admin.concerts.index'),
                         'link' => route('admin.concerts.index'),
                         'route' => 'admin.concerts.index',
+                    ],
+                    [
+                        'title' => trans('admin.subscribers.index'),
+                        'link' => route('admin.subscribers.index'),
+                        'route' => 'admin.subscribers.index',
                     ],
                 ]
             ],

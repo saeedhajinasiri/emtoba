@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>مرکز مشاوران حقوقی طوبی</title>
-    <link href="/images/toba.png" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="/main/css/animate.min.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/sppagebuilder.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/slider-pro.css" type="text/css"/>
@@ -92,7 +91,17 @@
         <div class="container">
             <div class="row">
                 <div id="sp-top1" class="col-sm-10 col-md-10">
-                    <div class="sp-column "></div>
+                    <div class="sp-column">
+                        <ul class="social-icons col-sm-12" style="float: right;">
+                            @if(\Auth::check())
+                                <li>کاربر {{ \Auth::user()->full_name }}، خوش آمدید</li>
+                                <li><a href="/logout">خروج</a></li>
+                            @else
+                                <li><a href="/login">ورود</a></li>
+                                <li><a href="/register">عضویت</a></li>
+                            @endif
+                        </ul>
+                    </div>
                 </div>
                 <div id="sp-top2" class="col-sm-2 col-md-2">
                     <div class="sp-column ">
@@ -135,7 +144,8 @@
 
                         <div class="page-content">
                             @include('site.partials.slider')
-                            <section class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-image:url(/main/img/stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
+                            @include('flash::message')
+                            <section class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
                                 <div class="sppb-container">
                                     <div class="sppb-row">
                                         <div class="sppb-col-sm-12">
@@ -206,7 +216,7 @@
                             @endif
 
                             @if(count($partners))
-                                <section class="sppb-section" style="margin:0px;padding:40px 20px 60px;background-image:url(/images/svg/background-white-85.svg);">
+                                <section class="sppb-section" style="margin:0px;padding:40px 20px 60px;">
                                     <div class="sppb-container">
                                         <div class="sppb-row">
                                             <div class="sppb-col-sm-12">
@@ -234,7 +244,7 @@
                             @endif
 
                             <section class="sppb-section "
-                                     style="margin:0px;padding:40px 20px 60px;background-image:url(/images/svg/background-white-85.svg);">
+                                     style="margin:0px;padding:40px 20px 60px;">
                                 <div class="sppb-container">
                                     <div class="sppb-row">
                                         <div class="sppb-col-sm-12 text-center">
@@ -265,7 +275,7 @@
                             </section>
 
                             @if(getSetting('red_line_text'))
-                                <div class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#70131b;background-image:url(/images/svg/section-background-stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
+                                <div class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#70131b;background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
                                     <div class="sppb-container">
                                         <div class="sppb-row">
                                             <div class="sppb-col-sm-12">
@@ -285,7 +295,7 @@
                             @endif
 
                             @if(getSetting('red_line_text'))
-                                <div class="sppb-section " style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-image:url(/images/svg/section-background-stripes.svg);background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
+                                <div class="sppb-section " style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
                                     <div class="sppb-container">
                                         <div class="sppb-row">
                                             <div class="sppb-col-sm-12">
@@ -313,7 +323,9 @@
                                                     <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
                                                         <div class="sppb-addon sppb-addon-feature sppb-text-center ">
                                                             <div class="sppb-addon-content">
-                                                                <div class="sppb-icon">&nbsp;</div>
+                                                                <div class="sppb-icon">
+                                                                    <img src="/uploads/images/setting/{{ getSetting('first_box_image') }}" alt="{{ getSetting('first_box_title') }}" width="150" height="150">
+                                                                </div>
 
                                                                 <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('first_box_title') }}</h3>
 
@@ -331,7 +343,9 @@
                                                     <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
                                                         <div class="sppb-addon sppb-addon-feature sppb-text-center ">
                                                             <div class="sppb-addon-content">
-                                                                <div class="sppb-icon">&nbsp;</div>
+                                                                <div class="sppb-icon">
+                                                                    <img src="/uploads/images/setting/{{ getSetting('second_box_image') }}" alt="{{ getSetting('second_box_title') }}" width="150" height="150">
+                                                                </div>
 
                                                                 <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('second_box_title') }}</h3>
 
@@ -349,7 +363,9 @@
                                                     <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
                                                         <div class="sppb-addon sppb-addon-feature sppb-text-center ">
                                                             <div class="sppb-addon-content">
-                                                                <div class="sppb-icon">&nbsp;</div>
+                                                                <div class="sppb-icon">
+                                                                    <img src="/uploads/images/setting/{{ getSetting('third_box_image') }}" alt="{{ getSetting('third_box_title') }}" width="150" height="150">
+                                                                </div>
 
                                                                 <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('third_box_title') }}</h3>
 
@@ -367,7 +383,9 @@
                                                     <div class="sppb-addon-container  sppb-wow fadeInLeft" style="padding:20px;">
                                                         <div class="sppb-addon sppb-addon-feature sppb-text-center ">
                                                             <div class="sppb-addon-content">
-                                                                <div class="sppb-icon">&nbsp;</div>
+                                                                <div class="sppb-icon">
+                                                                    <img src="/uploads/images/setting/{{ getSetting('fourth_box_image') }}" alt="{{ getSetting('fourth_box_title') }}" width="150" height="150">
+                                                                </div>
 
                                                                 <h3 class="sppb-feature-box-title" style="margin-bottom:20px;">{{ getSetting('fourth_box_title') }}</h3>
 
@@ -415,7 +433,7 @@
                             @endif
 
                             @if(count($governments) > 0)
-                                <section class="sppb-section" style="margin:0px;padding:40px 20px 60px;background-image:url(/images/svg/background-white-85.svg);">
+                                <section class="sppb-section" style="margin:0px;padding:40px 20px 60px;">
                                     <div class="sppb-container">
                                         <div class="sppb-row">
                                             <div class="sppb-col-sm-12">
@@ -629,7 +647,7 @@
                                                         <div class="flex-progress-text">{{ getSetting('first_percentage_value') }}%</div>
                                                     </div>
                                                     <div style="height:5px;line-height:5px;" class="sppb-progress sppb-progress-10">
-                                                    <div style="background-color:#e39a9a;line-height:5px;"
+                                                        <div style="background-color:#e39a9a;line-height:5px;"
                                                              class="sppb-progress-bar flex" role="progressbar"
                                                              aria-valuenow="{{ getSetting('first_percentage_value') }}" aria-valuemin="0" aria-valuemax="100"
                                                              data-width="{{ getSetting('first_percentage_value') }}%"></div>
@@ -643,7 +661,7 @@
                                                         <div class="flex-progress-text">{{ getSetting('second_percentage_value') }}%</div>
                                                     </div>
                                                     <div style="height:5px;line-height:5px;" class="sppb-progress sppb-progress-36">
-                                                    <div style="background-color:#ff8a42;line-height:5px;" class="sppb-progress-bar flex" role="progressbar"
+                                                        <div style="background-color:#ff8a42;line-height:5px;" class="sppb-progress-bar flex" role="progressbar"
                                                              aria-valuenow="{{ getSetting('second_percentage_value') }}" aria-valuemin="0" aria-valuemax="100"
                                                              data-width="{{ getSetting('second_percentage_value') }}%"></div>
                                                     </div>
@@ -656,7 +674,7 @@
                                                         <div class="flex-progress-text">{{ getSetting('third_percentage_value') }}%</div>
                                                     </div>
                                                     <div style="height:5px;line-height:5px;" class="sppb-progress sppb-progress-27 ">
-                                                    <div style="background-color:#a39b32;line-height:5px;" class="sppb-progress-bar flex" role="progressbar"
+                                                        <div style="background-color:#a39b32;line-height:5px;" class="sppb-progress-bar flex" role="progressbar"
                                                              aria-valuenow="{{ getSetting('third_percentage_value') }}" aria-valuemin="0" aria-valuemax="100"
                                                              data-width="{{ getSetting('third_percentage_value') }}%"></div>
                                                     </div>
@@ -669,8 +687,8 @@
                                                         <div class="flex-progress-text">{{ getSetting('fourth_percentage_value') }}%</div>
                                                     </div>
                                                     <div style="height:5px;line-height:5px;" class="sppb-progress sppb-progress-31">
-                                                    <div style="background-color:#baafaf;line-height:5px;" class="sppb-progress-bar flex" role="progressbar"
-                                                         aria-valuenow="{{ getSetting('fourth_percentage_value') }}" aria-valuemin="0" aria-valuemax="100"
+                                                        <div style="background-color:#baafaf;line-height:5px;" class="sppb-progress-bar flex" role="progressbar"
+                                                             aria-valuenow="{{ getSetting('fourth_percentage_value') }}" aria-valuemin="0" aria-valuemax="100"
                                                              data-width="{{ getSetting('fourth_percentage_value') }}%"></div>
                                                     </div>
                                                 @endif
@@ -742,9 +760,6 @@
 <script src="/main/js/vm-cart.js" type="text/javascript"></script>
 <script src="/main/js/main.js" type="text/javascript"></script>
 <script src="/main/js/frontend-edit.js" type="text/javascript"></script>
-
-<script src="/main/js/https _cdn.ywxi.net_js_1.js" type="text/javascript"></script>
-
 
 <script type="text/javascript">
     jQuery(function ($) {

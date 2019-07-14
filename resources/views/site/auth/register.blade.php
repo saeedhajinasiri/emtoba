@@ -18,8 +18,6 @@
                 <div id="sp-component" class="col-sm-12 col-md-12">
                     <h1 class="title-bottom fs-18 mb-30"> عضویت در سایت</h1>
                     <div class="form">
-                        @include('flash::message')
-
                         <form class="validated-contact-form" role="form" method="POST" action="{{ url('/register') }}">
                             {{ csrf_field() }}
 

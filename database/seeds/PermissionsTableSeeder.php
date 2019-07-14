@@ -47,6 +47,7 @@ class PermissionsTableSeeder extends Seeder
         $this->setCRUDPermissions($role, 'Menus');
         $this->setCRUDPermissions($role, 'Posts');
         $this->setCRUDPermissions($role, 'Pages');
+        $this->setCRUDPermissions($role, 'About');
         $this->setCRUDPermissions($role, 'Links');
         $this->setCRUDPermissions($role, 'Translations');
         $this->setCRUDPermissions($role, 'Settings');
@@ -68,6 +69,13 @@ class PermissionsTableSeeder extends Seeder
         $this->setCRUDPermissions($role, 'Lessons');
         $this->setCRUDPermissions($role, 'Footers');
 
+        // SUBSCRIBERS PERMISSIONS
+        $permission = Permission::create([
+            'name' => 'admin.subscribers.read',
+            'display_name' => 'Admin Subscribers Read'
+        ]);
+        $role->permissions()->attach($permission);
+
         // START custom permissions
         // $this->setCRUDPermissions($role, 'Videos');
         // END custom permissions
@@ -83,7 +91,7 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'admin.databases.read',
             'display_name' => 'Admin Databases Home Read'
         ]);
-        $role->permissions()->attach($permission);*/
+        $role->permissions()->attach($permission);
 
         $customerRole = Role::find(2);
 
@@ -139,7 +147,7 @@ class PermissionsTableSeeder extends Seeder
             'display_name' => 'Dashboard Settings Update',
             'name' => 'dashboard.settings.update',
         ]);
-        $customerRole->permissions()->attach($permission);
+        $customerRole->permissions()->attach($permission);*/
     }
 
     /**

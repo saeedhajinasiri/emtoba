@@ -12,7 +12,6 @@
                                 @foreach($sliders as $slider)
                                     <div class="sp-slide">
                                         <img class="sp-image"
-                                             src="/modules/mod_ap_smart_layerslider/assets/images/blank.gif"
                                              data-src="{{ $slider->imageLink }}"
                                              alt="{{ $slider->title }}"/>
                                         <!-- Description (layers) -->

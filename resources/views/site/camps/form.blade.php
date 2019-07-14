@@ -28,6 +28,20 @@
                             <br>
                         @endif
 
+                        @if (isset($errors) && count($errors) > 0)
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="col-sm-6 white-bg">
                             {!! form_start($form) !!}
 
@@ -121,7 +135,11 @@
                                     <input class="form-control ltr" placeholder="@lang('site.contacts.captcha')" name="captcha" type="text" autocomplete="off">
                                 </div>
                                 <div class="col-md-4">
-                                    {!! Captcha::img() !!}
+                                    <div id='captcha' class="col-sm-12">
+                                        <a href='javascript:void(0);' id="reload_captcha">
+                                            <img src="{{ captcha_src() }}" id="captcha_image">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 

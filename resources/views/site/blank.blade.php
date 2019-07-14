@@ -39,5 +39,12 @@
 <script src="/main/js/sppagebuilder.js" type="text/javascript"></script>
 <script src="/main/js/bootstrap.min.js" type="text/javascript"></script>
 @yield('scripts')
+<script>
+    $(document).ready(function () {
+        $('#reload_captcha').click(function (event) {
+            $('#captcha_image').attr('src', $('#captcha_image').attr('src') + '{{ captcha_src() }}');
+        });
+    })
+</script>
 </body>
 </html>

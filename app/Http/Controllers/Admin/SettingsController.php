@@ -68,11 +68,11 @@ class SettingsController extends Controller
         if ($request->hasFile($key)) {
             $imageName = $request->file($key)->getClientOriginalName();
             $img = $request->file($key)->move(
-                base_path() . '/public/images/setting/', $imageName
+                base_path() . '/public/uploads/images/setting/', $imageName
             );
 
-            if (\File::isFile(base_path() . '/public/images/setting/' . $value)) {
-                \File::delete(base_path() . '/public/images/setting/' . $value);
+            if (\File::isFile(base_path() . '/public/uploads/images/setting/' . $value)) {
+                \File::delete(base_path() . '/public/uploads/images/setting/' . $value);
             }
 
             return $img->getFilename();

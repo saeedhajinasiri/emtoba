@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     @yield('meta_tags')
-    <link href="/images/toba.png" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="/main/css/animate.min.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/sppagebuilder.css" type="text/css"/>
     <link rel="stylesheet" href="/main/css/slider-pro.css" type="text/css"/>
@@ -99,26 +98,13 @@
             <div class="row">
                 <div id="sp-top1" class="col-sm-9 col-md-9">
                     <div class="sp-column">
-                        <ul class="social-icons col-sm-2" style="float: right;">
-                            @if(getSetting('facebook_url'))
-                                <li><a target="_blank" href="{{ getSetting('facebook_url') }}"><i class="fa fa-facebook"></i></a></li>
-                            @endif
-                            @if(getSetting('telegram_url'))
-                                <li><a target="_blank" href="{{ getSetting('telegram_url') }}"><i class="fa fa-paper-plane"></i></a></li>
-                            @endif
-                            @if(getSetting('instagram_url'))
-                                <li><a target="_blank" href="{{ getSetting('instagram_url') }}"><i class="fa fa-instagram"></i></a></li>
-                            @endif
-                        </ul>
-                        <ul class="sp-contact-info">
-                            @if(getSetting('tel'))
-                                <li class="sp-contact-phone"><i class="pe pe-7s-headphones"></i>{{ getSetting('tel') }}</li>
-                            @endif
-                            @if(getSetting('work_hours'))
-                                <li class="sp-office-hours"><i class="pe pe-7s-timer"></i>{{ getSetting('work_hours') }} </li>
-                            @endif
-                            @if(getSetting('email'))
-                                <li class="sp-contact-email"><i class="pe pe-7s-mail"></i> <a href="mailto:{{ getSetting('email') }}">{{ getSetting('email') }}</a></li>
+                        <ul class="social-icons col-sm-12" style="float: right;">
+                            @if(\Auth::check())
+                                <li>کاربر {{ \Auth::user()->full_name }}، خوش آمدید</li> |
+                                <li><a href="/logout">خروج</a></li>
+                            @else
+                                <li><a href="/login">ورود</a></li> |
+                                <li><a href="/register">عضویت</a></li>
                             @endif
                         </ul>
                     </div>
@@ -152,6 +138,8 @@
         </div>
     </section>
     @yield('breadcrumbs')
+
+    @include('flash::message')
 
     @if (isset($errors) && count($errors) > 0)
         <div class="row">
@@ -199,6 +187,14 @@
 <script src="/main/js/main.js" type="text/javascript"></script>
 <script src="/main/js/frontend-edit.js" type="text/javascript"></script>
 @yield('scripts')
+
+<script>
+    $(document).ready(function () {
+        $('#reload_captcha').click(function (event) {
+            $('#captcha_image').attr('src', $('#captcha_image').attr('src') + '{{ captcha_src() }}');
+        });
+    })
+</script>
 </body>
 
 

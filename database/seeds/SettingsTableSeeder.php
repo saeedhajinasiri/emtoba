@@ -45,12 +45,16 @@ class SettingsTableSeeder extends Seeder
 هدفمند پیگیر موارد قضایی و حقوقی شما هستیم.', 'textarea');
 
         $this->set('first_box_title', 'وکالت و مشاوره تخصصی کلیه دعاوی');
+        $this->set('first_box_image', 'copy.png', 'image');
         $this->set('first_box_content', ' وکالت و مشاوره تخصصی کلیه دعاوی ملکی، سرقفلی و حق کسب و پیشه در تهران و تمام استان ها با نمونه پرونده های موفق توسط وکلای موسسه', 'textarea');
         $this->set('second_box_title', 'رفع تصرف اراضی املاک ومستغلات');
+        $this->set('second_box_image', 'copy.png', 'image');
         $this->set('second_box_content', 'رفع تصرف اراضی املاک ومستغلات از سوی سازمان ها، ارگان ها، بنیاد، نهاد های دولتی و امور مرتبط', 'textarea');
         $this->set('third_box_title', 'تخصص در امور دیوان عدالت اداری و دیوان عالی');
+        $this->set('third_box_image', 'copy.png', 'image');
         $this->set('third_box_content', 'تخصص در امور دیوان عدالت اداری (آرای کمیسیون ماده 100 شهرداری، اعاده به خدمت، آرای کمیسیون شورای کار، تامین اجتماعی)', 'textarea');
         $this->set('fourth_box_title', 'دادگاه خانواده');
+        $this->set('fourth_box_image', 'copy.png', 'image');
         $this->set('fourth_box_content', 'امور مهریه، نفقه ( حال، آینده و گذشته )، نفقه زوجه واولاد، اجرت المثل و دیگر امور مرتبط', 'textarea');
 
         $this->set('video_title', 'سخنان رهبری');

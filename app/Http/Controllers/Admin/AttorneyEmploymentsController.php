@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\AttorneyEmployment;
 use App\Contact;
-use App\Forms\Site\AttorneyEmploymentForm;
+use App\Forms\Admin\AttorneyEmploymentForm;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Laracasts\Flash\Flash;

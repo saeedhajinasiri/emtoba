@@ -20,7 +20,6 @@
             <div class="row">
                 <div id="sp-component" class="col-sm-12 col-md-12">
                     <div class="sp-column mt-10">
-                        @include('flash::message')
 
                         @if(isset($content))
                             <h2>{!! $content->title !!}</h2>

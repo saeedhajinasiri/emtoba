@@ -43,6 +43,10 @@ Route::post('news/like/{id}', [
     'as' => 'site.news.like',
     'uses' => 'PostsController@like'
 ]);
+Route::post('newsletter/store', [
+    'as' => 'site.newsletter.store',
+    'uses' => 'SiteController@newsletter'
+]);
 
 Route::get('/تماس-با-ما', ['as' => 'site.contacts.show', 'uses' => 'ContactsController@show']);
 Route::get('/شکایات-و-پیشنهادات', ['as' => 'site.contacts.create', 'uses' => 'ContactsController@create']);
@@ -91,6 +95,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::resource('translations', 'TranslationsController');
     Route::resource('contacts', 'ContactsController');
     Route::resource('departments', 'DepartmentsController');
+    Route::resource('about', 'AboutController');
     Route::resource('pages', 'PagesController');
     Route::resource('links', 'LinksController');
     Route::resource('footers', 'FootersController');
@@ -252,6 +257,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
     Route::post('/settings', [
         'as' => 'settings.update',
         'uses' => 'SettingsController@update'
+    ]);
+    Route::get('/subscribers', [
+        'as' => 'subscribers.index',
+        'uses' => 'SubscribersController@index'
     ]);
     Route::get('/profile', [
         'as' => 'profile.index',

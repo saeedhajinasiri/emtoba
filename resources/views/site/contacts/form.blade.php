@@ -20,8 +20,6 @@
             <div class="row">
                 <div id="sp-component" class="col-sm-12 col-md-12">
                     <div class="sp-column mt-10">
-                        @include('flash::message')
-
                         @if(isset($content))
                             <h2>{!! $content->title !!}</h2>
                             <div class="formBody">
@@ -74,7 +72,11 @@
                                 <input class="form-control ltr" placeholder="@lang('site.contacts.captcha')" name="captcha" type="text" autocomplete="off">
                             </div>
                             <div class="col-md-4">
-                                {!! Captcha::img() !!}
+                                <div id='captcha' class="col-sm-12">
+                                    <a href='javascript:void(0);' id="reload_captcha">
+                                        <img src="{{ captcha_src() }}" id="captcha_image">
+                                    </a>
+                                </div>
                             </div>
                         </div>
 

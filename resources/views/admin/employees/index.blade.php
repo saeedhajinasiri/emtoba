@@ -47,7 +47,7 @@
                                 <td class="center">{{ $item->created_at }}</td>
                                 <td class="center">
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.employees.destroy', $item->id]]) }}
-                                    <a href="{{ route('admin.employees.edit', $item->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <a href="{{ route('admin.employees.edit', $item->id) }}" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     <button type="submit" class="btn btn-danger btn-sm deleteButton" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete "><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     {{ Form::close() }}
                                 </td>

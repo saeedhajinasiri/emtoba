@@ -35,7 +35,7 @@ class StoreAttorneyEmploymentRequest extends FormRequest
             'address' => 'required',
             'image' => 'required',
             'gender' => 'required',
-            'description' => 'required',
+            'resume' => 'required',
             'captcha' => 'required|captcha'
         ];
     }
