@@ -40,7 +40,7 @@
                                 {!! csrf_field() !!}
                                 <div class="dzSubscribeMsg"></div>
                                 <div class="input-group">
-                                    <input name="dzEmail" required="required" class="form-control" placeholder="آدرس ایمیل شما" type="email">
+                                    <input name="email" required="required" class="form-control" placeholder="آدرس ایمیل شما" type="email">
                                     <span class="input-group-btn">
                                         <button value="Submit" type="submit" class="site-button btn btn-success">ثبت نام</button>
                                     </span>

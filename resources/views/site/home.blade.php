@@ -144,6 +144,7 @@
 
                         <div class="page-content">
                             @include('site.partials.slider')
+                            @include('flash::message')
                             <section class="sppb-section" style="margin:10px;padding:4px 0px 20px 0px;color:#ffffff;background-color:#303030;background-repeat:repeat;background-size:inherit;background-attachment:inherit;background-position:50% 50%;">
                                 <div class="sppb-container">
                                     <div class="sppb-row">

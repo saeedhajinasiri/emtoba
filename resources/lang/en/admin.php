@@ -383,6 +383,7 @@ return array (
   'state_on' => 'فعال',
   'status' => 'وضعیت',
   'submit' => 'ثبت',
+  'subscribers.index' => 'اعضای خبرنامه',
   'teams.actions' => 'عملیات',
   'teams.author' => 'نویسنده',
   'teams.content' => 'توضیحات',

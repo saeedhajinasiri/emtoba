@@ -12,8 +12,10 @@ use App\Comment;
 use App\Http\Requests\Site\StoreCommentRequest;
 use App\Setting;
 use App\Slider;
+use App\Subscriber;
 use App\Traits\ModelFunctions;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
 class SiteController extends Controller
@@ -125,12 +127,18 @@ class SiteController extends Controller
         return $class::findOrFail($id);
     }
 
-    public function newsletter()
+    public function newsletter(Request $request)
     {
         try {
-            dd('salam');
-        } catch(\Exception $e) {
+            $subscriber = new Subscriber;
+            $subscriber->email = $request->get('email');
+            $subscriber->save();
 
+            Flash::info(trans('site.subscribers.subscriber_created_successfully'));
+            return redirect()->back();
+        } catch(\Exception $e) {
+            Flash::error(trans('site.subscribers.subscriber_created_failed'));
+            return redirect()->back();
         }
     }
 }

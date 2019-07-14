@@ -192,6 +192,11 @@ class AdminMenu extends BaseMenu
                         'link' => route('admin.concerts.index'),
                         'route' => 'admin.concerts.index',
                     ],
+                    [
+                        'title' => trans('admin.subscribers.index'),
+                        'link' => route('admin.subscribers.index'),
+                        'route' => 'admin.subscribers.index',
+                    ],
                 ]
             ],
             [

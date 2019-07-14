@@ -98,6 +98,8 @@ return array (
   'register_in_our_site' => 'ثبت نام در سایت',
   'reset_password' => 'فراموشی رمز عبور',
   'returnToMain' => 'بازگشت به صفحه اصلی',
+  'subscribers.subscriber_created_failed' => 'متاسفانه اضافه شدن به لیست خبرنامه با خطا مواجه شد،‌ لطفا مجددا امتحان کنید.',
+  'subscribers.subscriber_created_successfully' => 'با موفقیت به لیست خبرنامه اضافه شدید.',
   'tags' => 'برچسب ها',
   'toman' => 'تومان',
   'videos.index' => 'ویدئوها',

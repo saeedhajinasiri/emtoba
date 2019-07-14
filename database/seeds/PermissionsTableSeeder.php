@@ -69,6 +69,13 @@ class PermissionsTableSeeder extends Seeder
         $this->setCRUDPermissions($role, 'Lessons');
         $this->setCRUDPermissions($role, 'Footers');
 
+        // SUBSCRIBERS PERMISSIONS
+        $permission = Permission::create([
+            'name' => 'admin.subscribers.read',
+            'display_name' => 'Admin Subscribers Read'
+        ]);
+        $role->permissions()->attach($permission);
+
         // START custom permissions
         // $this->setCRUDPermissions($role, 'Videos');
         // END custom permissions

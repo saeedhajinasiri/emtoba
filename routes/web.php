@@ -258,6 +258,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'R
         'as' => 'settings.update',
         'uses' => 'SettingsController@update'
     ]);
+    Route::get('/subscribers', [
+        'as' => 'subscribers.index',
+        'uses' => 'SubscribersController@index'
+    ]);
     Route::get('/profile', [
         'as' => 'profile.index',
         'uses' => 'ProfileController@index'
